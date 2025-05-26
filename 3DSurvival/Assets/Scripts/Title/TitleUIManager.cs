@@ -1,11 +1,11 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 using UnityEngine.SceneManagement;
-using System.Collections; // ¡ç ÄÚ·çÆ¾ ¾µ ¶§ ÇÊ¿ä
+using System.Collections; // â† ì½”ë£¨í‹´ ì“¸ ë•Œ í•„ìš”
 
 public class TitleUIManager : MonoBehaviour
 {
-    [Header("¿¡·¯ ¸Ş½ÃÁö Äµ¹ö½º")]
-    public GameObject loadErrorUI; // Inspector¿¡¼­ ¿¬°áÇØ¾ß ÇÔ
+    [Header("ì—ëŸ¬ ë©”ì‹œì§€ ìº”ë²„ìŠ¤")]
+    public GameObject loadErrorUI; // Inspectorì—ì„œ ì—°ê²°í•´ì•¼ í•¨
 
     private Coroutine blinkCoroutine;
 
@@ -24,10 +24,10 @@ public class TitleUIManager : MonoBehaviour
         }
         else
         {
-            Debug.Log("ÀúÀåµÈ µ¥ÀÌÅÍ°¡ ¾ø½À´Ï´Ù.");
+            Debug.Log("ì €ì¥ëœ ë°ì´í„°ê°€ ì—†ìŠµë‹ˆë‹¤.");
 
             if (blinkCoroutine != null)
-                StopCoroutine(blinkCoroutine); // Áßº¹ ¹æÁö
+                StopCoroutine(blinkCoroutine); // ì¤‘ë³µ ë°©ì§€
 
             blinkCoroutine = StartCoroutine(BlinkLoadError());
         }

@@ -1,4 +1,4 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 using System.IO;
 
 public class SaveManager : MonoBehaviour
@@ -28,6 +28,8 @@ public class SaveManager : MonoBehaviour
 
     public void ResetData()
     {
+        Debug.Log(Application.persistentDataPath);
+
         if (File.Exists(savePath))
         {
             File.Delete(savePath);
@@ -36,7 +38,7 @@ public class SaveManager : MonoBehaviour
 
     public void SaveData(MyGameData data)
     {
-        string json = JsonUtility.ToJson(data);
+        string json = JsonUtility.ToJson(data, true); //  ì €ìž¥
         File.WriteAllText(savePath, json);
     }
 
@@ -47,6 +49,7 @@ public class SaveManager : MonoBehaviour
         string json = File.ReadAllText(savePath);
         return JsonUtility.FromJson<MyGameData>(json);
     }
+
 }
 
 [System.Serializable]
@@ -55,5 +58,5 @@ public class MyGameData
     public int hp;
     public int gold;
     public int level;
-    // ÇÊ¿äÇÑ ÇÊµå Ãß°¡
+    // í•„ìš”í•œ í•„ë“œ ì¶”ê°€
 }

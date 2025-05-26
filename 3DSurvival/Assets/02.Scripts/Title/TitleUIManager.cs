@@ -9,6 +9,13 @@ public class TitleUIManager : MonoBehaviour
 
     private Coroutine blinkCoroutine;
 
+    private void Start()
+    {
+        BGMManager.Instance?.PlayLoadingBGM();
+        BGMManager.Instance?.SetVolume(0.2f);
+    }
+
+
     public void OnClickNewGame()
     {
         SaveManager.Instance.ResetData();

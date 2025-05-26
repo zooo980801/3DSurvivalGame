@@ -16,18 +16,21 @@ public class TitleUIManager : MonoBehaviour
     }
 
 
+    public SceneFader sceneFader; // 인스펙터에서 연결해야 함
+
     public void OnClickNewGame()
     {
         SaveManager.Instance.ResetData();
-        SceneManager.LoadScene("GameScene");
+        sceneFader.FadeToScene("GameScene");
     }
+
 
     public void OnClickLoadGame()
     {
         if (SaveManager.Instance.HasSavedData())
         {
             SaveManager.Instance.LoadData();
-            SceneManager.LoadScene("GameScene");
+            sceneFader.FadeToScene("GameScene");
         }
         else
         {

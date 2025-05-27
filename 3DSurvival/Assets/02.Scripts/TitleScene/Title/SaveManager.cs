@@ -14,6 +14,7 @@ public class SaveManager : MonoBehaviour
             Instance = this; // 현재 인스턴스를 등록
             DontDestroyOnLoad(gameObject); // 씬이 바뀌어도 이 오브젝트 유지
             savePath = Path.Combine(Application.persistentDataPath, "save.json"); // 저장 경로 설정
+            Debug.Log("[SAVE] 저장 위치: " + Application.persistentDataPath);
         }
         else
         {
@@ -36,19 +37,22 @@ public class SaveManager : MonoBehaviour
         }
     }
 
-    public void SaveData(MyGameData data)
+    public void SaveData(SaveData data)
     {
-        string json = JsonUtility.ToJson(data, true); // 객체를 JSON 문자열로 변환 (들여쓰기 포함)
-        File.WriteAllText(savePath, json); // JSON 문자열을 파일로 저장
+        string json = JsonUtility.ToJson(data, true);
+        Debug.Log("[SAVE] 저장 위치: " + Application.persistentDataPath);
+        File.WriteAllText(savePath, json);
     }
 
-    public MyGameData LoadData()
+    public SaveData LoadData()
     {
-        if (!File.Exists(savePath)) return null; // 파일이 없으면 null 반환
+        if (!File.Exists(savePath)) return null;
 
-        string json = File.ReadAllText(savePath); // 파일에서 JSON 문자열 읽기
-        return JsonUtility.FromJson<MyGameData>(json); // JSON 문자열을 객체로 변환하여 반환
+        string json = File.ReadAllText(savePath);
+        Debug.Log("[SAVE] 저장 위치: " + Application.persistentDataPath);
+        return JsonUtility.FromJson<SaveData>(json);
     }
+
 }
 
 [System.Serializable] // 직렬화를 위해 필요 (JsonUtility 사용 시 필수)

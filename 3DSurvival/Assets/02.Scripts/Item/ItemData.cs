@@ -6,12 +6,6 @@
 // SaveItem : 저장 시 사용하는 ID + 수량 구조체 (별도 정의되어 있어야 함)
 // SaveData : 전체 게임 상태를 저장하는 마스터 클래스 (별도 정의되어 있어야 함)
 
-// 아이템 타입 분류 (자원형, 장비형, 소비형 등)
-public enum ITEMTYPE { Resource, Equipable, Consumable }
-
-// 소비 아이템 효과의 타입 (허기 회복, 체력 회복 등)
-public enum CONSUMABLETYPE { Hunger, Health }
-
 // 소비 아이템 효과 정보 클래스
 [System.Serializable] // 직렬화하여 인스펙터에 보이게 함
 public class ItemDataConsumable

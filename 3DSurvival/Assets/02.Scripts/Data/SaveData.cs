@@ -3,8 +3,7 @@
 [System.Serializable]
 public class SaveData // ← 저장용 클래스 명칭
 {
-    public int level;
-    public int exp;
+    public SaveLevel level;
     public int gold;
 
     public SaveStatusData health;
@@ -25,7 +24,13 @@ public class SaveStatusData
     public float maxValue;
     public float passiveValue;
 }
-
+[System.Serializable]
+public class SaveLevel
+{
+    public int curLevel;
+    public int curExp;
+}
+[System.Serializable]
 public class SaveItem // 저장용 아이템
 {
     public string itemId;

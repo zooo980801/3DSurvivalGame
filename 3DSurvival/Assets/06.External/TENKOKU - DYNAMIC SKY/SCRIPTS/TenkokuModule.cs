@@ -3313,7 +3313,7 @@ if (float.IsNaN(eclipseFactor)) eclipseFactor = 1f;
 		} else {
 			hourMode = "";
 		}
-
+ 
 		if (currentYear < 0) eon = "bc";
 		setString = setString.Replace("hh",useHour.ToString("00"));
 		setString = setString.Replace("mm",currentMinute.ToString("00"));

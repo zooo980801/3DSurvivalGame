@@ -1,40 +1,40 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
 public class StatusData
 {
-    [SerializeField] private float curValue;        // ÇöÀç »óÅÂ°ª
-    [SerializeField] private float maxValue;        // ÃÖ´ë »óÅÂ°ª
-    [SerializeField] private float passiveValue;    // ±âº»ÀûÀ¸·Î Àû¿ëµÇ´Â »óÅÂ°ª(ÀÚ¿¬È¸º¹ µî)
+    [SerializeField] private float curValue;        // í˜„ì¬ ìƒíƒœê°’
+    [SerializeField] private float maxValue;        // ìµœëŒ€ ìƒíƒœê°’
+    [SerializeField] private float passiveValue;    // ê¸°ë³¸ì ìœ¼ë¡œ ì ìš©ë˜ëŠ” ìƒíƒœê°’(ìì—°íšŒë³µ ë“±)
 
     public float CurValue { get { return curValue; } set { curValue = value; } }
     public float MaxValue { get { return maxValue; } }
     public float PassiveValue { get { return passiveValue; } }
 
-    public float Percentage => curValue / maxValue;     // UI Ç¥½Ã¸¦ À§ÇÑ ÆÛ¼¾Æ®
+    public float Percentage => curValue / maxValue;     // UI í‘œì‹œë¥¼ ìœ„í•œ í¼ì„¼íŠ¸
 
     public void Add(float value)
     {
-        curValue = Mathf.Min(curValue + value, maxValue);   // »óÅÂ°ª È¸º¹
+        curValue = Mathf.Min(curValue + value, maxValue);   // ìƒíƒœê°’ íšŒë³µ
     }
 
     public void Subtract(float value)
     {
-        curValue = Mathf.Max(curValue - value, 0f);         // »óÅÂ°ª °¨¼Ò
+        curValue = Mathf.Max(curValue - value, 0f);         // ìƒíƒœê°’ ê°ì†Œ
     }
 }
 
 public class BaseStatus : MonoBehaviour
 {
-    [SerializeField] protected StatusData hunger;
-    [SerializeField] protected StatusData thirst;
+    [SerializeField] protected StatusData hunger;   // ë°°ê³ í””
+    [SerializeField] protected StatusData thirst;   // ìˆ˜ë¶„
 
     protected virtual void Update()
     {
-        hunger.Subtract(hunger.PassiveValue * Time.deltaTime);  // ±âº» ¹è°íÇÄ °¨¼Ò
-        thirst.Subtract(thirst.PassiveValue * Time.deltaTime);  // ±âº» ¼öºĞ °¨¼Ò
+        hunger.Subtract(hunger.PassiveValue * Time.deltaTime);  // ê¸°ë³¸ ë°°ê³ í”” ê°ì†Œ
+        thirst.Subtract(thirst.PassiveValue * Time.deltaTime);  // ê¸°ë³¸ ìˆ˜ë¶„ ê°ì†Œ
     }
 
     protected void Eat(float amount)

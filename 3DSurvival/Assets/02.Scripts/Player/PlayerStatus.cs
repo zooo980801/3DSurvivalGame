@@ -1,17 +1,17 @@
-using System;
+ï»¿using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public interface IDamagable // µ¥¹ÌÁö¸¦ ¹Ş´Â ¿ÀºêÁ§Æ®°¡ ±¸ÇöÇØ¾ß ÇÒ ÀÎÅÍÆäÀÌ½º
+public interface IDamagable // ë°ë¯¸ì§€ë¥¼ ë°›ëŠ” ì˜¤ë¸Œì íŠ¸ê°€ êµ¬í˜„í•´ì•¼ í•  ì¸í„°í˜ì´ìŠ¤
 {
-    void TakePhysicalDamage(int damage);    // µ¥¹ÌÁö¸¦ ¹Ş´Â ÇÔ¼ö
+    void TakePhysicalDamage(int damage);    // ë°ë¯¸ì§€ë¥¼ ë°›ëŠ” í•¨ìˆ˜
 }
 
-public class PlayerStatus : BaseStatus
+public class PlayerStatus : BaseStatus, IDamagable
 {
-    [SerializeField] private StatusData health;
-    [SerializeField] private StatusData stamina;
+    [SerializeField] private StatusData health;     // ì²´ë ¥
+    [SerializeField] private StatusData stamina;    // ìŠ¤í…Œë¯¸ë‚˜
 
     public event Action onTakeDamage;
 
@@ -19,8 +19,8 @@ public class PlayerStatus : BaseStatus
     {
         base.Update();
 
-        health.Add(health.PassiveValue * Time.deltaTime);  // ±âº» Ã¼·Â Áõ°¡
-        stamina.Add(stamina.PassiveValue * Time.deltaTime);  // ±âº» ½ºÅ×¹Ì³ª Áõ°¡
+        health.Add(health.PassiveValue * Time.deltaTime);  // ê¸°ë³¸ ì²´ë ¥ ì¦ê°€
+        stamina.Add(stamina.PassiveValue * Time.deltaTime);  // ê¸°ë³¸ ìŠ¤í…Œë¯¸ë‚˜ ì¦ê°€
     }
 
     public void Heal(float amount)
@@ -30,23 +30,23 @@ public class PlayerStatus : BaseStatus
 
     public void GetStamina(float amount)
     {
-        stamina.Add(amount); // ÀÔ·Â °ª¸¸Å­ ½ºÅ×¹Ì³ª È¸º¹
+        stamina.Add(amount);
     }
 
     public void TakePhysicalDamage(int damage)
     {
-        health.Subtract(damage);    // ÀÔ·Â °ª¸¸Å­ Ã¼·Â °¨¼Ò
-        onTakeDamage?.Invoke();     // µ¥¹ÌÁö¸¦ ¹Ş¾Ò´Ù´Â ÀÌº¥Æ® ¹ß»ı
+        health.Subtract(damage);
+        onTakeDamage?.Invoke();     // ë°ë¯¸ì§€ë¥¼ ë°›ì•˜ë‹¤ëŠ” ì´ë²¤íŠ¸ ë°œìƒ
     }
 
     public bool UseStamina(float amount)
     {
-        if (stamina.CurValue - amount < 0f) // ½ºÅ×¹Ì³ª°¡ ºÎÁ·ÇÒ °æ¿ì
+        if (stamina.CurValue - amount < 0f)
         {
             return false;
         }
 
-        stamina.Subtract(amount);   // ÀÔ·Â °ª¸¸Å­ ½ºÅ×¹Ì³ª ¼Ò¸ğ
+        stamina.Subtract(amount);
         return true;
     }
 }

@@ -30,20 +30,21 @@ public class SceneFader : MonoBehaviour
     // Fade Out 후 게임을 종료하는 코루틴
     private IEnumerator FadeAndQuitCoroutine()
     {
+
         Debug.Log("▶ 페이드 시작");
-        yield return StartCoroutine(Fade(0f, 1f));
+        yield return StartCoroutine(Fade(0f, 5f));  // 투명 → 불투명으로 Fade Out
+
         Debug.Log("▶ 페이드 완료");
+        yield return new WaitForSeconds(5f);         // 반초 정도 기다리기 (사용자가 페이드 끝을 볼 수 있게)
 
-        yield return new WaitForSeconds(1f);
         Debug.Log("▶ 대기 완료 후 종료");
-
-        Application.Quit();
+        Application.Quit();                         // 애플리케이션 종료
+        
 
 #if UNITY_EDITOR
-        UnityEditor.EditorApplication.isPlaying = false;
+    UnityEditor.EditorApplication.isPlaying = false; // 에디터에서는 Play 모드 종료
 #endif
     }
-
 
     // 알파 값을 조절하여 Fade 효과를 주는 코루틴
     private IEnumerator Fade(float startAlpha, float endAlpha)

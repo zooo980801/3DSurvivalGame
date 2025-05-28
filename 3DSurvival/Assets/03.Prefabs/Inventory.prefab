@@ -47,7 +47,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a46bed3ab7a51304eb2364e1a004b0fe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  selectedItem: {fileID: 11400000, guid: fb2cb319f06cd854c80abb7ae35db78c, type: 2}
+  selectedItem: {fileID: 11400000, guid: 3604ac4d8dd71f249a73155cc0c25514, type: 2}
   dropPosition: {fileID: 0}
   testQuantity: 10
 --- !u!114 &2023277954901891776
@@ -727,7 +727,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0}
   m_AnchoredPosition: {x: 0, y: 15}
-  m_SizeDelta: {x: 0, y: 300}
+  m_SizeDelta: {x: 0, y: 320}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!222 &1527115084612675877
 CanvasRenderer:

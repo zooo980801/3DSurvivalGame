@@ -15,12 +15,21 @@ public class PlayerStatus : BaseStatus, IDamagable
 
     public event Action onTakeDamage;
 
+    private void Start()
+    {
+        health.onValueChanged += SaveStatus;
+        stamina.onValueChanged += SaveStatus;
+        hunger.onValueChanged += SaveStatus;
+        thirst.onValueChanged += SaveStatus;
+    }
+
     protected override void Update()
     {
         base.Update();
 
         health.Add(health.PassiveValue * Time.deltaTime);  // 기본 체력 증가
         stamina.Add(stamina.PassiveValue * Time.deltaTime);  // 기본 스테미나 증가
+
     }
 
     public void Heal(float amount)
@@ -48,5 +57,25 @@ public class PlayerStatus : BaseStatus, IDamagable
 
         stamina.Subtract(amount);
         return true;
+    }
+    public void ApplySaveStatus(SaveData data)
+    {
+        base.ApplySaveStatus(data);
+        health.FromSaveData(data.health);
+        stamina.FromSaveData(data.stamina);
+    }
+
+    public void WriteSaveStatus(SaveData data)
+    {
+        base.WriteSaveStatus(data);
+        data.health = health.ToSaveData();
+        data.stamina = stamina.ToSaveData();
+    }
+
+    private void SaveStatus()
+    {
+        SaveData current = new SaveData();
+        WriteSaveStatus(current);
+        SaveManager.Instance.SaveData(current);
     }
 }

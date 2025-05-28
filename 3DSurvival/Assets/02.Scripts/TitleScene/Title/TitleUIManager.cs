@@ -8,7 +8,7 @@ public class TitleUIManager : MonoBehaviour
     public GameObject loadErrorUI;   // 저장 데이터 없을 때 띄울 에러 UI (인스펙터에서 연결)
 
     private Coroutine blinkCoroutine; // 에러 메시지 깜빡임을 위한 코루틴 저장용 변수
-
+    public GameObject saveTesterObject;
     private void Start()
     {
         // 타이틀 화면에서 배경 음악 재생 시작
@@ -24,12 +24,20 @@ public class TitleUIManager : MonoBehaviour
     public void OnClickNewGame()
     {
         SaveManager.Instance.ResetData();          // 기존 저장 데이터 초기화
+        if (saveTesterObject != null)
+        {
+            saveTesterObject.SetActive(true); // 오브젝트 활성화
+            saveTesterObject.GetComponent<SaveTester>().CreateInitialSaveData();
+            saveTesterObject.SetActive(false); // 다시 비활성화 (선택)
+        }
         sceneFader.FadeToScene("GameScene");       // 페이드 아웃 후 GameScene으로 이동
     }
 
     // "불러오기" 버튼 클릭 시 호출
     public void OnClickLoadGame()
     {
+
+
         // 저장 데이터가 존재하면
         if (SaveManager.Instance.HasSavedData())
         {

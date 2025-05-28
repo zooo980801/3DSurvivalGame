@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.16842028, g: 0.30712858, b: 0.6340767, a: 1}
+  m_IndirectSpecularColor: {r: 0.16812396, g: 0.3071829, b: 0.6362723, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -15309,7 +15309,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cameraType: 1
-  renderTexDiff: {fileID: 591422280}
+  renderTexDiff: {fileID: 1886818877}
 --- !u!20 &456977531
 Camera:
   m_ObjectHideFlags: 0
@@ -15605,8 +15605,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 577731556}
   serializedVersion: 2
-  m_LocalRotation: {x: -4.7829055e-16, y: -0.3605967, z: -1.8491043e-16, w: 0.93272185}
-  m_LocalPosition: {x: 100, y: 31.8, z: -110}
+  m_LocalRotation: {x: 4.7829055e-16, y: 0.3605967, z: -1.8491043e-16, w: 0.93272185}
+  m_LocalPosition: {x: -100, y: 31.8, z: -110}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -15624,21 +15624,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b886485ca2932d4286e2a40f1fcba64, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pathPoints:
-  - {fileID: 604248586}
-  - {fileID: 2023654462}
-  - {fileID: 1666061591}
-  - {fileID: 2001411610}
-  lookTargets:
-  - {fileID: 1398437675}
-  - {fileID: 1089830077}
-  - {fileID: 1285354919}
-  - {fileID: 1076838131}
-  moveSpeed: 3
-  waitTime: 2
-  currentIndex: 0
-  waitTimer: 0
-  isWaiting: 0
 --- !u!114 &577731563
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15673,44 +15658,6 @@ MonoBehaviour:
   m_CameraActivatedEvent:
     m_PersistentCalls:
       m_Calls: []
---- !u!84 &591422280
-RenderTexture:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: 
-  m_ImageContentsHash:
-    serializedVersion: 2
-    Hash: 00000000000000000000000000000000
-  m_ForcedFallbackFormat: 4
-  m_DownscaleFallback: 0
-  m_IsAlphaChannelOptional: 0
-  serializedVersion: 5
-  m_Width: 128
-  m_Height: 128
-  m_AntiAliasing: 1
-  m_MipCount: -1
-  m_DepthStencilFormat: 94
-  m_ColorFormat: 48
-  m_MipMap: 1
-  m_GenerateMips: 1
-  m_SRGB: 0
-  m_UseDynamicScale: 0
-  m_BindMS: 0
-  m_EnableCompatibleFormat: 1
-  m_EnableRandomWrite: 0
-  m_TextureSettings:
-    serializedVersion: 2
-    m_FilterMode: 1
-    m_Aniso: 1
-    m_MipBias: 0
-    m_WrapU: 1
-    m_WrapV: 1
-    m_WrapW: 1
-  m_Dimension: 2
-  m_VolumeDepth: 1
-  m_ShadowSamplingMode: 2
 --- !u!1 &604248584
 GameObject:
   m_ObjectHideFlags: 0
@@ -16282,8 +16229,8 @@ MonoBehaviour:
   galaxyCubeTex: {fileID: 0}
   useCamera: {fileID: 577731561}
   useCameraCam: {fileID: 577731560}
-  moonLightAmt: 0.678293
-  moonPhase: 0.6608535
+  moonLightAmt: 0.69954234
+  moonPhase: 0.65022886
   ambientCol: {r: 1, g: 1, b: 1, a: 1}
   colorSun: {r: 1, g: 1, b: 0.9960785, a: 1}
   colorMoon: {r: 0.43921572, g: 0.5921569, b: 0.69803923, a: 1}
@@ -16634,7 +16581,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  randSeed: 376556031
+  randSeed: 376846031
   isDoingTransition: 0
   minimumHeight: 0
 --- !u!114 &633636797
@@ -16973,7 +16920,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 833330296}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.48827666, y: -0.14357446, z: -0.8410851, w: -0.1831617}
+  m_LocalRotation: {x: -0.5214354, y: -0.12731577, z: -0.82799685, w: -0.16222563}
   m_LocalPosition: {x: 0.5529245, y: 0, z: 0}
   m_LocalScale: {x: 1.1074, y: 1.10745, z: 1.10745}
   m_ConstrainProportionsScale: 0
@@ -22359,7 +22306,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4977246850b74d4193596b4eea2e4fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  director: {fileID: 0}
+  director: {fileID: 1090217477}
   player: {fileID: 0}
   uiRoot: {fileID: 0}
 --- !u!1 &1135793150
@@ -22444,7 +22391,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cameraType: 0
-  renderTexDiff: {fileID: 1603383567}
+  renderTexDiff: {fileID: 1491351926}
 --- !u!20 &1155303589
 Camera:
   m_ObjectHideFlags: 0
@@ -32715,7 +32662,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1422192561}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.33054572, y: 0.117206626, z: -0.041410387, w: 0.9355679}
+  m_LocalRotation: {x: 0.3362828, y: 0.07563358, z: -0.02710595, w: 0.9383276}
   m_LocalPosition: {x: -13.70872, y: 9.276348, z: -11.36977}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -37676,6 +37623,44 @@ MonoBehaviour:
   planetColor: {r: 0.32156864, g: 0.7725491, b: 0.9960785, a: 1}
   planetSize: 0.35
   planetOffset: {x: 0, y: 0, z: 0}
+--- !u!84 &1491351926
+RenderTexture:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  m_ImageContentsHash:
+    serializedVersion: 2
+    Hash: 00000000000000000000000000000000
+  m_ForcedFallbackFormat: 4
+  m_DownscaleFallback: 0
+  m_IsAlphaChannelOptional: 0
+  serializedVersion: 5
+  m_Width: 128
+  m_Height: 128
+  m_AntiAliasing: 1
+  m_MipCount: -1
+  m_DepthStencilFormat: 94
+  m_ColorFormat: 48
+  m_MipMap: 1
+  m_GenerateMips: 1
+  m_SRGB: 0
+  m_UseDynamicScale: 0
+  m_BindMS: 0
+  m_EnableCompatibleFormat: 1
+  m_EnableRandomWrite: 0
+  m_TextureSettings:
+    serializedVersion: 2
+    m_FilterMode: 1
+    m_Aniso: 1
+    m_MipBias: 0
+    m_WrapU: 1
+    m_WrapV: 1
+    m_WrapW: 1
+  m_Dimension: 2
+  m_VolumeDepth: 1
+  m_ShadowSamplingMode: 2
 --- !u!1 &1509153577
 GameObject:
   m_ObjectHideFlags: 0
@@ -42883,44 +42868,6 @@ MonoBehaviour:
   lightningLineTrans: {fileID: 1514383505}
   fogCameraCam: {fileID: 1155303589}
   fogCameraBlur: {fileID: 1155303587}
---- !u!84 &1603383567
-RenderTexture:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: 
-  m_ImageContentsHash:
-    serializedVersion: 2
-    Hash: 00000000000000000000000000000000
-  m_ForcedFallbackFormat: 4
-  m_DownscaleFallback: 0
-  m_IsAlphaChannelOptional: 0
-  serializedVersion: 5
-  m_Width: 128
-  m_Height: 128
-  m_AntiAliasing: 1
-  m_MipCount: -1
-  m_DepthStencilFormat: 94
-  m_ColorFormat: 48
-  m_MipMap: 1
-  m_GenerateMips: 1
-  m_SRGB: 0
-  m_UseDynamicScale: 0
-  m_BindMS: 0
-  m_EnableCompatibleFormat: 1
-  m_EnableRandomWrite: 0
-  m_TextureSettings:
-    serializedVersion: 2
-    m_FilterMode: 1
-    m_Aniso: 1
-    m_MipBias: 0
-    m_WrapU: 1
-    m_WrapV: 1
-    m_WrapW: 1
-  m_Dimension: 2
-  m_VolumeDepth: 1
-  m_ShadowSamplingMode: 2
 --- !u!1 &1622271709
 GameObject:
   m_ObjectHideFlags: 0
@@ -67196,6 +67143,44 @@ MonoBehaviour:
   planetColor: {r: 0, g: 0.17254902, b: 0.9960785, a: 0.11764706}
   planetSize: 0.18
   planetOffset: {x: 0, y: 0, z: 0}
+--- !u!84 &1886818877
+RenderTexture:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  m_ImageContentsHash:
+    serializedVersion: 2
+    Hash: 00000000000000000000000000000000
+  m_ForcedFallbackFormat: 4
+  m_DownscaleFallback: 0
+  m_IsAlphaChannelOptional: 0
+  serializedVersion: 5
+  m_Width: 128
+  m_Height: 128
+  m_AntiAliasing: 1
+  m_MipCount: -1
+  m_DepthStencilFormat: 94
+  m_ColorFormat: 48
+  m_MipMap: 1
+  m_GenerateMips: 1
+  m_SRGB: 0
+  m_UseDynamicScale: 0
+  m_BindMS: 0
+  m_EnableCompatibleFormat: 1
+  m_EnableRandomWrite: 0
+  m_TextureSettings:
+    serializedVersion: 2
+    m_FilterMode: 1
+    m_Aniso: 1
+    m_MipBias: 0
+    m_WrapU: 1
+    m_WrapV: 1
+    m_WrapW: 1
+  m_Dimension: 2
+  m_VolumeDepth: 1
+  m_ShadowSamplingMode: 2
 --- !u!1 &2001411609
 GameObject:
   m_ObjectHideFlags: 0

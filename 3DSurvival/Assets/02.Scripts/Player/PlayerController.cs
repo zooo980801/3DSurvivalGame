@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Animations;
 using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
@@ -28,10 +29,12 @@ public class PlayerController : MonoBehaviour
     private bool isFirstPerson = true;  // 현재 몇인칭인지 확인
 
     private Rigidbody _rigidbody;
+    private PlayerAnimationHandler animationHandler;
 
     private void Awake()
     {
         _rigidbody = GetComponent<Rigidbody>();
+        animationHandler = GetComponent<PlayerAnimationHandler>();
     }
 
     private void Start()
@@ -63,10 +66,12 @@ public class PlayerController : MonoBehaviour
         if (context.phase == InputActionPhase.Performed)
         {
             moveDirection = context.ReadValue<Vector2>();
+            animationHandler.Walk(true);
         }
         else if (context.phase == InputActionPhase.Canceled)
         {
             moveDirection = Vector2.zero;   // 이동 방향 초기화
+            animationHandler.Walk(false);
         }
     }
     #endregion

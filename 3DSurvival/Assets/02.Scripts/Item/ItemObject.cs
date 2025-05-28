@@ -10,13 +10,13 @@ public class ItemObject : MonoBehaviour, IInteractable
 {
     public ItemData data;
 
-    public string GetInteractPrompt() //¾ÆÀÌÅÛ ¹Ù¶óºÃÀ» ¶§ ¸®ÅÏ°ª
+    public string GetInteractPrompt() //ì•„ì´í…œ ë°”ë¼ë´¤ì„ ë•Œ ë¦¬í„´ê°’
     {
         string str = $"{data.displayName}\n{data.description}";
         return str;
     }
 
-    public void OnInteract()//¾ÆÀÌÅÛ »óÈ£ÀÛ¿ë ¸®ÅÏ°ª
+    public void OnInteract()//ì•„ì´í…œ ìƒí˜¸ì‘ìš© ë¦¬í„´ê°’
     {
         Destroy(gameObject);
     }

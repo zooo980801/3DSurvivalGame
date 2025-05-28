@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 
 public class SaveTester : MonoBehaviour
 {
@@ -10,7 +10,6 @@ public class SaveTester : MonoBehaviour
             hp = 100,
             stamina = 50,
             exp = 0,
-            gold = 999,
             inventory = new System.Collections.Generic.List<SaveItem>(),
             equipped = new SaveEquipment(),
             completedQuests = new System.Collections.Generic.List<string>()

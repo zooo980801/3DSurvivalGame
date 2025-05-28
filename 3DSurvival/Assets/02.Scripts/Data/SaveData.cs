@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 
 [System.Serializable]
 public class SaveData // ← 저장용 클래스 명칭
@@ -7,7 +7,6 @@ public class SaveData // ← 저장용 클래스 명칭
     public int hp;
     public int stamina;
     public int exp;
-    public int gold;
 
     public List<SaveItem> inventory = new List<SaveItem>();
     public SaveEquipment equipped;

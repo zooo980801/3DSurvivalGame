@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 
 
 // 구조 설명:
@@ -6,9 +6,16 @@ using UnityEngine;
 // SaveItem : 저장 시 사용하는 ID + 수량 구조체 (별도 정의되어 있어야 함)
 // SaveData : 전체 게임 상태를 저장하는 마스터 클래스 (별도 정의되어 있어야 함)
 
+// 소비 아이템 효과 정보 클래스
+[System.Serializable] // 직렬화하여 인스펙터에 보이게 함
+public class ItemDataConsumable
+{
+    public CONSUMABLETYPE type; // 효과 종류 (허기, 체력 등)
+    public float value;         // 회복/감소 등 효과량
+}
 
 // ScriptableObject를 생성할 수 있게 하는 속성
-[CreateAssetMenu(fileName = "Item", menuName = "New Item")]
+[CreateAssetMenu(fileName = "Item", menuName = "Game/Item")]
 public class ItemData : ScriptableObject
 {
     [Header("Info")]
@@ -23,19 +30,6 @@ public class ItemData : ScriptableObject
     public bool canStack;           // 아이템 중첩 가능 여부
     public int maxStackAmount;      // 최대 중첩 수량
 
-    [Header("Equipment")]
-    public int currentDurability;   //현재 내구도
-    public int maxDurability;          //최대 내구도
-    public int damage;              //피해량
-
     [Header("Consumable")]
     public ItemDataConsumable[] consumables; // 소비 효과 리스트 (여러 효과 적용 가능)
-}
-
-// 소비 아이템 효과 정보 클래스
-[System.Serializable] // 직렬화하여 인스펙터에 보이게 함
-public class ItemDataConsumable
-{
-    public CONSUMABLETYPE type; // 효과 종류 (허기, 체력 등)
-    public float value;         // 회복/감소 등 효과량
 }

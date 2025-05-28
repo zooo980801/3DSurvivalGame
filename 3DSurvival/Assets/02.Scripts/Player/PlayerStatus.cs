@@ -13,6 +13,9 @@ public class PlayerStatus : BaseStatus, IDamagable
     [SerializeField] private StatusData health;     // 체력
     [SerializeField] private StatusData stamina;    // 스테미나
 
+    public StatusData Health { get { return health; } }
+    public StatusData Stamina { get { return stamina; } }
+
     public event Action onTakeDamage;
 
     protected override void Update()

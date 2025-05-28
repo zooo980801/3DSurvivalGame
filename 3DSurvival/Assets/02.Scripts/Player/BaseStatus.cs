@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -9,6 +10,8 @@ public class StatusData
     [SerializeField] private float maxValue;        // 최대 상태값
     [SerializeField] private float passiveValue;    // 기본적으로 적용되는 상태값(자연회복 등)
 
+    public event Action<float> OnValueChanged;
+
     public float CurValue { get { return curValue; } set { curValue = value; } }
     public float MaxValue { get { return maxValue; } }
     public float PassiveValue { get { return passiveValue; } }
@@ -18,11 +21,13 @@ public class StatusData
     public void Add(float value)
     {
         curValue = Mathf.Min(curValue + value, maxValue);   // 상태값 회복
+        OnValueChanged?.Invoke(Percentage);
     }
 
     public void Subtract(float value)
     {
         curValue = Mathf.Max(curValue - value, 0f);         // 상태값 감소
+        OnValueChanged?.Invoke(Percentage);
     }
 }
 
@@ -30,6 +35,9 @@ public class BaseStatus : MonoBehaviour
 {
     [SerializeField] protected StatusData hunger;   // 배고픔
     [SerializeField] protected StatusData thirst;   // 수분
+
+    public StatusData Hunger { get { return hunger; } }
+    public StatusData Thirst { get { return thirst; } }
 
     protected virtual void Update()
     {

@@ -7,9 +7,13 @@ public class SaveTester : MonoBehaviour
     {
         SaveData data = new SaveData
         {
-            level = 1,
-            exp = 0,
+            level = new SaveLevel
+            {
+                curLevel = 1,
+                curExp = 0,
+            },
             gold = 999,
+
 
             health = new SaveStatusData
             {

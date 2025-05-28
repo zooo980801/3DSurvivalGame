@@ -15,7 +15,7 @@ public class ItemDataConsumable
 }
 
 // ScriptableObject를 생성할 수 있게 하는 속성
-[CreateAssetMenu(fileName = "Item", menuName = "Game/Item")]
+[CreateAssetMenu(fileName = "Item", menuName = "new Item")]
 public class ItemData : ScriptableObject
 {
     [Header("Info")]
@@ -29,6 +29,12 @@ public class ItemData : ScriptableObject
     [Header("Stacking")]
     public bool canStack;           // 아이템 중첩 가능 여부
     public int maxStackAmount;      // 최대 중첩 수량
+
+    [Header("Equip")]
+    public int damage;          // 피해량
+    public int maxDurability;   // 최대 내구도
+    public int currentDurability;   // 현재 내구도
+
 
     [Header("Consumable")]
     public ItemDataConsumable[] consumables; // 소비 효과 리스트 (여러 효과 적용 가능)

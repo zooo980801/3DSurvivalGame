@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 96daef7365f29f640a6906ad837eae36, type: 3}
+  m_Name: 07.MeatSoup
+  m_EditorClassIdentifier: 
+  id: 07
+  displayName: "\uACE0\uAE43\uAD6D"
+  description: "\uBA39\uC73C\uBA74 \uAC08\uC99D\uACFC \uD5C8\uAE30\uAC00 \uD574\uC18C\uB41C\uB2E4."
+  type: 2
+  icon: {fileID: 0}
+  dropPrefab: {fileID: 0}
+  canStack: 1
+  maxStackAmount: 12
+  damage: 0
+  maxDurability: 0
+  currentDurability: 0
+  consumables:
+  - type: 0
+    value: 20
+  - type: 1
+    value: 40

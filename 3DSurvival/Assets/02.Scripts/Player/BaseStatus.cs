@@ -1,67 +1,54 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-[System.Serializable]
+[Serializable]
 public class StatusData
 {
-    [SerializeField] private float curValue;        // 현재 상태값
-    [SerializeField] private float maxValue;        // 최대 상태값
-    [SerializeField] private float passiveValue;    // 기본적으로 적용되는 상태값(자연회복 등)
+    [SerializeField] private float curValue;
+    [SerializeField] private float maxValue;
+    [SerializeField] private float passiveValue;
 
-    public event Action<float> OnValueChanged;
+    public float CurValue { get => curValue; set { curValue = Mathf.Clamp(value, 0, maxValue); onValueChanged?.Invoke(); } }
+    public float MaxValue => maxValue;
+    public float PassiveValue => passiveValue;
 
-    public float CurValue { get { return curValue; } set { curValue = value; } }
-    public float MaxValue { get { return maxValue; } }
-    public float PassiveValue { get { return passiveValue; } }
+    public float Percentage => curValue / maxValue;
 
-    public float Percentage => curValue / maxValue;     // UI 표시를 위한 퍼센트
+    public event Action onValueChanged;
 
-    public void Add(float value)
-    {
-        curValue = Mathf.Min(curValue + value, maxValue);   // 상태값 회복
-        OnValueChanged?.Invoke(Percentage);
-    }
+    public void Add(float value) => CurValue += value;
+    public void Subtract(float value) => CurValue -= value;
 
-    public void Subtract(float value)
-    {
-        curValue = Mathf.Max(curValue - value, 0f);         // 상태값 감소
-        OnValueChanged?.Invoke(Percentage);
-    }
+    public SaveStatusData ToSaveData() => new SaveStatusData { curValue = curValue, maxValue = maxValue, passiveValue = passiveValue };
+    public void FromSaveData(SaveStatusData data) => curValue = data.curValue; // maxValue/passiveValue는 초기값 유지
+
 }
 
 public class BaseStatus : MonoBehaviour
 {
-    [SerializeField] protected StatusData hunger;   // 배고픔
-    [SerializeField] protected StatusData thirst;   // 수분
-
-    public StatusData Hunger { get { return hunger; } }
-    public StatusData Thirst { get { return thirst; } }
+    [SerializeField] protected StatusData hunger;
+    [SerializeField] protected StatusData thirst;
 
     protected virtual void Update()
     {
-        hunger.Subtract(hunger.PassiveValue * Time.deltaTime);  // 기본 배고픔 감소
-        thirst.Subtract(thirst.PassiveValue * Time.deltaTime);  // 기본 수분 감소
+        hunger.Subtract(hunger.PassiveValue * Time.deltaTime);
+        thirst.Subtract(thirst.PassiveValue * Time.deltaTime);
     }
 
-    protected void Eat(float amount)
+    protected void Eat(float amount) => hunger.Add(amount);
+    protected void GetHunger(float amount) => hunger.Subtract(amount);
+    protected void Drink(float amount) => thirst.Add(amount);
+    protected void GetThirst(float amount) => thirst.Subtract(amount);
+
+    public void ApplySaveStatus(SaveData data)
     {
-        hunger.Add(amount);
+        hunger.FromSaveData(data.hunger);
+        thirst.FromSaveData(data.thirst);
     }
 
-    protected void GetHunger(float amount)
+    public void WriteSaveStatus(SaveData data)
     {
-        hunger.Subtract(amount);
-    }
-
-    protected void Drink(float amount)
-    {
-        thirst.Add(amount);
-    }
-
-    protected void GetThirst(float amount)
-    {
-        thirst.Subtract(amount);
+        data.hunger = hunger.ToSaveData();
+        data.thirst = thirst.ToSaveData();
     }
 }

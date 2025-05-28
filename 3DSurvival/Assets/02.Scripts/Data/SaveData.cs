@@ -3,17 +3,33 @@
 [System.Serializable]
 public class SaveData // ← 저장용 클래스 명칭
 {
-    public int level;
-    public int hp;
-    public int stamina;
-    public int exp;
+    public SaveLevel level;
     public int gold;
+
+    public SaveStatusData health;
+    public SaveStatusData stamina;
+    public SaveStatusData hunger;
+    public SaveStatusData thirst;
 
     public List<SaveItem> inventory = new List<SaveItem>();
     public SaveEquipment equipped;
     public List<string> completedQuests = new List<string>();
 }
 
+[System.Serializable]
+
+public class SaveStatusData
+{
+    public float curValue;
+    public float maxValue;
+    public float passiveValue;
+}
+[System.Serializable]
+public class SaveLevel
+{
+    public int curLevel;
+    public int curExp;
+}
 [System.Serializable]
 public class SaveItem // 저장용 아이템
 {

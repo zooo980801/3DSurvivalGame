@@ -52,6 +52,7 @@ public class NPCStatus : BaseStatus
             hunger.CurValue = hunger.MaxValue;
             thirst.CurValue = thirst.MaxValue;
         }
+
     }
     public void GetExp()
     {

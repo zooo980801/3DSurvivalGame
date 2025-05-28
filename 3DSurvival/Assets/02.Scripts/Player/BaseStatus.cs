@@ -8,7 +8,18 @@ public class StatusData
     [SerializeField] private float maxValue;
     [SerializeField] private float passiveValue;
 
-    public float CurValue { get => curValue; set { curValue = Mathf.Clamp(value, 0, maxValue); onValueChanged?.Invoke(); } }
+    public event Action<float> onUIChanged;
+
+    public float CurValue 
+    { 
+        get => curValue; 
+        set 
+        { 
+            curValue = Mathf.Clamp(value, 0, maxValue); 
+            onValueChanged?.Invoke();
+            onUIChanged?.Invoke(Percentage);
+        } 
+    }
     public float MaxValue => maxValue;
     public float PassiveValue => passiveValue;
 
@@ -28,6 +39,9 @@ public class BaseStatus : MonoBehaviour
 {
     [SerializeField] protected StatusData hunger;
     [SerializeField] protected StatusData thirst;
+
+    public StatusData Hunger { get { return hunger; } }
+    public StatusData Thirst { get { return thirst; } }
 
     protected virtual void Update()
     {

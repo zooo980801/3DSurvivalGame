@@ -7,7 +7,7 @@ public class StatusUI : MonoBehaviour
 
     public void Bind(StatusData statusData)
     {
-        statusData.OnValueChanged += UpdateUI;  // 이벤트 구독
+        statusData.onUIChanged += UpdateUI;     // 이벤트 구독
     }
 
     private void UpdateUI(float percentage)

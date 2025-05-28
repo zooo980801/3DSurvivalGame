@@ -88,12 +88,12 @@ public class InventoryUI : MonoBehaviour
                     {
                         switch (InventoryManager.Instance.Inventory.selectedItem.consumables[i].type)
                         {
-                            case CONSUMABLETYPE.HEALTH:
-                                InventoryManager.Instance.PlayerStatus.Heal(InventoryManager.Instance.Inventory.selectedItem.consumables[i].value);
-                                break;
-                            case CONSUMABLETYPE.HUNGER:
-                                InventoryManager.Instance.PlayerStatus.GetStamina(InventoryManager.Instance.Inventory.selectedItem.consumables[i].value);
-                                break;
+                            //case CONSUMABLETYPE.HEALTH:
+                            //    InventoryManager.Instance.PlayerStatus.Heal(InventoryManager.Instance.Inventory.selectedItem.consumables[i].value);
+                            //    break;
+                            //case CONSUMABLETYPE.HUNGER:
+                            //    InventoryManager.Instance.PlayerStatus.GetStamina(InventoryManager.Instance.Inventory.selectedItem.consumables[i].value);
+                            //    break;
                         }
                     }
                 }

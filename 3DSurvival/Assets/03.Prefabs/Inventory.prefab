@@ -47,9 +47,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a46bed3ab7a51304eb2364e1a004b0fe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  slotPanel: {fileID: 8826468728192766373}
-  selectedItem: {fileID: 0}
+  selectedItem: {fileID: 11400000, guid: fb2cb319f06cd854c80abb7ae35db78c, type: 2}
   dropPosition: {fileID: 0}
+  testQuantity: 10
 --- !u!114 &2023277954901891776
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -63,15 +63,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inventoryWindow: {fileID: 436461085363391788}
-  selectedItemName: {fileID: 0}
-  selectedItemDescription: {fileID: 0}
-  selectedItemStatName: {fileID: 0}
-  selectedItemStatValue: {fileID: 0}
-  useBtn: {fileID: 0}
-  equipBtn: {fileID: 0}
-  unEquipBtn: {fileID: 0}
-  dropBtn: {fileID: 0}
-  test: {fileID: 0}
+  selectedItemName: {fileID: 774887667653919715}
+  selectedItemDescription: {fileID: 4898441987273264991}
+  selectedItemStatName: {fileID: 9007417278550501929}
+  selectedItemStatValue: {fileID: 5274145273786661923}
+  useBtn: {fileID: 2635207576408300802}
+  equipBtn: {fileID: 3995760981519210161}
+  unEquipBtn: {fileID: 9217580141944143735}
+  dropBtn: {fileID: 3766003745346753120}
+  test: {fileID: 697941686241141983}
 --- !u!1 &518121001594319699
 GameObject:
   m_ObjectHideFlags: 0

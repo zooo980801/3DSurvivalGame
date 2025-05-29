@@ -18,6 +18,9 @@ public class ItemObject : MonoBehaviour, IInteractable
 
     public void OnInteract()//아이템 상호작용 리턴값
     {
+        //상호작용 했을 때 내용
+
+        //----------------
         Destroy(gameObject);
     }
 }

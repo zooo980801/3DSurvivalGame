@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.IO;
 
 public class SaveManager : MonoBehaviour
@@ -40,7 +40,7 @@ public class SaveManager : MonoBehaviour
     public void SaveData(SaveData data)
     {
         string json = JsonUtility.ToJson(data, true);
-        Debug.Log("[SAVE] 저장 위치: " + Application.persistentDataPath);
+        //Debug.Log("[SAVE] 저장 위치: " + Application.persistentDataPath);
         File.WriteAllText(savePath, json);
     }
 
@@ -49,7 +49,7 @@ public class SaveManager : MonoBehaviour
         if (!File.Exists(savePath)) return null;
 
         string json = File.ReadAllText(savePath);
-        Debug.Log("[SAVE] 저장 위치: " + Application.persistentDataPath);
+        //Debug.Log("[SAVE] 저장 위치: " + Application.persistentDataPath);
         return JsonUtility.FromJson<SaveData>(json);
     }
 

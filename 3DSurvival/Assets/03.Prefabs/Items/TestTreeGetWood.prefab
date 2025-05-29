@@ -153,7 +153,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemToGive: {fileID: 11400000, guid: 40d7c742152d9a34e83ac75be3a88226, type: 2}
   quantityPerHit: 1
-  capacity: 0
+  capacity: 2
 --- !u!65 &710232941428545757
 BoxCollider:
   m_ObjectHideFlags: 0

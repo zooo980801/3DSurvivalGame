@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using Tenkoku.Core;
 using UnityEngine;
 
@@ -11,6 +11,10 @@ public class GameClock : MonoBehaviour
     public TenkokuModule tenkokuModule; // Tenkoku 모듈 참조 (Inspector에서 연결하거나 Start에서 자동 탐색)
 
     public event Action<int, int> OnTimeChanged; // 시간 변경 이벤트 (hour, minute)
+
+    public event Action<int> OnDayChanged; // 날짜 변경 이벤트 (day)
+
+    public int currentDay = 1; // 시작일 = 1일차
 
     private float timer; // 시간 누적용 변수
 
@@ -34,6 +38,11 @@ public class GameClock : MonoBehaviour
             {
                 currentMinute = 0;
                 currentHour = (currentHour + 1) % 24; // 시간이 24를 넘으면 0으로 순환
+                if (currentHour == 0) // 자정이 되었을 때 날짜 증가
+                {
+                    currentDay++;
+                    OnDayChanged?.Invoke(currentDay);
+                }
             }
 
             OnTimeChanged?.Invoke(currentHour, currentMinute); // 시간 변경 이벤트 호출

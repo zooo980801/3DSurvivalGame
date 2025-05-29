@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Animations;
@@ -49,6 +49,7 @@ public class PlayerController : MonoBehaviour
 
     private void LateUpdate()
     {
+        if (mainCamera != null && mainCamera.gameObject.activeInHierarchy)
         Look();         // 카메라 화면 회전
     }
 

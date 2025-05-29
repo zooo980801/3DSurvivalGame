@@ -22,7 +22,7 @@ public class InventoryUI : MonoBehaviour
 
         public void OnTest()
         {
-            _inventory.slotPanel.AddItem();
+           _inventory.AddTestItem(_inventory.selectedItem);
         }
         private void Start()
         {

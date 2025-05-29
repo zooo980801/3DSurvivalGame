@@ -18,6 +18,7 @@ public class SlotPanel : MonoBehaviour
         {
             itemSlots[i] = slotPanel.GetChild(i).GetComponent<ItemSlot>();
             itemSlots[i].idx = i;
+            itemSlots[i].inventory = InventoryManager.Instance.Inventory;
             itemSlots[i].inventory.slotPanel = this;
         }
         

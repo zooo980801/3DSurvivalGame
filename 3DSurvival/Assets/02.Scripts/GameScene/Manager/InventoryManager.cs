@@ -15,10 +15,14 @@ public class InventoryManager : MonoBehaviour
             }
             return _instance;
         }
+        set
+        {
+            _instance = value;
+        }
     }
     private void Awake()
     {
-
+    
         if (_instance == null)
         {
             _instance = this;
@@ -31,6 +35,7 @@ public class InventoryManager : MonoBehaviour
                 Destroy(gameObject);
             }
         }
+        
     }
 //========================================================================//
     #endregion

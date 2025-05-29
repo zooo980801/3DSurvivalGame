@@ -1,18 +1,30 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class Inventory : MonoBehaviour
 {
-    public SlotPanel slotPanel;
+    private SlotPanel _slotPanel;
+    public SlotPanel slotPanel{get{return _slotPanel;}set{_slotPanel = value;}}
     public ItemData selectedItem;
     private int selectedIdx;
     public int SelectedIdx{get{return selectedIdx;}set{selectedIdx=value;}}
     public Transform dropPosition;
-    void Start()
+    public int testQuantity=10;
+    void Awake()
     {
         InventoryManager.Instance.Inventory = this;
 
+    }
+
+    private void Start()
+    {
+        if (selectedItem != null)
+        {
+            AddTestItem(selectedItem, testQuantity);
+        }
     }
 
     public void SelectItem(int idx)
@@ -40,6 +52,22 @@ public class Inventory : MonoBehaviour
     public void ThrowItem(ItemData data)
     {
         Instantiate(data.dropPrefab, dropPosition.position, Quaternion.Euler(Vector3.one * Random.value * 360));
+    }
+    
+    public void AddTestItem(ItemData itemData, int quantity = 1)
+    {
+        foreach (var slot in slotPanel.itemSlots)
+        {
+            if (slot.item == null)
+            {
+                slot.item = itemData;
+                slot.quantity = quantity;
+                slot.Set(); // 슬롯 UI 갱신
+                return;
+            }
+        }
+
+        Debug.LogWarning("인벤토리에 빈 슬롯이 없습니다.");
     }
 
 }

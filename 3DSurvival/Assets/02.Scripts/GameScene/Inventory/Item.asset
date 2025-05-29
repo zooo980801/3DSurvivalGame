@@ -15,9 +15,13 @@ MonoBehaviour:
   id: 1
   displayName: asd
   description: dddddddd
-  type: 0
-  icon: {fileID: 0}
-  dropPrefab: {fileID: 0}
+  type: 2
+  icon: {fileID: 21300000, guid: 3a51fddcfc47c4c4eadf1e5ce74277c5, type: 3}
+  dropPrefab: {fileID: 2969335111961492832, guid: 67722948679deaa46b2d41fb43abc750, type: 3}
   canStack: 0
   maxStackAmount: 0
-  consumables: []
+  consumables:
+  - type: 1
+    value: 100
+  - type: 1
+    value: 100

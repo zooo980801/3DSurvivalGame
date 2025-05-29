@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+    public static GameManager Instance { get; private set; }
+
     public GameClock clock;                     // GameClock 컴포넌트 참조 (Inspector에서 연결)
     public SleepManager sleepManager;           // SleepManager 컴포넌트 참조 (Inspector에서 연결)
     private RandomEventManager eventManager;    // 코드로 추가할 RandomEventManager 컴포넌트
@@ -10,6 +12,9 @@ public class GameManager : MonoBehaviour
     public GameObject clearUI;
 
     public UIFader Fader;
+
+    public House[] houses; // Inspector에서 3개 할당
+    private int destroyedHouseCount = 0;
 
     void Start()
     {
@@ -22,6 +27,12 @@ public class GameManager : MonoBehaviour
 
         // 날짜 변경 이벤트 연결
         clock.OnDayChanged += CheckGameClearCondition;
+    }
+
+    private void Awake()
+    {
+        if (Instance == null) Instance = this;
+        else Destroy(gameObject);
     }
 
     private void CheckGameClearCondition(int day)
@@ -42,7 +53,7 @@ public class GameManager : MonoBehaviour
 
     public void GameOver()
     {
-        Debug.Log("선비가 죽었습니다...");
+        Debug.Log("게임오버");
         Fader.FadeIn();  // 페이드 인으로 보여주기
         // 조건추가 바람.
         if(gameOverUI != null)
@@ -53,5 +64,16 @@ public class GameManager : MonoBehaviour
     public void TestGameOver()
     {
         GameOver();
+    }
+
+    public void NotifyHouseDestroyed(House house)
+    {
+        destroyedHouseCount++;
+        Debug.Log($"파괴된 집 수: {destroyedHouseCount}");
+
+        if (destroyedHouseCount >= houses.Length)
+        {
+            GameOver();
+        }
     }
 }

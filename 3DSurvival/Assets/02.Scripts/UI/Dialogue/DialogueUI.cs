@@ -39,7 +39,7 @@ public class DialogueUI : MonoBehaviour
     {
         dialogue.SetActive(active);
     }
-    //대화창 off
+    //대화창 전체 off
     public void SetEndButtonActive(bool active)
     {
         closeBtn.SetActive(active);
@@ -52,21 +52,21 @@ public class DialogueUI : MonoBehaviour
         dialogueText.text = txt;
     }
 
-    /// <summary> 선택지 버튼 보이기(둘 다) </summary>
+    //선택지 버튼 보이기
     public void ShowChoiceButtons()
     {
         selectBtn1.SetActive(true);
         selectBtn2.SetActive(true);
     }
 
-    /// <summary> 모든 선택지 숨기기 </summary>
+    //모든 선택지 숨기기
     public void HideAllChoices()
     {
         selectBtn1.SetActive(false);
         selectBtn2.SetActive(false);
     }
 
-    /// <summary> 특정 번호 선택지 숨기기 </summary>
+    //특정 번호 선택지 숨기기
     public void HideChoice(int number)
     {
         if (number == 1) selectBtn1.SetActive(false);

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
+#region 대화데이터
 [System.Serializable]
 public class DialogChoice
 {
@@ -23,6 +24,7 @@ public class DialogueData
 {
     public List<DialogLine> lines;
 }
+#endregion
 public class DialogueManager : MonoBehaviour
 {
     [SerializeField] private DialogueUI dialogueUI;
@@ -30,27 +32,27 @@ public class DialogueManager : MonoBehaviour
     private DialogueData dialogueData;
     private List<DialogLine> startableLines;  // 대화 시작용 라인들만 모아둠
     private Dictionary<int, DialogLine> lookup;
-    public bool isTalk= false;
+    public bool isTalk= false;//임시. 대화중인지 표시
 
     private void Awake()
     {
-        // 1) JSON 로드
+        // JSON 로드
         TextAsset ta = Resources.Load<TextAsset>("Dialogue");
         dialogueData = JsonUtility.FromJson<DialogueData>(ta.text);
 
-        // 2) lookup 사전 생성
+        // lookup 사전 생성
         lookup = new Dictionary<int, DialogLine>();
         foreach (var line in dialogueData.lines)
             lookup[line.id] = line;
 
-        // 3) 후속 대사 ID 수집
+        // 후속 대사 ID 수집
         var referencedIds = new HashSet<int>();
         foreach (var line in dialogueData.lines)
             if (line.choices != null)
                 foreach (var c in line.choices)
                     referencedIds.Add(c.nextId);
 
-        // 4) 대화 시작용 라인 필터링
+        // 대화 시작용 라인 필터링
         startableLines = new List<DialogLine>();
         foreach (var line in dialogueData.lines)
         {
@@ -64,6 +66,7 @@ public class DialogueManager : MonoBehaviour
 
     private void Update()
     {
+        //임시 키 설정
         if (!isTalk && Input.GetKeyDown(KeyCode.Alpha2))
         {
             isTalk = true;
@@ -71,7 +74,7 @@ public class DialogueManager : MonoBehaviour
         }
     }
 
-    /// <summary> 대화 시작 (랜덤) </summary>
+    //대화 시작 (랜덤)
     public void StartConversation()
     {
         if (startableLines.Count == 0) return;
@@ -89,7 +92,7 @@ public class DialogueManager : MonoBehaviour
 
         if (hasChoice)
         {
-            // 1) 질문 대사일 때: 선택지 표시, 끝내기 버튼 숨기기
+            // 선택지가 있는 대사일 때: 선택지 표시, 끝내기 버튼 숨기기
             dialogueUI.ShowChoiceButtons();
             dialogueUI.SetEndButtonActive(false);
 
@@ -106,7 +109,7 @@ public class DialogueManager : MonoBehaviour
         }
         else
         {
-            // 2) 일반 대사일 때: 선택지 숨기고 끝내기 버튼 표시
+            // 일반 대사일 때: 선택지 숨기고 끝내기 버튼 표시
             dialogueUI.HideAllChoices();
             dialogueUI.SetEndButtonActive(true);
         }
@@ -121,7 +124,7 @@ public class DialogueManager : MonoBehaviour
             EndConversation();
     }
 
-    // 대화끝내기 버튼에 Onclick에 넣기
+    // 대화끝내기 버튼에 OnClick에 넣기
     public void EndConversation()
     {
         dialogueUI.SetDialogueActive(false);

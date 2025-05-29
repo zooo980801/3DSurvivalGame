@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.AI;
 
 
-public class NPCWandering : MonoBehaviour
+public class NPCWandering : MonoBehaviour, IInteractable
 {
     [Header("AI")]
     private NavMeshAgent agent;
@@ -141,5 +141,17 @@ public class NPCWandering : MonoBehaviour
         }
 
         return hit.position;
+    }
+
+    public string GetInteractPrompt()
+    {
+        string str = "대화";
+        return str;
+    }
+
+    public void OnInteract()
+    {
+        dialogueManager.isTalk = true;
+        dialogueManager.StartConversation();
     }
 }

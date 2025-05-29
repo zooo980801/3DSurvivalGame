@@ -79,6 +79,7 @@ public class DialogueManager : MonoBehaviour
     {
         if (startableLines.Count == 0) return;
 
+        CharacterManager.Instance.Player.controller.Talking(isTalk);
         int idx = Random.Range(0, startableLines.Count);
         ShowLine(startableLines[idx]);
     }
@@ -131,5 +132,6 @@ public class DialogueManager : MonoBehaviour
         dialogueUI.HideAllChoices();
         dialogueUI.SetEndButtonActive(false);
         isTalk = false;
+        CharacterManager.Instance.Player.controller.Talking(isTalk);
     }
 }

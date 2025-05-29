@@ -12,9 +12,11 @@ public class PlayerStatus : BaseStatus, IDamagable
 {
     [SerializeField] private StatusData health;     // 체력
     [SerializeField] private StatusData stamina;    // 스테미나
+    [SerializeField] private StatusData attackDamage;   // 공격력
 
     public StatusData Health { get { return health; } }
     public StatusData Stamina { get { return stamina; } }
+    public StatusData Attack { get { return attackDamage; } }
 
     public event Action onTakeDamage;
 
@@ -27,6 +29,7 @@ public class PlayerStatus : BaseStatus, IDamagable
         stamina.onValueChanged += SaveStatus;
         hunger.onValueChanged += SaveStatus;
         thirst.onValueChanged += SaveStatus;
+        attackDamage.onValueChanged += SaveStatus;
     }
 
     protected override void Update()

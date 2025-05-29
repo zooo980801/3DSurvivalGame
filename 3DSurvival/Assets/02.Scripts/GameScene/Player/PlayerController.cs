@@ -66,7 +66,10 @@ public class PlayerController : MonoBehaviour
     private void LateUpdate()
     {
         if (mainCamera != null && mainCamera.gameObject.activeInHierarchy)
-        Look();         // 카메라 화면 회전
+            if (canLook)
+            {
+                Look();         // 카메라 화면 회전
+            }
     }
 
     #region 플레이어 이동

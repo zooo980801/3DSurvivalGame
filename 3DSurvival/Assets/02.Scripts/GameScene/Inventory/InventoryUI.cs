@@ -17,15 +17,17 @@ public class InventoryUI : MonoBehaviour
     public GameObject unEquipBtn;
     public GameObject dropBtn;
 
+    public Crafting crafting;
 
     public GameObject test;
     private PlayerController controller;
     private PlayerStatus status;
 
-    public void OnTest()
-    {
-        _inventory.AddTestItem(_inventory.selectedItem);
-    }
+    // public void OnTest()
+    // {
+    //     _inventory.AddTestItem(_inventory.selectedItem);
+    // }
+    
     private void Start()
     {
         _inventory = InventoryManager.Instance.Inventory;
@@ -118,4 +120,11 @@ public class InventoryUI : MonoBehaviour
     {
         inventoryWindow.SetActive(!inventoryWindow.activeInHierarchy);
     }
+    public void OnCraftBtn()
+    {
+        crafting.materialItem = "Wood";        // 예시: 나무를 재료로
+        crafting.resultItem = "Axe";           // 예시: 결과 아이템은 도끼
+        crafting.Craft();
+    }
+    
 }

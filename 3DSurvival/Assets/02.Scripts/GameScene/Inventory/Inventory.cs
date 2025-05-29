@@ -12,20 +12,20 @@ public class Inventory : MonoBehaviour
     private int selectedIdx;
     public int SelectedIdx{get{return selectedIdx;}set{selectedIdx=value;}}
     public Transform dropPosition;
-    public int testQuantity=10;
+
     void Awake()
     {
         InventoryManager.Instance.Inventory = this;
-
+        
     }
 
-    private void Start()
-    {
-        if (selectedItem != null)
-        {
-            AddTestItem(selectedItem, testQuantity);
-        }
-    }
+    // private void Start()
+    // {
+    //     if (selectedItem != null)
+    //     {
+    //         AddTestItem(selectedItem, testQuantity);
+    //     }
+    // }
 
     public void SelectItem(int idx)
     {
@@ -53,21 +53,39 @@ public class Inventory : MonoBehaviour
     {
         Instantiate(data.dropPrefab, dropPosition.position, Quaternion.Euler(Vector3.one * Random.value * 360));
     }
-    
-    public void AddTestItem(ItemData itemData, int quantity = 1)
+    public void RemoveItemByName(string name, int count)//설계도에서 사용할 이름으로 아이템지우기
     {
         foreach (var slot in slotPanel.itemSlots)
         {
-            if (slot.item == null)
+            if (slot.item != null && slot.item.displayName == name)
             {
-                slot.item = itemData;
-                slot.quantity = quantity;
-                slot.Set(); // 슬롯 UI 갱신
-                return;
+                if (slot.quantity >= count)
+                {
+                    slot.quantity -= count;
+                    if (slot.quantity <= 0)
+                    {
+                        slot.item = null;
+                    }
+                    InventoryManager.Instance.InventoryUI.UIUpdate();
+                    return;
+                }
             }
         }
-
-        Debug.LogWarning("인벤토리에 빈 슬롯이 없습니다.");
     }
+    // public void AddTestItem(ItemData itemData, int quantity = 1)
+    // {
+    //     foreach (var slot in slotPanel.itemSlots)
+    //     {
+    //         if (slot.item == null)
+    //         {
+    //             slot.item = itemData;
+    //             slot.quantity = quantity;
+    //             slot.Set(); // 슬롯 UI 갱신
+    //             return;
+    //         }
+    //     }
+    //
+    //     Debug.LogWarning("인벤토리에 빈 슬롯이 없습니다.");
+    // }
 
 }

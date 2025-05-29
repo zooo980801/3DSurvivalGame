@@ -8,13 +8,14 @@ using TMPro;
 public class DialogueUI : MonoBehaviour
 {
     [Header("대화창 & 텍스트")]
-    public GameObject dialogue;      // 대화창 전체 On/Off
+    public GameObject dialogue;      // 대화창 전체 
     public TextMeshProUGUI dialogueText;  // 대사 텍스트
 
     [Header("선택지 버튼")]
     public GameObject selectBtn1;    // 선택지 버튼 1
     public GameObject selectBtn2;    // 선택지 버튼 2
 
+    [Header("대화 종료 버튼")]
     public GameObject closeBtn;
 
     private Button btn1;
@@ -44,9 +45,7 @@ public class DialogueUI : MonoBehaviour
     {
         closeBtn.SetActive(active);
     }
-
-
-    //대사 텍스트 변경
+    //대사 텍스트 변경할 때 호출
     public void SetDialogueText(string txt)
     {
         dialogueText.text = txt;
@@ -76,14 +75,14 @@ public class DialogueUI : MonoBehaviour
     //특정 선택지 설정
     //number: 1 또는 2  
     //text: 버튼에 표시할 문장  
-    //callback: 클릭 시 실행할 액션
+    //callback: 클릭 시 실행할 액션(다음 대사 호출)
     public void SetChoice(int number, string text, Action callback)
     {
         if (number == 1)
         {
-            btn1Text.text = text;
-            btn1.onClick.RemoveAllListeners();
-            btn1.onClick.AddListener(() => callback());
+            btn1Text.text = text;//버튼 텍스트 변경
+            btn1.onClick.RemoveAllListeners();//이전에 있던 모든 클릭 이벤트 제거
+            btn1.onClick.AddListener(() => callback());//새로운 콜백 등록
         }
         else if (number == 2)
         {

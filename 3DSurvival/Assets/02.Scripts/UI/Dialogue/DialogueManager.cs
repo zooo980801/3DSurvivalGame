@@ -1,14 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 
 #region 대화데이터
 [System.Serializable]
 public class DialogChoice
 {
-    public string text;
-    public int nextId;
+    public string text;//플레이어가 볼 선택지 문구
+    public int nextId;//선택지를 고르면 보여줄 후속 대사
 }
 
 [System.Serializable]
@@ -16,23 +15,23 @@ public class DialogLine
 {
     public int id;
     public string text;
-    public List<DialogChoice> choices;
+    public List<DialogChoice> choices;//선택지가 있으면 리스트로
 }
 
 [System.Serializable]
 public class DialogueData
 {
-    public List<DialogLine> lines;
+    public List<DialogLine> lines;//json으로 읽어들일 모든 대사 모음
 }
 #endregion
 public class DialogueManager : MonoBehaviour
 {
     [SerializeField] private DialogueUI dialogueUI;
 
-    private DialogueData dialogueData;
+    private DialogueData dialogueData;//대화 데이터 보관
     private List<DialogLine> startableLines;  // 대화 시작용 라인들만 모아둠
     private Dictionary<int, DialogLine> lookup;
-    public bool isTalk= false;//임시. 대화중인지 표시
+    public bool isTalk= false;//대화중인지 표시
 
     private void Awake()
     {
@@ -40,7 +39,7 @@ public class DialogueManager : MonoBehaviour
         TextAsset ta = Resources.Load<TextAsset>("Dialogue");
         dialogueData = JsonUtility.FromJson<DialogueData>(ta.text);
 
-        // lookup 사전 생성
+        // lookup 사전 생성 -> id로 라인 찾기 쉽게
         lookup = new Dictionary<int, DialogLine>();
         foreach (var line in dialogueData.lines)
             lookup[line.id] = line;
@@ -48,7 +47,7 @@ public class DialogueManager : MonoBehaviour
         // 후속 대사 ID 수집
         var referencedIds = new HashSet<int>();
         foreach (var line in dialogueData.lines)
-            if (line.choices != null)
+            if (line.choices != null)//선택지가 있는 라인이 있다면
                 foreach (var c in line.choices)
                     referencedIds.Add(c.nextId);
 
@@ -59,6 +58,7 @@ public class DialogueManager : MonoBehaviour
             bool hasChoice = line.choices != null && line.choices.Count > 0;
             bool isReply = referencedIds.Contains(line.id);
 
+            //선택지가 있거나 선택지가 없는 대사를 시작용으로 인정(선택지 후속대사가 나오지 않게하기 위함)
             if (hasChoice || (!hasChoice && !isReply))
                 startableLines.Add(line);
         }
@@ -66,7 +66,7 @@ public class DialogueManager : MonoBehaviour
 
     private void Update()
     {
-        //임시 키 설정
+        //임시 키 설정, 상호작용 키로 교체 원함
         if (!isTalk && Input.GetKeyDown(KeyCode.Alpha2))
         {
             isTalk = true;

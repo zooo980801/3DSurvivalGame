@@ -13,8 +13,8 @@ public class TitleUIManager : MonoBehaviour
         // 타이틀 화면에서 배경 음악 재생 시작
         BGMManager.Instance?.PlayLoadingBGM();
 
-        // 볼륨을 0.2로 낮춤 (조용한 분위기용)
-        BGMManager.Instance?.SetVolume(0.2f);
+        // 볼륨을 0.1로 낮춤 (조용한 분위기용)
+        BGMManager.Instance?.SetVolume(0.1f);
     }
 
     public SceneFader sceneFader; // Fade 효과와 씬 전환을 위한 SceneFader 연결

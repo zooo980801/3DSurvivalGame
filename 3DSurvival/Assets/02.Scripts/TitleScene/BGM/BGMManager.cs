@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 
 public class BGMManager : MonoBehaviour
 {
@@ -23,13 +23,18 @@ public class BGMManager : MonoBehaviour
             Destroy(gameObject); // 중복 인스턴스 방지
         }
     }
+    private void Start()
+    {
+        BGMManager.Instance?.PlayLoadingBGM();
+        // Start()에서 별도 볼륨 설정하지 않음
+    }
 
     public void PlayLoadingBGM()
     {
-        if (audioSource.isPlaying) return; // 이미 재생 중이면 무시
+        if (audioSource.isPlaying) return;
 
-        audioSource.clip = loadingBGM; // 클립 지정
-        audioSource.Play(); // 재생 시작
+        audioSource.clip = loadingBGM;
+        audioSource.Play();
     }
 
     public void Stop()

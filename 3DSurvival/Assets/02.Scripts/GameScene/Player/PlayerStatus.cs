@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -17,6 +17,9 @@ public class PlayerStatus : BaseStatus, IDamagable
     public StatusData Stamina { get { return stamina; } }
 
     public event Action onTakeDamage;
+
+    private float lastSaveTime = 0f;
+    private float saveInterval = 30f;
 
     private void Start()
     {
@@ -77,6 +80,11 @@ public class PlayerStatus : BaseStatus, IDamagable
 
     private void SaveStatus()
     {
+        if (Time.time - lastSaveTime < saveInterval)
+            return;
+
+        lastSaveTime = Time.time;
+
         SaveData current = new SaveData();
         WriteSaveStatus(current);
         SaveManager.Instance.SaveData(current);

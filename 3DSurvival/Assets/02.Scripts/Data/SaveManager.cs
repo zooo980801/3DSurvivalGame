@@ -7,6 +7,8 @@ public class SaveManager : MonoBehaviour
 
     private string savePath; // 저장 파일의 전체 경로
 
+    public static bool IsNewGame = true; // 게임 시작 방식 플래그
+
     private void Awake()
     {
         if (Instance == null) // 싱글톤이 없으면
@@ -40,8 +42,8 @@ public class SaveManager : MonoBehaviour
     public void SaveData(SaveData data)
     {
         string json = JsonUtility.ToJson(data, true);
-        //Debug.Log("[SAVE] 저장 위치: " + Application.persistentDataPath);
         File.WriteAllText(savePath, json);
+        Debug.Log("[SAVE] 저장된 JSON:\n" + json);//저장 내용 확인용 로그
     }
 
     public SaveData LoadData()

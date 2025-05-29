@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using UnityEngine.SceneManagement;
 using System.Collections; // ← 코루틴 쓸 때 필요
 
@@ -8,7 +8,6 @@ public class TitleUIManager : MonoBehaviour
     public GameObject loadErrorUI;   // 저장 데이터 없을 때 띄울 에러 UI (인스펙터에서 연결)
 
     private Coroutine blinkCoroutine; // 에러 메시지 깜빡임을 위한 코루틴 저장용 변수
-    public GameObject saveTesterObject;
     private void Start()
     {
         // 타이틀 화면에서 배경 음악 재생 시작
@@ -23,15 +22,17 @@ public class TitleUIManager : MonoBehaviour
     // "새 게임" 버튼 클릭 시 호출
     public void OnClickNewGame()
     {
-        SaveManager.Instance.ResetData();          // 기존 저장 데이터 초기화
-        if (saveTesterObject != null)
-        {
-            saveTesterObject.SetActive(true); // 오브젝트 활성화
-            saveTesterObject.GetComponent<SaveTester>().CreateInitialSaveData();
-            saveTesterObject.SetActive(false); // 다시 비활성화 (선택)
-        }
-        sceneFader.FadeToScene("GameScene");       // 페이드 아웃 후 GameScene으로 이동
+        SaveManager.IsNewGame = true; //새 게임 시작으로 설정
+
+        SaveManager.Instance.ResetData(); // 기존 데이터 삭제
+
+        SaveData data = new SaveData();   // 아무 값도 안 넣음 (기본 생성자만)
+
+        SaveManager.Instance.SaveData(data); // 빈 구조만 저장
+
+        sceneFader.FadeToScene("GameScene"); // 게임씬으로 이동
     }
+
 
     // "불러오기" 버튼 클릭 시 호출
     public void OnClickLoadGame()
@@ -41,6 +42,7 @@ public class TitleUIManager : MonoBehaviour
         // 저장 데이터가 존재하면
         if (SaveManager.Instance.HasSavedData())
         {
+            SaveManager.IsNewGame = false;
             SaveManager.Instance.LoadData();        // 저장 데이터 로드
             sceneFader.FadeToScene("GameScene");    // GameScene으로 이동 (페이드 포함)
         }

@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Animations;
@@ -39,7 +39,7 @@ public class PlayerController : MonoBehaviour
 
     private void Start()
     {
-        Cursor.lockState = CursorLockMode.Locked;   // 화면 중앙에 마우스 커서 고정
+        //Cursor.lockState = CursorLockMode.Locked;   // 화면 중앙에 마우스 커서 고정
     }
 
     private void FixedUpdate()

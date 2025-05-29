@@ -7,12 +7,13 @@ public enum ALSTATE
 public enum CONSUMABLETYPE 
 { 
     HUNGER,
-    HEALTH
+    THIRST
 }
 // 아이템 타입 분류 (자원형, 장비형, 소비형 등)
 public enum ITEMTYPE 
 { 
     RESOURCE,
     EQUIPABLE,
-    CONSUMABLE
+    CONSUMABLE,
+    BUILDING
 }

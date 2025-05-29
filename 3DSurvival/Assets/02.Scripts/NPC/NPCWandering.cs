@@ -18,9 +18,12 @@ public class NPCWandering : MonoBehaviour
     public float minWanderWaitTime = 5f;
     public float maxWanderWaitTime = 10f;
 
+    private Animator anim;
+
     private void Start()
     {
         agent = GetComponent<NavMeshAgent>();
+        anim = GetComponent<Animator>();
         agent.speed = walkSpeed;
         SetState(ALSTATE.IDLE);
     }
@@ -32,9 +35,12 @@ public class NPCWandering : MonoBehaviour
         switch(aiState)
         {
             case ALSTATE.IDLE:
+                anim.SetBool("IsWalk", false);
                 StartCoroutine(IdleRoutine());
+                Debug.Log("멈춤");
                 break;
             case ALSTATE.WANDERING:
+                anim.SetBool("IsWalk", true);
                 StartCoroutine(WanderRoutine());
                 break;
         }
@@ -53,10 +59,17 @@ public class NPCWandering : MonoBehaviour
         Vector3 wanderTarget = GetWanderLocation();
         agent.SetDestination(wanderTarget);
 
-        while (agent.pathPending || agent.remainingDistance > agent.stoppingDistance)
+        agent.isStopped = false;//이동재개
+
+        // 실제로 이동 중일 때 루프
+        while (agent.hasPath && agent.remainingDistance > agent.stoppingDistance)//유효한 경로이고 남은거리가 0보다 클때 
         {
+            Debug.Log("걷는중");
             yield return null;
         }
+
+        // 멈추고 Idle로 전환
+        agent.isStopped = true;//이동 중지
 
         SetState(ALSTATE.IDLE);
     }

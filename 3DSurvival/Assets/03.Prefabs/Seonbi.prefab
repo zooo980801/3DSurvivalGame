@@ -3234,7 +3234,7 @@ GameObject:
   - component: {fileID: 6509273974387918401}
   - component: {fileID: 8422678281996515503}
   m_Layer: 8
-  m_Name: Seonbi1
+  m_Name: Seonbi
   m_TagString: NPC
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

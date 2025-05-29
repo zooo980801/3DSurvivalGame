@@ -7,11 +7,15 @@ public class SlotPanel : MonoBehaviour
 {
       public ItemSlot[] itemSlots;
       public Transform slotPanel;
-    void Start()
+
+    private void Awake()
     {
         InventoryManager.Instance.Inventory.slotPanel = this;
-        //controller.inventory += Toggle;
-        //CharacterManager.Instance.Player.addItem += AddItem; 
+    }
+
+    void Start()
+    {
+        CharacterManager.Instance.Player.addItem += AddItem;
 
         itemSlots = new ItemSlot[slotPanel.childCount];
         for (int i = 0; i < itemSlots.Length; i++)
@@ -26,9 +30,8 @@ public class SlotPanel : MonoBehaviour
     
     public void AddItem()
     {
-        ItemData data = InventoryManager.Instance.ItemData;
-    
-    
+        ItemData data = CharacterManager.Instance.Player.itemData;
+
         if (data.canStack)
         {
             ItemSlot slot = GetItemStack(data);
@@ -45,7 +48,7 @@ public class SlotPanel : MonoBehaviour
         {
             emptySlot.item = data;
             emptySlot.quantity = 1;
-                InventoryManager.Instance.InventoryUI.UIUpdate();
+            InventoryManager.Instance.InventoryUI.UIUpdate();
             return;
         }
     

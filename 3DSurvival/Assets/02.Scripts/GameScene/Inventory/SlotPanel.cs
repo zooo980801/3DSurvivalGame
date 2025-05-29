@@ -8,13 +8,9 @@ public class SlotPanel : MonoBehaviour
       public ItemSlot[] itemSlots;
       public Transform slotPanel;
 
-    private void Awake()
-    {
-        InventoryManager.Instance.Inventory.slotPanel = this;
-    }
-
     void Start()
     {
+        InventoryManager.Instance.Inventory.slotPanel = this;
         CharacterManager.Instance.Player.addItem += AddItem;
 
         itemSlots = new ItemSlot[slotPanel.childCount];
@@ -22,6 +18,7 @@ public class SlotPanel : MonoBehaviour
         {
             itemSlots[i] = slotPanel.GetChild(i).GetComponent<ItemSlot>();
             itemSlots[i].idx = i;
+            itemSlots[i].inventory = InventoryManager.Instance.Inventory;
             itemSlots[i].inventory.slotPanel = this;
         }
         

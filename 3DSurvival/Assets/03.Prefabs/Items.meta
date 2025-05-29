@@ -1,7 +1,12 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:3DSurvival/Assets/02.Scripts/UI/Inventory/Cube.prefab.meta
+guid: 2846012640c64314dbc9a3ffa2ac544b
+PrefabImporter:
+========
 guid: 04e1303098da8024794d625e2f5d7984
 folderAsset: yes
 DefaultImporter:
+>>>>>>>> First_Develop:3DSurvival/Assets/03.Prefabs/Items.meta
   externalObjects: {}
   userData: 
   assetBundleName: 

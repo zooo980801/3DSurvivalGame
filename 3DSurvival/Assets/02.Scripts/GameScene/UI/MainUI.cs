@@ -16,7 +16,9 @@ public class MainUI : MonoBehaviour
 
     [Header("시간 표시")]
     [SerializeField] private GameClock gameClock;   // GameClock 연결
+    [SerializeField] private GameClock gameDay;   // GameClock 연결
     [SerializeField] private TextMeshProUGUI timeText;         // 시간 표시용 UI 텍스트 (TextMeshPro 사용 시 TMPro.TextMeshProUGUI)
+    [SerializeField] private TextMeshProUGUI dayText;         //  날짜 표시용 UI 텍스트 (TextMeshPro 사용 시 TMPro.TextMeshProUGUI)
 
     private void Start()
     {
@@ -27,14 +29,21 @@ public class MainUI : MonoBehaviour
         playerThirstUI.Bind(playerStatus.Thirst);
 
         gameClock.OnTimeChanged += UpdateTimeUI;
+        gameClock.OnDayChanged += UpdateDayUI;
 
         // 시작 시간도 바로 반영
         UpdateTimeUI(gameClock.currentHour, gameClock.currentMinute);
+        UpdateDayUI(gameClock.currentDay);
     }
 
     private void UpdateTimeUI(int hour, int minute)
     {
         if (timeText != null)
             timeText.text = $"{hour:D2}:{minute:D2}";
+    }
+    private void UpdateDayUI(int day)
+    {
+        if (dayText != null)
+            dayText.text = $"Day {day}";
     }
 }

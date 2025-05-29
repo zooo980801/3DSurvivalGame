@@ -9,6 +9,9 @@ public class BGMManager : MonoBehaviour
     [Header("메인 BGM")]
     public AudioClip loadingBGM; // 타이틀/로딩 화면에서 사용할 BGM 클립
 
+    [Header("볼륨 설정")]
+    public float volume = 0.1f;
+
     private void Awake()
     {
         if (Instance == null) // 인스턴스가 없으면
@@ -33,6 +36,7 @@ public class BGMManager : MonoBehaviour
     {
         if (audioSource.isPlaying) return;
 
+        audioSource.volume = volume; 
         audioSource.clip = loadingBGM;
         audioSource.Play();
     }
@@ -40,10 +44,5 @@ public class BGMManager : MonoBehaviour
     public void Stop()
     {
         audioSource.Stop(); // 현재 재생 중인 BGM 정지
-    }
-
-    public void SetVolume(float volume)
-    {
-        audioSource.volume = volume; // 볼륨 설정 (0.0 ~ 1.0)
     }
 }

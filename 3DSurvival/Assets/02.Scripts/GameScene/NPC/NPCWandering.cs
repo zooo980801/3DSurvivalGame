@@ -36,8 +36,7 @@ public class NPCWandering : MonoBehaviour
         // 대화 중이라면 무조건 Idle
         if (dialogueManager.isTalk)
         {
-            if (aiState != ALSTATE.IDLE)//현재 걷는 중이었다면
-                EnterIdle();//강제로 Idle
+            EnterIdle();//강제로 Idle
             return;
         }
 

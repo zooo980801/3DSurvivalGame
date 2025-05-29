@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 
 [System.Serializable]
 public class SaveData // ← 저장용 클래스 명칭
@@ -14,6 +14,14 @@ public class SaveData // ← 저장용 클래스 명칭
     public List<SaveItem> inventory = new List<SaveItem>();
     public SaveEquipment equipped;
     public List<string> completedQuests = new List<string>();
+
+    public int currentDay;
+    public int currentHour;
+    public int currentMinute;
+
+    public float playerPosX;
+    public float playerPosY;
+    public float playerPosZ;
 }
 
 [System.Serializable]

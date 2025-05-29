@@ -8,7 +8,7 @@ public class NPCWandering : MonoBehaviour
 {
     [Header("AI")]
     private NavMeshAgent agent;
-    public float detectDistance;//ÀÚµ¿À¸·Î È¥ÀÚ ¹èÈ¸ÇÏ´Â °Å¸®
+    public float detectDistance;//ìë™ìœ¼ë¡œ í˜¼ì ë°°íšŒí•˜ëŠ” ê±°ë¦¬
     private ALSTATE aiState;
 
     [Header("Wandering")]
@@ -37,7 +37,7 @@ public class NPCWandering : MonoBehaviour
             case ALSTATE.IDLE:
                 anim.SetBool("IsWalk", false);
                 StartCoroutine(IdleRoutine());
-                Debug.Log("¸ØÃã");
+                //Debug.Log("ë©ˆì¶¤");
                 break;
             case ALSTATE.WANDERING:
                 anim.SetBool("IsWalk", true);
@@ -59,17 +59,17 @@ public class NPCWandering : MonoBehaviour
         Vector3 wanderTarget = GetWanderLocation();
         agent.SetDestination(wanderTarget);
 
-        agent.isStopped = false;//ÀÌµ¿Àç°³
+        agent.isStopped = false;//ì´ë™ì¬ê°œ
 
-        // ½ÇÁ¦·Î ÀÌµ¿ ÁßÀÏ ¶§ ·çÇÁ
-        while (agent.hasPath && agent.remainingDistance > agent.stoppingDistance)//À¯È¿ÇÑ °æ·ÎÀÌ°í ³²Àº°Å¸®°¡ 0º¸´Ù Å¬¶§ 
+        // ì‹¤ì œë¡œ ì´ë™ ì¤‘ì¼ ë•Œ ë£¨í”„
+        while (agent.hasPath && agent.remainingDistance > agent.stoppingDistance)//ìœ íš¨í•œ ê²½ë¡œì´ê³  ë‚¨ì€ê±°ë¦¬ê°€ 0ë³´ë‹¤ í´ë•Œ 
         {
-            Debug.Log("°È´ÂÁß");
+            //Debug.Log("ê±·ëŠ”ì¤‘");
             yield return null;
         }
 
-        // ¸ØÃß°í Idle·Î ÀüÈ¯
-        agent.isStopped = true;//ÀÌµ¿ ÁßÁö
+        // ë©ˆì¶”ê³  Idleë¡œ ì „í™˜
+        agent.isStopped = true;//ì´ë™ ì¤‘ì§€
 
         SetState(ALSTATE.IDLE);
     }
@@ -82,7 +82,7 @@ public class NPCWandering : MonoBehaviour
         int i = 0;
         while (Vector3.Distance(transform.position, hit.position) < detectDistance)
         {
-            //onUnitSphere´Â ¹İÁö¸§ÀÌ 1ÀÎ °¡»óÀÇ ±¸
+            //onUnitSphereëŠ” ë°˜ì§€ë¦„ì´ 1ì¸ ê°€ìƒì˜ êµ¬
             NavMesh.SamplePosition(transform.position + (Random.onUnitSphere * Random.Range(minWanderDistance, maxWanderDistance)), out hit, maxWanderDistance, NavMesh.AllAreas);
             i++;
             if (i == 30)

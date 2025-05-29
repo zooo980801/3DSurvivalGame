@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="NONE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="4c3b0d0e-301e-484e-bee8-12567bf4e6c1" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/Assets/02.Scripts/Enemy/Enemy.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/02.Scripts/Enemy/Enemy.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/02.Scripts/Enemy/EnemyData.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/02.Scripts/Enemy/EnemyData.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/02.Scripts/Enemy/SpawnEnemy.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/02.Scripts/Enemy/SpawnEnemy.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/BasicBandit.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/BasicBandit/BasicBanditTextures.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/BasicBandit/BasicBanditTextures/BasicBanditEye_Diff.psd" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/BasicBandit/BasicBanditTextures/BasicBanditEye_Diff.psd.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/BasicBandit/BasicBanditTextures/BasicBandit_Body_AlbedoTransparency.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/BasicBandit/BasicBanditTextures/BasicBandit_Body_AlbedoTransparency.png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/BasicBandit/BasicBanditTextures/BasicBandit_Body_MetallicSmoothness.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/BasicBandit/BasicBanditTextures/BasicBandit_Body_MetallicSmoothness.png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/BasicBandit/BasicBanditTextures/BasicBandit_Body_Normal.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/BasicBandit/BasicBanditTextures/BasicBandit_Body_Normal.png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/BasicBandit/BasicBanditTextures/BasicBandit_Cloth_AlbedoTransparency.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/BasicBandit/BasicBanditTextures/BasicBandit_Cloth_AlbedoTransparency.png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/BasicBandit/BasicBanditTextures/BasicBandit_Cloth_MetallicSmoothness.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/BasicBandit/BasicBanditTextures/BasicBandit_Cloth_MetallicSmoothness.png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/BasicBandit/BasicBanditTextures/BasicBandit_Cloth_Normal.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/BasicBandit/BasicBanditTextures/BasicBandit_Cloth_Normal.png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/BasicBandit/Basic_Bandit.fbx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/BasicBandit/Basic_Bandit.fbx.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/BasicBandit/Basic_BanditPrefab.prefab" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/BasicBandit/Basic_BanditPrefab.prefab.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/BasicBandit/DemoSceneBasicBandit.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/BasicBandit/DemoSceneBasicBandit/AnimationsDemoscene.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/BasicBandit/DemoSceneBasicBandit/AnimationsDemoscene/IdleGrab_Neutral.fbx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/BasicBandit/DemoSceneBasicBandit/AnimationsDemoscene/IdleGrab_Neutral.fbx.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/BasicBandit/DemoSceneBasicBandit/AnimationsDemoscene/IdleR_To_IdleL_1.fbx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/BasicBandit/DemoSceneBasicBandit/AnimationsDemoscene/IdleR_To_IdleL_1.fbx.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/BasicBandit/DemoSceneBasicBandit/AnimationsDemoscene/SprintJump_ToLeft_R.fbx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/BasicBandit/DemoSceneBasicBandit/AnimationsDemoscene/SprintJump_ToLeft_R.fbx.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/BasicBandit/DemoSceneBasicBandit/AnimationsDemoscene/WalkFWD.fbx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/BasicBandit/DemoSceneBasicBandit/AnimationsDemoscene/WalkFWD.fbx.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/BasicBandit/DemoSceneBasicBandit/BasicBanditScene.unity" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/BasicBandit/DemoSceneBasicBandit/BasicBanditScene.unity.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/BasicBandit/DemoSceneBasicBandit/BasicBanditSceneSettings.lighting" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/BasicBandit/DemoSceneBasicBandit/BasicBanditSceneSettings.lighting.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/BasicBandit/DemoSceneBasicBandit/Controller.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/BasicBandit/DemoSceneBasicBandit/Controller/Basic_Controller.controller" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/BasicBandit/DemoSceneBasicBandit/Controller/Basic_Controller.controller.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/BasicBandit/DemoSceneBasicBandit/Materials.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/BasicBandit/DemoSceneBasicBandit/Materials/Black.mat" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/BasicBandit/DemoSceneBasicBandit/Materials/Black.mat.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/BasicBandit/DemoSceneBasicBandit/Materials/Skybox.mat" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/BasicBandit/DemoSceneBasicBandit/Materials/Skybox.mat.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/BasicBandit/DemoSceneBasicBandit/Scripts.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/BasicBandit/DemoSceneBasicBandit/Scripts/ButtonFunction.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/BasicBandit/DemoSceneBasicBandit/Scripts/ButtonFunction.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/BasicBandit/DemoSceneBasicBandit/Scripts/MovementCamera.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/BasicBandit/DemoSceneBasicBandit/Scripts/MovementCamera.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/BasicBandit/Materials.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/BasicBandit/Materials/BasicBandit_Body.mat" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/BasicBandit/Materials/BasicBandit_Body.mat.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/BasicBandit/Materials/BasicBandit_Cloth.mat" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/BasicBandit/Materials/BasicBandit_Cloth.mat.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/BasicBandit/Materials/BasicBandit_EyeMAt.mat" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/BasicBandit/Materials/BasicBandit_EyeMAt.mat.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/External.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/External/ithappy.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/External/ithappy/Animals_FREE.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/External/ithappy/Animals_FREE/Animations.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/External/ithappy/Animals_FREE/Animations/Animation_Controllers.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/External/ithappy/Animals_FREE/Animations/Animation_Controllers/Chicken.controller" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/External/ithappy/Animals_FREE/Animations/Animation_Controllers/Chicken.controller.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/External/ithappy/Animals_FREE/Animations/Animation_Controllers/Deer.controller" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/External/ithappy/Animals_FREE/Animations/Animation_Controllers/Deer.controller.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/External/ithappy/Animals_FREE/Animations/Animation_Controllers/Dog.controller" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/External/ithappy/Animals_FREE/Animations/Animation_Controllers/Dog.controller.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/External/ithappy/Animals_FREE/Animations/Animation_Controllers/Horse.controller" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/External/ithappy/Animals_FREE/Animations/Animation_Controllers/Horse.controller.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/External/ithappy/Animals_FREE/Animations/Animation_Controllers/Kitty.controller" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/External/ithappy/Animals_FREE/Animations/Animation_Controllers/Kitty.controller.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/External/ithappy/Animals_FREE/Animations/Animation_Controllers/Pinguin.controller" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/External/ithappy/Animals_FREE/Animations/Animation_Controllers/Pinguin.controller.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/External/ithappy/Animals_FREE/Animations/Animation_Controllers/Tiger.controller" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/External/ithappy/Animals_FREE/Animations/Animation_Controllers/Tiger.controller.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/External/ithappy/Animals_FREE/Animations/Other_Animations.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/External/ithappy/Animals_FREE/Animations/Other_Animations/Chicken_001_idle.anim" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/External/ithappy/Animals_FREE/Animations/Other_Animations/Chicken_001_idle.anim.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/External/ithappy/Animals_FREE/Animations/Other_Animations/Chicken_002_run.anim" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/External/ithappy/Animals_FREE/Animations/Other_Animations/Chicken_002_run.anim.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/External/ithappy/Animals_FREE/Animations/Other_Animations/Chicken_003_walk.anim" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/External/ithappy/Animals_FREE/Animations/Other_Animations/Chicken_003_walk.anim.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/External/ithappy/Animals_FREE/Animations/Other_Animations/Deer_001_idle.anim" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/External/ithappy/Animals_FREE/Animations/Other_Animations/Deer_001_idle.anim.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/External/ithappy/Animals_FREE/Animations/Other_Animations/Deer_001_run.anim" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/External/ithappy/Animals_FREE/Animations/Other_Animations/Deer_001_run.anim.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/External/ithappy/Animals_FREE/Animations/Other_Animations/Deer_001_walk.anim" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/External/ithappy/Animals_FREE/Animations/Other_Animations/Deer_001_walk.anim.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/External/ithappy/Animals_FREE/Animations/Other_Animations/Dog_001_idle.anim" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/External/ithappy/Animals_FREE/Animations/Other_Animations/Dog_001_idle.anim.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/External/ithappy/Animals_FREE/Animations/Other_Animations/Dog_001_run.anim" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/External/ithappy/Animals_FREE/Animations/Other_Animations/Dog_001_run.anim.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/External/ithappy/Animals_FREE/Animations/Other_Animations/Dog_001_walk.anim" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/External/ithappy/Animals_FREE/Animations/Other_Animations/Dog_001_walk.anim.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/External/ithappy/Animals_FREE/Animations/Other_Animations/Horse_001_eat.anim" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/External/ithappy/Animals_FREE/Animations/Other_Animations/Horse_001_eat.anim.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/External/ithappy/Animals_FREE/Animations/Other_Animations/Horse_001_idle.anim" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/External/ithappy/Animals_FREE/Animations/Other_Animations/Horse_001_idle.anim.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/External/ithappy/Animals_FREE/Animations/Other_Animations/Horse_001_run.anim" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/External/ithappy/Animals_FREE/Animations/Other_Animations/Horse_001_run.anim.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/External/ithappy/Animals_FREE/Animations/Other_Animations/Horse_001_walk.anim" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/External/ithappy/Animals_FREE/Animations/Other_Animations/Horse_001_walk.anim.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/External/ithappy/Animals_FREE/Animations/Other_Animations/Kitty_001_idle.anim" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/External/ithappy/Animals_FREE/Animations/Other_Animations/Kitty_001_idle.anim.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/External/ithappy/Animals_FREE/Animations/Other_Animations/Kitty_001_run.anim" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/External/ithappy/Animals_FREE/Animations/Other_Animations/Kitty_001_run.anim.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/External/ithappy/Animals_FREE/Animations/Other_Animations/Kitty_001_walk.anim" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/External/ithappy/Animals_FREE/Animations/Other_Animations/Kitty_001_walk.anim.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/External/ithappy/Animals_FREE/Animations/Other_Animations/Pinguin_001_idle.anim" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/External/ithappy/Animals_FREE/Animations/Other_Animations/Pinguin_001_idle.anim.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/External/ithappy/Animals_FREE/Animations/Other_Animations/Pinguin_001_run.anim" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/External/ithappy/Animals_FREE/Animations/Other_Animations/Pinguin_001_run.anim.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/External/ithappy/Animals_FREE/Animations/Other_Animations/Pinguin_001_walk.anim" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/External/ithappy/Animals_FREE/Animations/Other_Animations/Pinguin_001_walk.anim.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/External/ithappy/Animals_FREE/Animations/Other_Animations/Tiger_001_idle.anim" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/External/ithappy/Animals_FREE/Animations/Other_Animations/Tiger_001_idle.anim.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/External/ithappy/Animals_FREE/Animations/Other_Animations/Tiger_001_idle_rare.anim" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/External/ithappy/Animals_FREE/Animations/Other_Animations/Tiger_001_idle_rare.anim.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/External/ithappy/Animals_FREE/Animations/Other_Animations/Tiger_001_run.anim" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/External/ithappy/Animals_FREE/Animations/Other_Animations/Tiger_001_run.anim.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/External/ithappy/Animals_FREE/Animations/Other_Animations/Tiger_001_walk.anim" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/External/ithappy/Animals_FREE/Animations/Other_Animations/Tiger_001_walk.anim.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/External/ithappy/Animals_FREE/Materials.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/External/ithappy/Animals_FREE/Materials/Floor.mat" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/External/ithappy/Animals_FREE/Materials/Floor.mat.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/External/ithappy/Animals_FREE/Materials/Material.mat" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/External/ithappy/Animals_FREE/Materials/Material.mat.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/External/ithappy/Animals_FREE/Meshes.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/External/ithappy/Animals_FREE/Meshes/Chicken_001.fbx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/External/ithappy/Animals_FREE/Meshes/Chicken_001.fbx.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/External/ithappy/Animals_FREE/Meshes/Deer_001.fbx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/External/ithappy/Animals_FREE/Meshes/Deer_001.fbx.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/External/ithappy/Animals_FREE/Meshes/Dog_001.fbx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/External/ithappy/Animals_FREE/Meshes/Dog_001.fbx.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/External/ithappy/Animals_FREE/Meshes/Horse_001.fbx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/External/ithappy/Animals_FREE/Meshes/Horse_001.fbx.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/External/ithappy/Animals_FREE/Meshes/Kitty_001.fbx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/External/ithappy/Animals_FREE/Meshes/Kitty_001.fbx.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/External/ithappy/Animals_FREE/Meshes/Pinguin_001.fbx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/External/ithappy/Animals_FREE/Meshes/Pinguin_001.fbx.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/External/ithappy/Animals_FREE/Meshes/Tiger_001.fbx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/External/ithappy/Animals_FREE/Meshes/Tiger_001.fbx.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/External/ithappy/Animals_FREE/Prefabs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/External/ithappy/Animals_FREE/Prefabs/Chicken_001.prefab" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/External/ithappy/Animals_FREE/Prefabs/Chicken_001.prefab.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/External/ithappy/Animals_FREE/Prefabs/Deer_001.prefab" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/External/ithappy/Animals_FREE/Prefabs/Deer_001.prefab.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/External/ithappy/Animals_FREE/Prefabs/Dog_001.prefab" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/External/ithappy/Animals_FREE/Prefabs/Dog_001.prefab.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/External/ithappy/Animals_FREE/Prefabs/Horse_001.prefab" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/External/ithappy/Animals_FREE/Prefabs/Horse_001.prefab.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/External/ithappy/Animals_FREE/Prefabs/Kitty_001.prefab" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/External/ithappy/Animals_FREE/Prefabs/Kitty_001.prefab.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/External/ithappy/Animals_FREE/Prefabs/Pinguin_001.prefab" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/External/ithappy/Animals_FREE/Prefabs/Pinguin_001.prefab.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/External/ithappy/Animals_FREE/Prefabs/Tiger_001.prefab" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/External/ithappy/Animals_FREE/Prefabs/Tiger_001.prefab.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/External/ithappy/Animals_FREE/Render_Pipeline_Convert.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/External/ithappy/Animals_FREE/Render_Pipeline_Convert/Documentation.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/External/ithappy/Animals_FREE/Render_Pipeline_Convert/Documentation.txt.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/External/ithappy/Animals_FREE/Render_Pipeline_Convert/URP_to_BuiltIn_source.unitypackage.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/External/ithappy/Animals_FREE/Render_Pipeline_Convert/URP_to_HDRP_source.unitypackage.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/External/ithappy/Animals_FREE/Scenes.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/External/ithappy/Animals_FREE/Scenes/Demonstration.unity" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/External/ithappy/Animals_FREE/Scenes/Demonstration.unity.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/External/ithappy/Animals_FREE/Scripts.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/External/ithappy/Animals_FREE/Scripts/CreatureMover.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/External/ithappy/Animals_FREE/Scripts/CreatureMover.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/External/ithappy/Animals_FREE/Scripts/MovePlayerInput.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/External/ithappy/Animals_FREE/Scripts/MovePlayerInput.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/External/ithappy/Animals_FREE/Scripts/PlayerCamera.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/External/ithappy/Animals_FREE/Scripts/PlayerCamera.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/External/ithappy/Animals_FREE/Scripts/ThirdPersonCamera.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/External/ithappy/Animals_FREE/Scripts/ThirdPersonCamera.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/External/ithappy/Animals_FREE/Skyboxes.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/External/ithappy/Animals_FREE/Skyboxes/Skybox_5.mat" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/External/ithappy/Animals_FREE/Skyboxes/Skybox_5.mat.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/External/ithappy/Animals_FREE/Skyboxes/Skybox_Textures.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/External/ithappy/Animals_FREE/Skyboxes/Skybox_Textures/Skybox_5.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/External/ithappy/Animals_FREE/Skyboxes/Skybox_Textures/Skybox_5.png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/External/ithappy/Animals_FREE/Textures.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/External/ithappy/Animals_FREE/Textures/Texture.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/External/ithappy/Animals_FREE/Textures/Texture.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/01.Scenes/GameScene/NavMesh.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01.Scenes/GameScene/NavMesh.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/06.External/TENKOKU - DYNAMIC SKY/EFFECTS/Textures/mat_fx_fog.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/06.External/TENKOKU - DYNAMIC SKY/EFFECTS/Textures/mat_fx_fog.mat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/06.External/TENKOKU - DYNAMIC SKY/EFFECTS/Textures/mat_fx_rain.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/06.External/TENKOKU - DYNAMIC SKY/EFFECTS/Textures/mat_fx_rain.mat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/06.External/TENKOKU - DYNAMIC SKY/EFFECTS/Textures/mat_fx_rainFog.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/06.External/TENKOKU - DYNAMIC SKY/EFFECTS/Textures/mat_fx_rainFog.mat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/06.External/TENKOKU - DYNAMIC SKY/EFFECTS/Textures/mat_fx_rainSplash.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/06.External/TENKOKU - DYNAMIC SKY/EFFECTS/Textures/mat_fx_rainSplash.mat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/06.External/TENKOKU - DYNAMIC SKY/EFFECTS/Textures/mat_fx_snow.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/06.External/TENKOKU - DYNAMIC SKY/EFFECTS/Textures/mat_fx_snow.mat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/06.External/TENKOKU - DYNAMIC SKY/TEXTURES/mat_cloudSphere.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/06.External/TENKOKU - DYNAMIC SKY/TEXTURES/mat_cloudSphere.mat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/06.External/TENKOKU - DYNAMIC SKY/TEXTURES/mat_galaxy.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/06.External/TENKOKU - DYNAMIC SKY/TEXTURES/mat_galaxy.mat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/06.External/TENKOKU - DYNAMIC SKY/TEXTURES/mat_moon.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/06.External/TENKOKU - DYNAMIC SKY/TEXTURES/mat_moon.mat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Polytope Studio/Lowpoly_Characters/URP/PT_Peasants_Free_URP_12.unitypackage.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Polytope Studio/Lowpoly_Characters/URP/PT_Peasants_Free_URP_14.unitypackage.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Polytope Studio/Lowpoly_Characters/URP/PT_Peasants_Free_URP_16.unitypackage.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Polytope Studio/Lowpoly_Characters/URP/PT_Peasants_Free_URP_17.unitypackage.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/Packages/com.unity.testtools.codecoverage/Settings.json" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/Packages/com.unity.testtools.codecoverage/Settings.json" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="ProjectId" id="2ximGV9n9pNGSnpXJwtqharTLsR" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="4c3b0d0e-301e-484e-bee8-12567bf4e6c1" name="Default Changelist" comment="" />
+      <created>1748429175762</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1748429175762</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+</project>

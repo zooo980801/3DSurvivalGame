@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using UnityEngine;
 
 [Serializable]
@@ -15,7 +15,7 @@ public class StatusData
         get => curValue; 
         set 
         { 
-            curValue = Mathf.Clamp(value, 0, maxValue); 
+            curValue = Mathf.Clamp(value, 0, maxValue);
             onValueChanged?.Invoke();
             onUIChanged?.Invoke(Percentage);
         } 
@@ -30,8 +30,26 @@ public class StatusData
     public void Add(float value) => CurValue += value;
     public void Subtract(float value) => CurValue -= value;
 
-    public SaveStatusData ToSaveData() => new SaveStatusData { curValue = curValue, maxValue = maxValue, passiveValue = passiveValue };
-    public void FromSaveData(SaveStatusData data) => curValue = data.curValue; // maxValue/passiveValue는 초기값 유지
+    public SaveStatusData ToSaveData()
+    {
+        return new SaveStatusData
+        {
+            curValue = curValue,
+            maxValue = maxValue,
+            passiveValue = passiveValue
+        };
+    }
+    public void FromSaveData(SaveStatusData data)
+    {
+        maxValue = data.maxValue;
+        passiveValue = data.passiveValue;
+        CurValue = data.curValue; //  setter 호출 → onValueChanged 발동됨
+
+        if (data.maxValue > 0) maxValue = data.maxValue;
+        if (data.passiveValue > 0) passiveValue = data.passiveValue;
+        curValue = Mathf.Clamp(data.curValue, 0, maxValue);
+    }
+
 
 }
 
@@ -65,4 +83,5 @@ public class BaseStatus : MonoBehaviour
         data.hunger = hunger.ToSaveData();
         data.thirst = thirst.ToSaveData();
     }
+
 }

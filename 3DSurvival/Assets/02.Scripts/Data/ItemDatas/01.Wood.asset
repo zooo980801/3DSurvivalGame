@@ -18,7 +18,7 @@ MonoBehaviour:
     \uAC19\uB2E4."
   type: 0
   icon: {fileID: 0}
-  dropPrefab: {fileID: 0}
+  dropPrefab: {fileID: 8258482673293077266, guid: 9d501bc454a891f44a98d89edca3c1d9, type: 3}
   canStack: 1
   maxStackAmount: 12
   damage: 0

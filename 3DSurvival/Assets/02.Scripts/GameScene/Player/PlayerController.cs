@@ -1,33 +1,41 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Animations;
 using UnityEngine.InputSystem;
+using static UnityEditor.Timeline.TimelinePlaybackControls;
 
 public class PlayerController : MonoBehaviour
 {
     [Header("Move")]
-    [SerializeField] private float moveSpeed;   // 플레이어 이동 속도
+    [SerializeField] private float walkSpeed;   // 플레이어 걷기 속도
+    [SerializeField] private float runSpeed;    // 플레이어 달리기 속도
     [SerializeField] private float jumpPower;   // 플레이어 점프력
     [SerializeField] private LayerMask groundLayer; // 바닥 체크를 위한 레이어마스크
+    private float moveSpeed;   // 플레이어에 적용될 이동 속도
     private Vector2 moveDirection;              // 이동 방향 
+    private bool isMove = false;                // 움직이는지 여부
+    private bool wasGrounded = true;            // 바닥이였는지 여부
 
     public float MoveSpeed { get { return moveSpeed; } set { moveSpeed = value; } }
 
     [Header("Look")]
-    [SerializeField] private Transform mainCamera;  // 메인 카메라
+    [SerializeField] private Transform mainCamera;      // 메인 카메라
     [SerializeField] private Transform cameraContainer; // 카메라 회전을 담당하는 오브젝트
-    [SerializeField] private float lookSensitivity; // 마우스 감도
-    [SerializeField] private float minXLook;    // 내려다볼 수 있는 각도
-    [SerializeField] private float maxXLook;    // 올려다볼 수 있는 각도
-    [SerializeField] private LayerMask cameraCollision;
+    [SerializeField] private float lookSensitivity;     // 마우스 감도
+    [SerializeField] private float minXLook;            // 내려다볼 수 있는 각도
+    [SerializeField] private float maxXLook;            // 올려다볼 수 있는 각도
+    [SerializeField] private LayerMask cameraCollision; // 카메라가 못 통과하는 벽 레이어
 
-    private float camCurXRot;       //  현재 카메라의 상하 회전값
-    private Vector2 mouseDelta;     // 프레임마다 입력된 마우스 이동값
+    private float camCurXRot;           //  현재 카메라의 상하 회전값
+    private Vector2 mouseDelta;         // 프레임마다 입력된 마우스 이동값
     private float firstPersonZ = 0f;    // 1인칭 위치
-    private float thirdPersonZ = -12f;   // 3인칭 위치
+    private float thirdPersonZ = -12f;  // 3인칭 위치
     private bool isFirstPerson = true;  // 현재 몇인칭인지 확인
+    public bool canLook = true;
 
+    public Action inventory;
     private Rigidbody _rigidbody;
     private PlayerAnimationHandler animationHandler;
 
@@ -40,11 +48,19 @@ public class PlayerController : MonoBehaviour
     private void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;   // 화면 중앙에 마우스 커서 고정
+        moveSpeed = walkSpeed;
     }
 
     private void FixedUpdate()
     {
         Movement();     // 플레이어 이동
+
+        bool isGrounded = OnGround();
+        if (!wasGrounded && isGrounded)
+        {
+            animationHandler.Jump(false);
+        }
+        wasGrounded = isGrounded;
     }
 
     private void LateUpdate()
@@ -68,19 +84,16 @@ public class PlayerController : MonoBehaviour
         {
             moveDirection = context.ReadValue<Vector2>();
             animationHandler.Walk(true);
+            isMove = true;
         }
         else if (context.phase == InputActionPhase.Canceled)
         {
             moveDirection = Vector2.zero;   // 이동 방향 초기화
             animationHandler.Walk(false);
+            isMove = false;
         }
     }
     #endregion
-
-    private void Update()
-    {
-        Debug.DrawRay(cameraContainer.position, mainCamera.transform.position - cameraContainer.position);
-    }
 
     #region 카메라 화면 회전
     void Look()
@@ -118,8 +131,10 @@ public class PlayerController : MonoBehaviour
             if (OnGround()) // 플레이어가 바닥에 있을 경우
             {
                 _rigidbody.AddForce(Vector3.up * jumpPower, ForceMode.Impulse); // 점프
+                animationHandler.Jump(true);
             }
         }
+
     }
 
     bool OnGround()
@@ -156,4 +171,43 @@ public class PlayerController : MonoBehaviour
         }
     }
     #endregion
+
+    #region 달리기
+    public void OnRun(InputAction.CallbackContext context)
+    {
+        if (context.phase == InputActionPhase.Performed)
+        {
+            moveSpeed = runSpeed;
+            animationHandler.Walk(false);
+            animationHandler.Run(true);
+        }
+        else if (context.phase == InputActionPhase.Canceled)
+        {
+            moveSpeed = walkSpeed;
+            animationHandler.Run(false);
+            if (isMove)
+            {
+                animationHandler.Walk(true);
+            }
+        }
+    }
+    #endregion
+
+    #region 인벤토리
+    public void OnInventory(InputAction.CallbackContext context)
+    {
+        if (context.phase == InputActionPhase.Started)
+        {
+            inventory?.Invoke();
+            ToggleCursor();
+        }
+    }
+    #endregion
+
+    void ToggleCursor()
+    {
+        bool toggle = Cursor.lockState == CursorLockMode.Locked;
+        Cursor.lockState = toggle ? CursorLockMode.None : CursorLockMode.Locked;
+        canLook = !toggle;
+    }
 }

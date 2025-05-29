@@ -1,4 +1,5 @@
-﻿using System.Collections;
+using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Animations;
@@ -32,7 +33,9 @@ public class PlayerController : MonoBehaviour
     private float firstPersonZ = 0f;    // 1인칭 위치
     private float thirdPersonZ = -12f;  // 3인칭 위치
     private bool isFirstPerson = true;  // 현재 몇인칭인지 확인
+    public bool canLook = true;
 
+    public Action inventory;
     private Rigidbody _rigidbody;
     private PlayerAnimationHandler animationHandler;
 
@@ -62,7 +65,10 @@ public class PlayerController : MonoBehaviour
 
     private void LateUpdate()
     {
-        Look();         // 카메라 화면 회전
+        if (canLook)
+        {
+            Look();     // 카메라 화면 회전
+        }
     }
 
     #region 플레이어 이동
@@ -188,4 +194,22 @@ public class PlayerController : MonoBehaviour
         }
     }
     #endregion
+
+    #region 인벤토리
+    public void OnInventory(InputAction.CallbackContext context)
+    {
+        if (context.phase == InputActionPhase.Started)
+        {
+            inventory?.Invoke();
+            ToggleCursor();
+        }
+    }
+    #endregion
+
+    void ToggleCursor()
+    {
+        bool toggle = Cursor.lockState == CursorLockMode.Locked;
+        Cursor.lockState = toggle ? CursorLockMode.None : CursorLockMode.Locked;
+        canLook = !toggle;
+    }
 }

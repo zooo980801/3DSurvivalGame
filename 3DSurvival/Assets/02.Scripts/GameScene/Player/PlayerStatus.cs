@@ -13,8 +13,19 @@ public class PlayerStatus : BaseStatus, IDamagable
     [SerializeField] private StatusData health;
     [SerializeField] private StatusData stamina;
 
-    public StatusData Health { get { return health; } }
-    public StatusData Stamina { get { return stamina; } }
+    [Header("Attack")]
+    [SerializeField] private int attackPower;
+    [SerializeField] private float attackDistance;
+    [SerializeField] private float attackRate;
+    [SerializeField] private float attackStamina;
+
+    public StatusData Health => health;
+    public StatusData Stamina => stamina;
+    public int AttackPower => attackPower;
+    public float AttackDistance => attackDistance;
+    public float AttackRate => attackRate;
+    public float AttackStamina => attackStamina;
+
 
     public event Action onTakeDamage;
 

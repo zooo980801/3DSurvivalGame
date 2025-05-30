@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Linq;
 
 public class ItemDatabase : MonoBehaviour
@@ -26,5 +26,21 @@ public class ItemDatabase : MonoBehaviour
         // 주어진 id와 일치하는 아이템을 items 배열에서 찾아 반환
         // 일치하는 것이 없으면 null 반환
         return items.FirstOrDefault(item => item.id == id);
+    }
+    [ContextMenu("Generate Item IDs")]
+    public void GenerateIDs()
+    {
+        // 에디터에서 아이템 ID 자동 생성
+#if UNITY_EDITOR
+        foreach (var item in items)
+        {
+            if (string.IsNullOrEmpty(item.id))
+            {
+                item.id = "item_" + item.displayName.ToLower().Replace(" ", "_");
+                UnityEditor.EditorUtility.SetDirty(item);
+            }
+        }
+        UnityEditor.AssetDatabase.SaveAssets();
+#endif
     }
 }

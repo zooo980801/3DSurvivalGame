@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 179469759536298327}
   - component: {fileID: 6890239172151152086}
   - component: {fileID: 1137274279488513793}
-  m_Layer: 8
+  m_Layer: 10
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -116,9 +116,9 @@ GameObject:
   - component: {fileID: 651890223641784179}
   - component: {fileID: 5404463423238133870}
   - component: {fileID: 4160148987062811973}
-  m_Layer: 8
+  m_Layer: 10
   m_Name: TestRockGetStone
-  m_TagString: Untagged
+  m_TagString: Tree
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -154,6 +154,8 @@ MonoBehaviour:
   itemToGive: {fileID: 11400000, guid: 880c1597ce2416e44814d759bab829b6, type: 2}
   quantityPerHit: 1
   capacity: 2
+  bonusItemToGive: {fileID: 11400000, guid: 880c1597ce2416e44814d759bab829b6, type: 2}
+  bonusQuantityOnToolUse: 2
 --- !u!65 &4160148987062811973
 BoxCollider:
   m_ObjectHideFlags: 0

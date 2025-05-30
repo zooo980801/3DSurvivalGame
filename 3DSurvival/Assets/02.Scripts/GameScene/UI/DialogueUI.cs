@@ -18,6 +18,12 @@ public class DialogueUI : MonoBehaviour
     [Header("대화 종료 버튼")]
     public GameObject closeBtn;
 
+    [Header("식사 대접하기")]
+    //버튼 누르면 인벤토리 열림
+    //문제는... 어떻게 끄는가 / 켜져 있을 때 다른 대화창을 어떻게 할 것인가 
+    public GameObject Inventory;//식사 제공 버튼. 누르면 인벤토리 나옴
+
+
     private Button btn1;
     private Button btn2;
     private TextMeshProUGUI btn1Text;
@@ -90,5 +96,10 @@ public class DialogueUI : MonoBehaviour
             btn2.onClick.RemoveAllListeners();
             btn2.onClick.AddListener(() => callback());
         }
+    }
+    public void FeedOn()
+    {
+        Inventory.SetActive(true);
+        dialogue.SetActive(false);
     }
 }

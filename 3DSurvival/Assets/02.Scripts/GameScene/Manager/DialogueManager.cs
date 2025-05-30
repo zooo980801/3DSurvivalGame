@@ -64,16 +64,6 @@ public class DialogueManager : MonoBehaviour
         }
     }
 
-    private void Update()
-    {
-        //임시 키 설정, 상호작용 키로 교체 원함
-        if (!isTalk && Input.GetKeyDown(KeyCode.Alpha2))
-        {
-            isTalk = true;
-            StartConversation();
-        }
-    }
-
     //대화 시작 (랜덤)
     public void StartConversation()
     {

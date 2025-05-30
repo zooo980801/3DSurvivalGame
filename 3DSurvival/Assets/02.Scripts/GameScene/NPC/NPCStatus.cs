@@ -1,4 +1,4 @@
-using System;
+ï»¿using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -11,26 +11,27 @@ public class LevelData
 }
 public class NPCStatus : BaseStatus
 {
-    //¹è°íÇÄ, ¼öºĞÀÇ Áõ°¨À» Ç¥½ÃÇÏ°í
-    //ÇÏ·ç°¡ ³¡³¯¶§ ¹è°íÇÄ, ¼öºĞ ¼öÄ¡ Á¤µµ¿¡ µû¶ó °æÇèÄ¡¸¦ ¾ò°í
-    //·¹º§¾÷À» ÇÕ´Ï´Ù
+    //ë°°ê³ í””, ìˆ˜ë¶„ì˜ ì¦ê°ì„ í‘œì‹œí•˜ê³ 
+    //í•˜ë£¨ê°€ ëë‚ ë•Œ ë°°ê³ í””, ìˆ˜ë¶„ ìˆ˜ì¹˜ ì •ë„ì— ë”°ë¼ ê²½í—˜ì¹˜ë¥¼ ì–»ê³ 
+    //ë ˆë²¨ì—…ì„ í•©ë‹ˆë‹¤
 
+    public string npcId = "npc_Seonbi";
     public GameClock clock;
 
-    //ÀúÀåµÇ¾î¾ß ÇÏ´Â ¼öÄ¡
-    [SerializeField] private int curLevel = 1;//Ã³À½ ·¹º§
-    [SerializeField] private int curExp = 0;//ÇöÀç °æÇèÄ¡
+    //ì €ì¥ë˜ì–´ì•¼ í•˜ëŠ” ìˆ˜ì¹˜
+    [SerializeField] private int curLevel = 1;//ì²˜ìŒ ë ˆë²¨
+    [SerializeField] private int curExp = 0;//í˜„ì¬ ê²½í—˜ì¹˜
 
-    [Header("·¹º§¾÷ Á¶°ÇÇ¥")]
+    [Header("ë ˆë²¨ì—… ì¡°ê±´í‘œ")]
     [SerializeField] private List<LevelData> levelTable;
 
     void Start()
     {
-        // clockÀÌ ¿¬°áµÇÁö ¾Ê¾Ò´Ù¸é ¾À¿¡¼­ ÀÚµ¿ Å½»ö
+        // clockì´ ì—°ê²°ë˜ì§€ ì•Šì•˜ë‹¤ë©´ ì”¬ì—ì„œ ìë™ íƒìƒ‰
         if (clock == null)
             clock = FindObjectOfType<GameClock>();
 
-        // ½Ã°£ º¯°æ ÀÌº¥Æ® ±¸µ¶
+        // ì‹œê°„ ë³€ê²½ ì´ë²¤íŠ¸ êµ¬ë…
         clock.OnTimeChanged += CheckSleep;
     }
 
@@ -39,10 +40,10 @@ public class NPCStatus : BaseStatus
         base.Update();
 
     }
-    // ½Ã°£ º¯°æ ½Ã È£ÃâµÇ´Â Äİ¹é ÇÔ¼ö
+    // ì‹œê°„ ë³€ê²½ ì‹œ í˜¸ì¶œë˜ëŠ” ì½œë°± í•¨ìˆ˜
     void CheckSleep(int hour, int minute)
     {
-        // »õº® 2½Ã°¡ µÇ¸é ÇÏ·ç Á¾·á
+        // ìƒˆë²½ 2ì‹œê°€ ë˜ë©´ í•˜ë£¨ ì¢…ë£Œ
         if (hour == 2 && minute == 0)
         {
             GetExp();
@@ -56,18 +57,18 @@ public class NPCStatus : BaseStatus
     }
     public void GetExp()
     {
-        //ÇÏ·ç°¡ ³¡³¯ ¶§ °æÇèÄ¡ Á¤»ê
+        //í•˜ë£¨ê°€ ëë‚  ë•Œ ê²½í—˜ì¹˜ ì •ì‚°
         
         int expGain = 0;
-        if(hunger.CurValue >= 80 && thirst.CurValue >= 80) //¼öºĞÀÌ 80 ÀÌ»ó && ¹è°íÇÄÀÌ 80 ÀÌ»óÀÌ¸é exp += 100
+        if(hunger.CurValue >= 80 && thirst.CurValue >= 80) //ìˆ˜ë¶„ì´ 80 ì´ìƒ && ë°°ê³ í””ì´ 80 ì´ìƒì´ë©´ exp += 100
         {
             expGain = 100;
         }
-        else if(hunger.CurValue >= 80 ||  thirst.CurValue >= 80)//µÑ Áß ÇÏ³ª¶óµµ 80¹Ì¸¸ÀÌ¸é exp += 50
+        else if(hunger.CurValue >= 80 ||  thirst.CurValue >= 80)//ë‘˜ ì¤‘ í•˜ë‚˜ë¼ë„ 80ë¯¸ë§Œì´ë©´ exp += 50
         {
             expGain = 50;
         }
-        else//µÑ ´Ù 80¹Ì¸¸ÀÌ¸é exp += 30
+        else//ë‘˜ ë‹¤ 80ë¯¸ë§Œì´ë©´ exp += 30
         {
             expGain = 30;
         }
@@ -78,18 +79,18 @@ public class NPCStatus : BaseStatus
 
     public void LevelUp()
     {
-        //ÇÏ·ç°¡ ³¡³µÀ» ¶§ ±âº» È£Ãâ
-        Debug.Log($"ÇöÀç ·¹º§Àº {curLevel}, ÇöÀç °æÇèÄ¡´Â {curExp}");
+        //í•˜ë£¨ê°€ ëë‚¬ì„ ë•Œ ê¸°ë³¸ í˜¸ì¶œ
+        Debug.Log($"í˜„ì¬ ë ˆë²¨ì€ {curLevel}, í˜„ì¬ ê²½í—˜ì¹˜ëŠ” {curExp}");
 
         bool didLevelUp = false;
 
-        // ÇöÀç ·¹º§¿¡ ÇØ´çÇÏ´Â Á¶°ÇÇ¥¸¦ Ã£¾Æ¼­ ¹İº¹ ·¹º§¾÷
+        // í˜„ì¬ ë ˆë²¨ì— í•´ë‹¹í•˜ëŠ” ì¡°ê±´í‘œë¥¼ ì°¾ì•„ì„œ ë°˜ë³µ ë ˆë²¨ì—…
         while (true)
         {
             LevelData data = levelTable.Find(x => x.level == curLevel);
             if (data == null)
             {
-                Debug.LogWarning($"·¹º§ {curLevel} Á¶°ÇÇ¥°¡ ¾ø½À´Ï´Ù. ·¹º§¾÷ Áß´Ü");
+                Debug.LogWarning($"ë ˆë²¨ {curLevel} ì¡°ê±´í‘œê°€ ì—†ìŠµë‹ˆë‹¤. ë ˆë²¨ì—… ì¤‘ë‹¨");
                 break;
             }
 
@@ -98,12 +99,12 @@ public class NPCStatus : BaseStatus
                 curExp -= data.requiredExp;
                 curLevel++;
                 didLevelUp = true;
-                Debug.Log($"·¹º§¾÷! »õ ·¹º§: {curLevel}");
+                Debug.Log($"ë ˆë²¨ì—…! ìƒˆ ë ˆë²¨: {curLevel}");
 
                 if (curLevel == 2 || curLevel == 5)
                 {
-                    //·¹º§¿¡ µû¸¥ ÀÌº¥Æ® Ã³¸®
-                    Debug.Log($"{curLevel}·¹º§¿¡¼­ Æ¯º° ÀÌº¥Æ® ¹ß»ı!");
+                    //ë ˆë²¨ì— ë”°ë¥¸ ì´ë²¤íŠ¸ ì²˜ë¦¬
+                    Debug.Log($"{curLevel}ë ˆë²¨ì—ì„œ íŠ¹ë³„ ì´ë²¤íŠ¸ ë°œìƒ!");
                 }
             }
             else
@@ -113,10 +114,32 @@ public class NPCStatus : BaseStatus
         }
 
         if (!didLevelUp)
-            Debug.Log("·¹º§¾÷ÇÏÁö ¾Ê¾Ò½À´Ï´Ù.");
+            Debug.Log("ë ˆë²¨ì—…í•˜ì§€ ì•Šì•˜ìŠµë‹ˆë‹¤.");
 
-        Debug.Log($"ÃÖÁ¾ »óÅÂ: ·¹º§ {curLevel}, ³²Àº EXP {curExp}");
+        Debug.Log($"ìµœì¢… ìƒíƒœ: ë ˆë²¨ {curLevel}, ë‚¨ì€ EXP {curExp}");
 
 
+    }
+
+    public void WriteSaveStatus(SaveData data)
+    {
+        base.WriteSaveStatus(data); // hunger, thirst ì €ì¥
+        data.npcs.Add(new SavedNPC
+        {
+            npcId = npcId,
+            curLevel = curLevel,
+            curExp = curExp,
+            hunger = hunger.ToSaveData(),
+            thirst = thirst.ToSaveData()
+        });
+    }
+
+
+    public void ApplySave(SavedNPC data)
+    {
+        curLevel = data.curLevel;
+        curExp = data.curExp;
+        hunger.FromSaveData(data.hunger);
+        thirst.FromSaveData(data.thirst);
     }
 }

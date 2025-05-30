@@ -51,4 +51,14 @@ public class ItemData : ScriptableObject
     
     [Header("CraftMaterial")]
     public CraftMaterial[] materials;
+
+    public Combine[] resultItems;//적용되는부분 적용 
+}
+
+[System.Serializable]
+public class Combine
+{
+    public ItemData itemA;
+    public ItemData itemB;
+    public ItemData reultItem;
 }

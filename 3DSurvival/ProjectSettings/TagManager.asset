@@ -6,6 +6,8 @@ TagManager:
   tags:
   - House
   - NPC
+  - Rock
+  - Tree
   layers:
   - Default
   - TransparentFX
@@ -17,7 +19,7 @@ TagManager:
   - 
   - Interaction
   - NPC
-  - 
+  - Equip
   - 
   - 
   - 

@@ -1,11 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class EquipTool : Equip
 {
     public float attackRate;
-    public bool attacking;
+    private bool attacking;
     public float attackDistance;
     public float useStamina;
 
@@ -16,13 +14,15 @@ public class EquipTool : Equip
     public bool doesDealDamage;
     public int damage;
 
+    public ItemData toolItemData;
+
     private Animator animator;
-    private Camera camera;
+    private Camera _camera;
 
     void Start()
     {
         animator = GetComponent<Animator>();
-        camera = Camera.main;
+        _camera = Camera.main;
     }
 
     public override void OnAttackInput()
@@ -32,34 +32,28 @@ public class EquipTool : Equip
             if (CharacterManager.Instance.Player.status.UseStamina(useStamina))
             {
                 attacking = true;
-                // 공격 애니메이션
-
-                StartCoroutine(CanAttack(attackRate));
+                animator.SetTrigger("Attack");
+                Invoke("OnCanAttack", attackRate);
             }
         }
     }
 
-    private IEnumerator CanAttack(float delay)
+    void OnCanAttack()
     {
-        yield return new WaitForSeconds(delay);
         attacking = false;
     }
 
     public void OnHit()
     {
-        Ray ray = camera.ScreenPointToRay(new Vector3(Screen.width / 2, Screen.height / 2, 0));
+        Ray ray = _camera.ScreenPointToRay(new Vector3(Screen.width / 2, Screen.height / 2, 0));
         RaycastHit hit;
 
         if (Physics.Raycast(ray, out hit, attackDistance))
         {
             if (doesGatherResources && hit.collider.TryGetComponent(out Resource resource))
             {
-                resource.Gather(hit.point, hit.normal);
-            }
-
-            if (doesDealDamage && hit.collider.TryGetComponent(out IDamagable target))
-            {
-                target.TakePhysicalDamage(damage);
+                string currentToolId = (toolItemData != null) ? toolItemData.id : "";
+                resource.Gather(hit.point, hit.normal, currentToolId);
             }
         }
     }

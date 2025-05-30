@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.16949177, g: 0.30674064, b: 0.62525934, a: 1}
+  m_IndirectSpecularColor: {r: 0.16949207, g: 0.30674076, b: 0.6252572, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -5248,11 +5248,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4124191238579509097, guid: f2854c7f9526d064baeff524973e5cf7, type: 3}
       propertyPath: hunger.passiveValue
-      value: 0.05
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 4124191238579509097, guid: f2854c7f9526d064baeff524973e5cf7, type: 3}
       propertyPath: thirst.passiveValue
-      value: 0.05
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 4413634707392435333, guid: f2854c7f9526d064baeff524973e5cf7, type: 3}
       propertyPath: m_Layer
@@ -10918,6 +10918,7 @@ MonoBehaviour:
   npcStatus: {fileID: 1902463570}
   npcHungerUI: {fileID: 400372619258206259}
   npcThirstUI: {fileID: 1944343153059313202}
+  levelExp: {fileID: 1415821142}
   gameClock: {fileID: 1089664943}
   gameDay: {fileID: 1089664943}
   timeText: {fileID: 1278810800}
@@ -11547,6 +11548,44 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!84 &330969215
+RenderTexture:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  m_ImageContentsHash:
+    serializedVersion: 2
+    Hash: 00000000000000000000000000000000
+  m_ForcedFallbackFormat: 4
+  m_DownscaleFallback: 0
+  m_IsAlphaChannelOptional: 0
+  serializedVersion: 5
+  m_Width: 128
+  m_Height: 128
+  m_AntiAliasing: 1
+  m_MipCount: -1
+  m_DepthStencilFormat: 94
+  m_ColorFormat: 48
+  m_MipMap: 1
+  m_GenerateMips: 1
+  m_SRGB: 0
+  m_UseDynamicScale: 0
+  m_BindMS: 0
+  m_EnableCompatibleFormat: 1
+  m_EnableRandomWrite: 0
+  m_TextureSettings:
+    serializedVersion: 2
+    m_FilterMode: 1
+    m_Aniso: 1
+    m_MipBias: 0
+    m_WrapU: 1
+    m_WrapV: 1
+    m_WrapW: 1
+  m_Dimension: 2
+  m_VolumeDepth: 1
+  m_ShadowSamplingMode: 2
 --- !u!1 &332038949
 GameObject:
   m_ObjectHideFlags: 0
@@ -16876,7 +16915,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cameraType: 1
-  renderTexDiff: {fileID: 1896225018}
+  renderTexDiff: {fileID: 330969215}
 --- !u!20 &456977531
 Camera:
   m_ObjectHideFlags: 0
@@ -18599,7 +18638,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  randSeed: 17939234
+  randSeed: 19327437
   isDoingTransition: 0
   minimumHeight: 0
 --- !u!114 &633636797
@@ -25182,6 +25221,44 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92214fa0d40b47ed80171e20eb33b27b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!84 &1108642618
+RenderTexture:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  m_ImageContentsHash:
+    serializedVersion: 2
+    Hash: 00000000000000000000000000000000
+  m_ForcedFallbackFormat: 4
+  m_DownscaleFallback: 0
+  m_IsAlphaChannelOptional: 0
+  serializedVersion: 5
+  m_Width: 128
+  m_Height: 128
+  m_AntiAliasing: 1
+  m_MipCount: -1
+  m_DepthStencilFormat: 94
+  m_ColorFormat: 48
+  m_MipMap: 1
+  m_GenerateMips: 1
+  m_SRGB: 0
+  m_UseDynamicScale: 0
+  m_BindMS: 0
+  m_EnableCompatibleFormat: 1
+  m_EnableRandomWrite: 0
+  m_TextureSettings:
+    serializedVersion: 2
+    m_FilterMode: 1
+    m_Aniso: 1
+    m_MipBias: 0
+    m_WrapU: 1
+    m_WrapV: 1
+    m_WrapW: 1
+  m_Dimension: 2
+  m_VolumeDepth: 1
+  m_ShadowSamplingMode: 2
 --- !u!1 &1131644690
 GameObject:
   m_ObjectHideFlags: 0
@@ -25364,7 +25441,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cameraType: 0
-  renderTexDiff: {fileID: 1884425730}
+  renderTexDiff: {fileID: 1108642618}
 --- !u!20 &1155303589
 Camera:
   m_ObjectHideFlags: 0
@@ -36460,7 +36537,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\uB808\uBCA8 : 1 \uACBD\uD5D8\uCE58 : 400"
+  m_text: "\uB808\uBCA8 : 3 \uACBD\uD5D8\uCE58 : 400"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: d4b4e686e104ffe4ebed9ad90008db4b, type: 2}
   m_sharedMaterial: {fileID: -5665228167271536464, guid: d4b4e686e104ffe4ebed9ad90008db4b, type: 2}
@@ -73471,82 +73548,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1884174920}
   m_CullTransparentMesh: 1
---- !u!84 &1884425730
-RenderTexture:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: 
-  m_ImageContentsHash:
-    serializedVersion: 2
-    Hash: 00000000000000000000000000000000
-  m_ForcedFallbackFormat: 4
-  m_DownscaleFallback: 0
-  m_IsAlphaChannelOptional: 0
-  serializedVersion: 5
-  m_Width: 128
-  m_Height: 128
-  m_AntiAliasing: 1
-  m_MipCount: -1
-  m_DepthStencilFormat: 94
-  m_ColorFormat: 48
-  m_MipMap: 1
-  m_GenerateMips: 1
-  m_SRGB: 0
-  m_UseDynamicScale: 0
-  m_BindMS: 0
-  m_EnableCompatibleFormat: 1
-  m_EnableRandomWrite: 0
-  m_TextureSettings:
-    serializedVersion: 2
-    m_FilterMode: 1
-    m_Aniso: 1
-    m_MipBias: 0
-    m_WrapU: 1
-    m_WrapV: 1
-    m_WrapW: 1
-  m_Dimension: 2
-  m_VolumeDepth: 1
-  m_ShadowSamplingMode: 2
---- !u!84 &1896225018
-RenderTexture:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: 
-  m_ImageContentsHash:
-    serializedVersion: 2
-    Hash: 00000000000000000000000000000000
-  m_ForcedFallbackFormat: 4
-  m_DownscaleFallback: 0
-  m_IsAlphaChannelOptional: 0
-  serializedVersion: 5
-  m_Width: 128
-  m_Height: 128
-  m_AntiAliasing: 1
-  m_MipCount: -1
-  m_DepthStencilFormat: 94
-  m_ColorFormat: 48
-  m_MipMap: 1
-  m_GenerateMips: 1
-  m_SRGB: 0
-  m_UseDynamicScale: 0
-  m_BindMS: 0
-  m_EnableCompatibleFormat: 1
-  m_EnableRandomWrite: 0
-  m_TextureSettings:
-    serializedVersion: 2
-    m_FilterMode: 1
-    m_Aniso: 1
-    m_MipBias: 0
-    m_WrapU: 1
-    m_WrapV: 1
-    m_WrapW: 1
-  m_Dimension: 2
-  m_VolumeDepth: 1
-  m_ShadowSamplingMode: 2
 --- !u!114 &1902463570 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4124191238579509097, guid: f2854c7f9526d064baeff524973e5cf7, type: 3}

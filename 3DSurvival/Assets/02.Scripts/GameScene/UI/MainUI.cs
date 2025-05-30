@@ -19,6 +19,7 @@ public class MainUI : MonoBehaviour
     [SerializeField] private NPCStatus npcStatus;
     [SerializeField] private StatusUI npcHungerUI;
     [SerializeField] private StatusUI npcThirstUI;
+    [SerializeField] private TextMeshProUGUI levelExp;
 
     [Header("시간 표시")]
     [SerializeField] private GameClock gameClock;   // GameClock 연결
@@ -40,6 +41,7 @@ public class MainUI : MonoBehaviour
         //NPC 상태 데이터를 각 UI에 연결
         npcHungerUI.Bind(npcStatus.Hunger);
         npcThirstUI.Bind(npcStatus.Thirst);
+        UpdateLevel();
 
         gameClock.OnTimeChanged += UpdateTimeUI;
         gameClock.OnDayChanged += UpdateDayUI;
@@ -67,5 +69,9 @@ public class MainUI : MonoBehaviour
     {
         if (dayText != null)
             dayText.text = $"Day {day}";
+    }
+    private void UpdateLevel()
+    {
+        levelExp.text = $"레벨 : {npcStatus.CurLevel} 경험치 : {npcStatus.CurExp}";
     }
 }

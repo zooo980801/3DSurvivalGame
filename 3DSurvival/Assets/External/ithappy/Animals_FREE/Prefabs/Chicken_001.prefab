@@ -1153,8 +1153,9 @@ GameObject:
   - component: {fileID: 8881504610387854120}
   - component: {fileID: 8881504610387854121}
   - component: {fileID: 8881504610387854134}
-  - component: {fileID: 426715881740090576}
   - component: {fileID: 5314221950840589469}
+  - component: {fileID: -7038740536672168140}
+  - component: {fileID: 4653935666659501189}
   m_Layer: 0
   m_Name: Chicken_001
   m_TagString: Untagged
@@ -1270,26 +1271,6 @@ MonoBehaviour:
   m_MouseX: Mouse X
   m_MouseY: Mouse Y
   m_MouseScroll: Mouse ScrollWheel
---- !u!114 &426715881740090576
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8073443194988779917}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: af7e9dd40ebd1af4492911285950f625, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  hp: 0
-  atk: 0
-  speed: 0.5
-  detectedDistance: 0
-  playerDistance: 0
-  ChaseMaxDistance: 0
-  enemyState: 0
-  playerHouse: {fileID: 0}
 --- !u!195 &5314221950840589469
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -1312,6 +1293,47 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!136 &-7038740536672168140
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8073443194988779917}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Height: 1
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &4653935666659501189
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8073443194988779917}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d540972a320727e4db71fd613913e346, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hp:
+    curValue: 5
+    maxValue: 5
+    passiveValue: 0
+  dropOnDeath:
+  - {fileID: 11400000, guid: 1f9a2e06c7f85264b919d39253bb4c34, type: 2}
 --- !u!1 &8122850409471221505
 GameObject:
   m_ObjectHideFlags: 0

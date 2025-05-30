@@ -139,6 +139,10 @@ public class GameManager : MonoBehaviour
         destroyedHouseCount++;
         Debug.Log($"파괴된 집 수: {destroyedHouseCount}");
 
+        AlarmUI alarm = FindObjectOfType<AlarmUI>();
+        if (alarm != null)
+            alarm.Show("집이 파괴되었습니다!");
+
         if (destroyedHouseCount >= houses.Length)
         {
             GameOver();

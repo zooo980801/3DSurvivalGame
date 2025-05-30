@@ -2,8 +2,12 @@ using UnityEngine;
 
 public class EquipTool : Equip
 {
-    public float attackRate;
-    private bool attacking;
+    private float attackRate;
+    private int damage;
+
+    [SerializeField]
+    private bool attacking = false;
+
     public float attackDistance;
     public float useStamina;
 
@@ -11,8 +15,7 @@ public class EquipTool : Equip
     public bool doesGatherResources;
 
     [Header("Combat")]
-    public bool doesDealDamage;
-    public int damage;
+    public bool doesDealDamage; 
 
     public ItemData toolItemData;
 
@@ -23,23 +26,37 @@ public class EquipTool : Equip
     {
         animator = GetComponent<Animator>();
         _camera = Camera.main;
+
+
+        if (toolItemData != null)
+        {
+            attackRate = toolItemData.delay; 
+            damage = toolItemData.damage;
+        }
+        else
+        {
+            Debug.LogWarning("EquipTool에 toolItemData가 없음", this);
+        }
     }
 
     public override void OnAttackInput()
     {
+        _camera = Camera.main;
         if (!attacking)
         {
             if (CharacterManager.Instance.Player.status.UseStamina(useStamina))
             {
-                attacking = true;
-                animator.SetTrigger("Attack");
                 Invoke("OnCanAttack", attackRate);
+                //animator.SetTrigger("Attack");ass
+                OnHit();
+                attacking = true;
             }
         }
     }
 
     void OnCanAttack()
     {
+        Debug.Log("어택 펄스로바꿈");
         attacking = false;
     }
 
@@ -55,6 +72,15 @@ public class EquipTool : Equip
                 string currentToolId = (toolItemData != null) ? toolItemData.id : "";
                 resource.Gather(hit.point, hit.normal, currentToolId);
             }
+            if (doesDealDamage && hit.collider.TryGetComponent(out IDamageable damageable))
+            {
+                damageable.TakeDamage(damage);
+            }
         }
     }
+}
+
+public interface IDamageable
+{
+    void TakeDamage(int amount);
 }

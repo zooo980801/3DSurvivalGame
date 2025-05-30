@@ -32,6 +32,7 @@ public class ItemData : ScriptableObject
 
     [Header("Equip")]
     public int damage;          // 피해량
+    public float delay;         // 딜레이
     public int maxDurability;   // 최대 내구도
     public int currentDurability;   // 현재 내구도
 

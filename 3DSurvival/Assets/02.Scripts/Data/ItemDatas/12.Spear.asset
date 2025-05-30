@@ -21,6 +21,8 @@ MonoBehaviour:
   canStack: 0
   maxStackAmount: 0
   damage: 20
+  delay: 1
   maxDurability: 30
   currentDurability: 0
   consumables: []
+  equipPrefab: {fileID: 0}

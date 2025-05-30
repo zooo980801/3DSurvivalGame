@@ -8,9 +8,9 @@ public class PlayerAttack : MonoBehaviour
 {
     private bool playerAttacking;
 
-    [SerializeField] private Transform equipParent;
-
-    private Equip curEquip;
+    [SerializeField] private Transform equipParent;//장착모션 보여질 카메라
+    public Equip curEquip;//현재 장착 아이템
+    
 
     private PlayerController controller;
     private PlayerStatus status;
@@ -27,16 +27,23 @@ public class PlayerAttack : MonoBehaviour
         camera = Camera.main;
     }
 
+    // 아이템 장착
     public void EquipNew(ItemData data)
     {
         UnEquip();
-        // 장비 장착
+        GameObject newEquipObject = Instantiate(data.equipPrefab, equipParent);
+        curEquip = newEquipObject.GetComponent<Equip>();
 
+        if (curEquip is EquipTool equipTool)
+        {
+            equipTool.toolItemData = data;
+        }
+        Debug.Log(curEquip);
     }
 
+    // 장착 해제
     public void UnEquip()
     {
-        // 장비 해제
         if (curEquip != null)
         {
             Destroy(curEquip.gameObject);
@@ -51,10 +58,11 @@ public class PlayerAttack : MonoBehaviour
             if (curEquip == null)
             {
                 // 장비가 없을 경우
-                Attack();
+                Attack();//+자원채집
             }
             else
             {
+                Debug.Log("장비있슴"+curEquip);
                 // 장비가 있을 경우
                 curEquip.OnAttackInput();
             }

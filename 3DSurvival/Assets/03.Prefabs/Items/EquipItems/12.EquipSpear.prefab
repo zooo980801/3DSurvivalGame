@@ -45,12 +45,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 66b8d7a58ecd47747a0c8c3c3577a442, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackRate: 0.8
+  attacking: 0
   attackDistance: 1
   useStamina: 15
   doesGatherResources: 0
   doesDealDamage: 0
-  damage: 20
   toolItemData: {fileID: 11400000, guid: 47e93b7dc9f83c54e89f972ee3bb702b, type: 2}
 --- !u!1001 &8979457800937764043
 PrefabInstance:

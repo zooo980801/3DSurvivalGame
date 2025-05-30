@@ -21,6 +21,7 @@ MonoBehaviour:
   canStack: 0
   maxStackAmount: 0
   damage: 10
+  delay: 1
   maxDurability: 30
   currentDurability: 0
   consumables: []

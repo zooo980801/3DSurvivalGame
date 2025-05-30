@@ -8,7 +8,10 @@ public class InventoryUI : MonoBehaviour
 {
     public GameObject inventoryWindow;
     private Inventory _inventory;
-    [Header("Select ItemUI")] public TextMeshProUGUI selectedItemName;
+    
+    [SerializeField] private DialogueManager dialogueManager;
+    [Header("Select ItemUI")]
+    public TextMeshProUGUI selectedItemName;
     public TextMeshProUGUI selectedItemDescription;
     public TextMeshProUGUI selectedItemStatName;
     public TextMeshProUGUI selectedItemStatValue;
@@ -224,4 +227,12 @@ public class InventoryUI : MonoBehaviour
     {
         UnEquip(_inventory.SelectedIdx);
     }
+
+
+    public void OnCloseBtn()
+    {
+        inventoryWindow.SetActive(false);
+        dialogueManager.EndConversation();
+    }
+
 }

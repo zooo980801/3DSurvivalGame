@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -53,6 +53,11 @@ public class GameManager : MonoBehaviour
                     data.playerPosY,
                     data.playerPosZ
                 );
+                Vector3 euler = playerStatus.transform.eulerAngles;
+                playerStatus.transform.rotation = Quaternion.Euler(0, data.playerRotY, 0);
+                PlayerController pc = playerStatus.GetComponent<PlayerController>();
+                if (pc != null)
+                    pc.SetCamXRot(data.cameraRotX);
                 foreach (var npc in FindObjectsOfType<NPCStatus>())
                 {
                     var saved = data.npcs.Find(n => n.npcId == npc.npcId);
@@ -88,7 +93,35 @@ public class GameManager : MonoBehaviour
                         Debug.LogWarning("프리팹에 House 컴포넌트가 없습니다.");
                     }
                 }// 인벤토리 로드
-                    InventoryManager.Instance.Inventory.LoadInventory(data);
+
+                foreach (var dropped in data.droppedItems)
+                {
+                    ItemData itemData = ItemDatabase.Instance.GetItemById(dropped.itemId);
+                    if (itemData == null)
+                    {
+                        Debug.LogWarning($"아이템 ID '{dropped.itemId}' 에 해당하는 ItemData를 찾을 수 없습니다.");
+                        continue;
+                    }
+
+                    GameObject prefab = itemData.dropPrefab; // ← 이게 반드시 설정돼 있어야 함!
+                    if (prefab == null)
+                    {
+                        Debug.LogWarning($"dropPrefab이 ItemData '{itemData.id}' 에 설정되어 있지 않습니다.");
+                        continue;
+                    }
+
+                    GameObject itemObj = Instantiate(prefab);
+                    itemObj.transform.position = new Vector3(dropped.posX, dropped.posY, dropped.posZ);
+                    itemObj.transform.rotation = Quaternion.Euler(dropped.rotX, dropped.rotY, dropped.rotZ);
+
+                    var itemComponent = itemObj.GetComponent<ItemObject>();
+                    if (itemComponent != null)
+                    {
+                        itemComponent.data = itemData;
+                        itemComponent.quantity = dropped.amount;
+                    }
+                }
+                InventoryManager.Instance.Inventory.LoadInventory(data);
             }
             else
             {
@@ -137,6 +170,10 @@ public class GameManager : MonoBehaviour
             data.playerPosX = pos.x;
             data.playerPosY = pos.y;
             data.playerPosZ = pos.z;
+            data.playerRotY = playerStatus.transform.eulerAngles.y; 
+            PlayerController pc = playerStatus.GetComponent<PlayerController>();
+            if (pc != null)
+                data.cameraRotX = pc.GetCamXRot();
         }
         else
         {
@@ -159,6 +196,12 @@ public class GameManager : MonoBehaviour
             SavedHouse saved = new SavedHouse();
             house.WriteSave(saved);
             data.houses.Add(saved);
+        }
+        data.droppedItems.Clear();
+
+        foreach (var itemObj in FindObjectsOfType<ItemObject>())
+        {
+            data.droppedItems.Add(itemObj.WriteSave());
         }
 
         SaveManager.Instance.SaveData(data);

@@ -19,6 +19,7 @@ public class AlarmUI : MonoBehaviour
 
     public void Show(string message, float duration = 2f)
     {
+        Debug.Log($"[AlarmUI] Show 호출됨: {message}"); // 로그 추가
         if (alarmCoroutine != null)
             StopCoroutine(alarmCoroutine);
 
@@ -31,24 +32,26 @@ public class AlarmUI : MonoBehaviour
 
         // 나타나기
         float t = 0f;
-        while (t < 0.2f)
+        while (t < 1f)
         {
-            t += Time.deltaTime;
-            canvasGroup.alpha = Mathf.Lerp(0f, 1f, t / 0.2f);
+            t += Time.deltaTime / 0.2f; // 0.2초 안에 1로 가게
+            canvasGroup.alpha = t; // 점점 증가
             yield return null;
         }
         canvasGroup.alpha = 1f;
 
+
         yield return new WaitForSeconds(duration);
 
         // 사라지기
-        t = 0f;
-        while (t < 0.5f)
+        t = 1f;
+        while (t > 0f)
         {
-            t += Time.deltaTime;
-            canvasGroup.alpha = Mathf.Lerp(1f, 0f, t / 0.5f);
+            t -= Time.deltaTime / 0.5f; // 0.5초에 걸쳐 사라지기
+            canvasGroup.alpha = t;
             yield return null;
         }
         canvasGroup.alpha = 0f;
+
     }
 }

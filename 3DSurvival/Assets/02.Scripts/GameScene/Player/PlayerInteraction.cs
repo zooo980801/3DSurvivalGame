@@ -62,6 +62,18 @@ public class PlayerInteraction : MonoBehaviour
 
     private void SetPromptText()
     {
+        if (promptText == null)
+        {
+            Debug.LogError("[PlayerInteraction] promptText가 연결되지 않았습니다.");
+            return;
+        }
+
+        if (curInteractable == null)
+        {
+            Debug.LogWarning("[PlayerInteraction] curInteractable이 null입니다.");
+            promptText.gameObject.SetActive(false);
+            return;
+        }
         promptText.gameObject.SetActive(true);
         promptText.text = curInteractable.GetInteractPrompt();
     }

@@ -18,6 +18,10 @@ public class NPCWandering : MonoBehaviour, IInteractable
     public float minWanderWaitTime = 5f;
     public float maxWanderWaitTime = 10f;
 
+    [Header("Look At Player")]
+    public Transform playerTransform;   // 플레이어 Transform을 인스펙터에 연결
+    public float lookAtSpeed = 5f;  // 회전 속도
+
     private Animator anim;
     public DialogueManager dialogueManager;//임시
     private Coroutine stateRoutine;
@@ -31,12 +35,14 @@ public class NPCWandering : MonoBehaviour, IInteractable
         SetState(ALSTATE.IDLE);
     }
 
+
     private void Update()
     {
         // 대화 중이라면 무조건 Idle
         if (dialogueManager.isTalk)
         {
             EnterIdle();//강제로 Idle
+            LookAtPlayer();//대화중엔 플레이어 쳐다보기
             return;
         }
 
@@ -157,5 +163,19 @@ public class NPCWandering : MonoBehaviour, IInteractable
     {
         dialogueManager.isTalk = true;
         dialogueManager.StartConversation();
+    }
+    private void LookAtPlayer()
+    {
+        // 높이 맞추기
+        Vector3 targetPos = playerTransform.position;
+        targetPos.y = transform.position.y;
+
+        // 회전 계산
+        Quaternion targetRot = Quaternion.LookRotation(targetPos - transform.position);
+        transform.rotation = Quaternion.Slerp(
+            transform.rotation,
+            targetRot,
+            Time.deltaTime * lookAtSpeed
+        );
     }
 }

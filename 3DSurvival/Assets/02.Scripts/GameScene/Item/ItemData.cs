@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 
 
 // 구조 설명:
@@ -38,4 +38,7 @@ public class ItemData : ScriptableObject
 
     [Header("Consumable")]
     public ItemDataConsumable[] consumables; // 소비 효과 리스트 (여러 효과 적용 가능)
+
+    [Header("Equip")]
+    public GameObject equipPrefab;  //장착모션
 }

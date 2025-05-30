@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.AI;
 
 
-public class NPCWandering : MonoBehaviour
+public class NPCWandering : MonoBehaviour, IInteractable
 {
     [Header("AI")]
     private NavMeshAgent agent;
@@ -36,8 +36,7 @@ public class NPCWandering : MonoBehaviour
         // 대화 중이라면 무조건 Idle
         if (dialogueManager.isTalk)
         {
-            if (aiState != ALSTATE.IDLE)//현재 걷는 중이었다면
-                EnterIdle();//강제로 Idle
+            EnterIdle();//강제로 Idle
             return;
         }
 
@@ -96,7 +95,11 @@ public class NPCWandering : MonoBehaviour
     {
         float waitTime = Random.Range(minWanderWaitTime, maxWanderWaitTime);
         yield return new WaitForSeconds(waitTime);
-
+        if (dialogueManager.isTalk)
+        {
+            stateRoutine = null;
+            yield break;
+        }
         // 코루틴 종료 표시
         stateRoutine = null;
         SetState(ALSTATE.WANDERING);
@@ -142,5 +145,17 @@ public class NPCWandering : MonoBehaviour
         }
 
         return hit.position;
+    }
+
+    public string GetInteractPrompt()
+    {
+        string str = "대화";
+        return str;
+    }
+
+    public void OnInteract()
+    {
+        dialogueManager.isTalk = true;
+        dialogueManager.StartConversation();
     }
 }

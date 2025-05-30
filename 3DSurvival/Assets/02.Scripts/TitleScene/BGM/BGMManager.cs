@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 
 public class BGMManager : MonoBehaviour
 {
@@ -8,6 +8,9 @@ public class BGMManager : MonoBehaviour
 
     [Header("메인 BGM")]
     public AudioClip loadingBGM; // 타이틀/로딩 화면에서 사용할 BGM 클립
+
+    [Header("볼륨 설정")]
+    public float volume = 0.1f;
 
     private void Awake()
     {
@@ -23,22 +26,23 @@ public class BGMManager : MonoBehaviour
             Destroy(gameObject); // 중복 인스턴스 방지
         }
     }
+    private void Start()
+    {
+        BGMManager.Instance?.PlayLoadingBGM();
+        // Start()에서 별도 볼륨 설정하지 않음
+    }
 
     public void PlayLoadingBGM()
     {
-        if (audioSource.isPlaying) return; // 이미 재생 중이면 무시
+        if (audioSource.isPlaying) return;
 
-        audioSource.clip = loadingBGM; // 클립 지정
-        audioSource.Play(); // 재생 시작
+        audioSource.volume = volume; 
+        audioSource.clip = loadingBGM;
+        audioSource.Play();
     }
 
     public void Stop()
     {
         audioSource.Stop(); // 현재 재생 중인 BGM 정지
-    }
-
-    public void SetVolume(float volume)
-    {
-        audioSource.volume = volume; // 볼륨 설정 (0.0 ~ 1.0)
     }
 }

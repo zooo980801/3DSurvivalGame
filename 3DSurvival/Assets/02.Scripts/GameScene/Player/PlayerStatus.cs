@@ -10,24 +10,25 @@ public interface IDamagable // 데미지를 받는 오브젝트가 구현해야 
 
 public class PlayerStatus : BaseStatus, IDamagable
 {
-    [SerializeField] private StatusData health;     // 체력
-    [SerializeField] private StatusData stamina;    // 스테미나
+    [SerializeField] private StatusData health;
+    [SerializeField] private StatusData stamina;
 
-    public StatusData Health { get { return health; } }
-    public StatusData Stamina { get { return stamina; } }
+    [Header("Attack")]
+    [SerializeField] private int attackPower;
+    [SerializeField] private float attackDistance;
+    [SerializeField] private float attackRate;
+    [SerializeField] private float attackStamina;
+
+    public StatusData Health => health;
+    public StatusData Stamina => stamina;
+    public int AttackPower => attackPower;
+    public float AttackDistance => attackDistance;
+    public float AttackRate => attackRate;
+    public float AttackStamina => attackStamina;
+
 
     public event Action onTakeDamage;
 
-    private float lastSaveTime = 0f;
-    private float saveInterval = 30f;
-
-    private void Start()
-    {
-        health.onValueChanged += SaveStatus;
-        stamina.onValueChanged += SaveStatus;
-        hunger.onValueChanged += SaveStatus;
-        thirst.onValueChanged += SaveStatus;
-    }
 
     protected override void Update()
     {
@@ -36,6 +37,13 @@ public class PlayerStatus : BaseStatus, IDamagable
         health.Add(health.PassiveValue * Time.deltaTime);  // 기본 체력 증가
         stamina.Add(stamina.PassiveValue * Time.deltaTime);  // 기본 스테미나 증가
 
+    }
+    void Awake()
+    {
+        if (health == null) health = new StatusData();
+        if (stamina == null) stamina = new StatusData();
+        if (hunger == null) hunger = new StatusData();
+        if (thirst == null) thirst = new StatusData();
     }
 
     public void Heal(float amount)
@@ -73,20 +81,11 @@ public class PlayerStatus : BaseStatus, IDamagable
 
     public void WriteSaveStatus(SaveData data)
     {
+
+        Debug.Log("[WriteSaveStatus] called");
         base.WriteSaveStatus(data);
         data.health = health.ToSaveData();
         data.stamina = stamina.ToSaveData();
     }
 
-    private void SaveStatus()
-    {
-        if (Time.time - lastSaveTime < saveInterval)
-            return;
-
-        lastSaveTime = Time.time;
-
-        SaveData current = new SaveData();
-        WriteSaveStatus(current);
-        SaveManager.Instance.SaveData(current);
-    }
 }

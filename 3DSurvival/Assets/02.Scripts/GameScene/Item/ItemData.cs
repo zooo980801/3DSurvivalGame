@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 
 // 구조 설명:
@@ -12,6 +13,12 @@ public class ItemDataConsumable
 {
     public CONSUMABLETYPE type; // 효과 종류 (허기, 체력 등)
     public float value;         // 회복/감소 등 효과량
+}
+[Serializable]//직렬화하여 인스펙터에 표시
+public class CraftMaterial
+{
+    public MATERIALTYPE type;//재료타입
+    public float value;//재료갯수
 }
 
 // ScriptableObject를 생성할 수 있게 하는 속성
@@ -38,4 +45,7 @@ public class ItemData : ScriptableObject
 
     [Header("Consumable")]
     public ItemDataConsumable[] consumables; // 소비 효과 리스트 (여러 효과 적용 가능)
+    
+    [Header("Material")]
+    public CraftMaterial[] material;//아이템 제작에사용할 재료리스트
 }

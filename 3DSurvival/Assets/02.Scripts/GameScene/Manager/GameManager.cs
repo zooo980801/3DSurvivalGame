@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -53,9 +53,42 @@ public class GameManager : MonoBehaviour
                     data.playerPosY,
                     data.playerPosZ
                 );
+                foreach (var npc in FindObjectsOfType<NPCStatus>())
+                {
+                    var saved = data.npcs.Find(n => n.npcId == npc.npcId);
+                    if (saved != null)
+                    {
+                        npc.ApplySave(saved);
+                        Debug.Log($"NPC {npc.npcId} 상태 로드 완료: 레벨 {saved.curLevel}, EXP {saved.curExp}");
+                    }
+                    else
+                    {
+                        Debug.LogWarning($"NPC {npc.npcId}에 대한 저장 데이터를 찾지 못했습니다.");
+                    }
+                }
 
-                // 인벤토리 로드
-                InventoryManager.Instance.Inventory.LoadInventory(data);
+
+                foreach (var savedHouse in data.houses)
+                {
+                    GameObject prefab = Resources.Load<GameObject>($"Prefabs/{savedHouse.prefabId}");
+                    if (prefab == null)
+                    {
+                        Debug.LogWarning($"House 프리팹 {savedHouse.prefabId} 를 찾을 수 없습니다.");
+                        continue;
+                    }
+
+                    GameObject go = Instantiate(prefab);
+                    House house = go.GetComponent<House>();
+                    if (house != null)
+                    {
+                        house.LoadFromSave(savedHouse);
+                    }
+                    else
+                    {
+                        Debug.LogWarning("프리팹에 House 컴포넌트가 없습니다.");
+                    }
+                }// 인벤토리 로드
+                    InventoryManager.Instance.Inventory.LoadInventory(data);
             }
             else
             {
@@ -114,6 +147,19 @@ public class GameManager : MonoBehaviour
             clock.WriteSaveClock(data);
 
         InventoryManager.Instance.Inventory.SaveInventory(data);
+
+        data.npcs.Clear(); // 중복 방지
+        foreach (var npc in FindObjectsOfType<NPCStatus>())
+        {
+            npc.WriteSaveStatus(data);
+        }
+        data.houses.Clear();
+        foreach (var house in FindObjectsOfType<House>())
+        {
+            SavedHouse saved = new SavedHouse();
+            house.WriteSave(saved);
+            data.houses.Add(saved);
+        }
 
         SaveManager.Instance.SaveData(data);
     }

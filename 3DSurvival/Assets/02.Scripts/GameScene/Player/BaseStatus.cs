@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using UnityEngine;
 
 [Serializable]
@@ -43,11 +43,9 @@ public class StatusData
     {
         maxValue = data.maxValue;
         passiveValue = data.passiveValue;
-        CurValue = data.curValue; //  setter 호출 → onValueChanged 발동됨
-
-        if (data.maxValue > 0) maxValue = data.maxValue;
-        if (data.passiveValue > 0) passiveValue = data.passiveValue;
         curValue = Mathf.Clamp(data.curValue, 0, maxValue);
+        onValueChanged?.Invoke();
+        onUIChanged?.Invoke(Percentage);
     }
 
 

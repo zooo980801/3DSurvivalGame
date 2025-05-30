@@ -25,7 +25,6 @@ public class MainUI : MonoBehaviour
     [SerializeField] private TextMeshProUGUI timeText;         // 시간 표시용 UI 텍스트 (TextMeshPro 사용 시 TMPro.TextMeshProUGUI)
     [SerializeField] private TextMeshProUGUI dayText;         //  날짜 표시용 UI 텍스트 (TextMeshPro 사용 시 TMPro.TextMeshProUGUI)
 
-    [SerializeField] private NPCStatus npcStatus;
     [SerializeField] private AlarmUI alarmUI;
 
     private void Start()

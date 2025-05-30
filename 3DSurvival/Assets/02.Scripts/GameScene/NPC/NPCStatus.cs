@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -21,9 +21,6 @@ public class NPCStatus : BaseStatus
     //저장되어야 하는 수치
     [SerializeField] private int curLevel = 1;//처음 레벨
     [SerializeField] private int curExp = 0;//현재 경험치
-    //외부에서 읽기만 가능하게
-    public int CurLevel => curLevel;
-    public int CurExp => curExp;
 
     [Header("레벨업 조건표")]
     [SerializeField] private List<LevelData> levelTable;

@@ -25,8 +25,7 @@ MonoBehaviour:
   currentDurability: 0
   consumables: []
   equipPrefab: {fileID: 0}
-  materials:
-  - type: 0
-    value: 1
-  - type: 1
-    value: 1
+  resultItems:
+  - itemA: {fileID: 11400000, guid: 40d7c742152d9a34e83ac75be3a88226, type: 2}
+    itemB: {fileID: 11400000, guid: 880c1597ce2416e44814d759bab829b6, type: 2}
+    reultItem: {fileID: 11400000, guid: 47e93b7dc9f83c54e89f972ee3bb702b, type: 2}

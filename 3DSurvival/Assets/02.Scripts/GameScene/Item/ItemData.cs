@@ -14,13 +14,6 @@ public class ItemDataConsumable
     public float value;         // 회복/감소 등 효과량
 }
 
-[System.Serializable]
-public class CraftMaterial
-{
-    public MATERIALTYPE type;
-    public float value;
-}
-
 // ScriptableObject를 생성할 수 있게 하는 속성
 [CreateAssetMenu(fileName = "Item", menuName = "new Item")]
 public class ItemData : ScriptableObject
@@ -30,10 +23,8 @@ public class ItemData : ScriptableObject
     public string displayName;      // 게임 내 표시될 이름
     public string description;      // 아이템 설명
     public ITEMTYPE type;           // 아이템 종류
-    public MATERIALTYPE matType; // 재료타입
     public Sprite icon;             // UI에서 사용할 아이콘
     public GameObject dropPrefab;   // 월드에 떨어뜨릴 때의 프리팹
-    public ItemData craftItem; // 만들어질 아이템
 
     [Header("Stacking")]
     public bool canStack;           // 아이템 중첩 가능 여부
@@ -52,8 +43,6 @@ public class ItemData : ScriptableObject
     public GameObject equipPrefab;  //장착모션
     
     [Header("CraftMaterial")]
-    public CraftMaterial[] materials;
-
     public Combine[] resultItems;//적용되는부분 적용 
 }
 

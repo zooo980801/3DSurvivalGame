@@ -14,7 +14,6 @@ public class UIClickSoundManager : MonoBehaviour
         if (Instance == null)
         {
             Instance = this;
-            DontDestroyOnLoad(gameObject);
             audioSource = GetComponent<AudioSource>();
         }
         else

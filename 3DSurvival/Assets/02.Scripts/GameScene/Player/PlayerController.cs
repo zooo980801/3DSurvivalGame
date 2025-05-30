@@ -221,4 +221,16 @@ public class PlayerController : MonoBehaviour
         ToggleCursor();
         playerInput.enabled = !isTalk;
     }
+
+    public float GetCamXRot()
+    {
+        return camCurXRot;
+    }
+
+    public void SetCamXRot(float xRot)
+    {
+        camCurXRot = Mathf.Clamp(xRot, minXLook, maxXLook);
+        cameraContainer.localEulerAngles = new Vector3(-camCurXRot, 0, 0); // Look 함수의 카메라 회전 적용과 동일
+    }
+
 }

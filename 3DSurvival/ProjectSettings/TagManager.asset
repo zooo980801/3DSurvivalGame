@@ -4,8 +4,8 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Tree
-  - Rock
+  - House
+  - NPC
   layers:
   - Default
   - TransparentFX
@@ -16,8 +16,8 @@ TagManager:
   - Player
   - 
   - Interaction
-  - Equip
-  - Resource
+  - NPC
+  - 
   - 
   - 
   - 

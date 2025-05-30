@@ -1,8 +1,12 @@
+﻿using System.Collections;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+    public static GameManager Instance { get; private set; }
+
     public GameClock clock;                     // GameClock 컴포넌트 참조 (Inspector에서 연결)
+    public PlayerStatus playerStatus;
     public SleepManager sleepManager;           // SleepManager 컴포넌트 참조 (Inspector에서 연결)
     private RandomEventManager eventManager;    // 코드로 추가할 RandomEventManager 컴포넌트
 
@@ -11,17 +15,158 @@ public class GameManager : MonoBehaviour
 
     public UIFader Fader;
 
+    public House[] houses; // Inspector에서 3개 할당
+    private int destroyedHouseCount = 0;
+
+    private bool isDirty = false;
+    private float lastSaveTime;
+    private float saveInterval = 2f;
+
     void Start()
     {
-        // SleepManager에 GameClock 연결
-        sleepManager.clock = clock;
+        // 인벤토리 매니저 초기화 대기
+        StartCoroutine(InitializeGame());
+    }
 
-        // RandomEventManager를 동적으로 추가하고 GameClock 연결
+    IEnumerator InitializeGame()
+    {
+        // 필수 시스템 초기화 대기
+        yield return new WaitUntil(() => InventoryManager.Instance != null);
+        yield return new WaitUntil(() => SaveManager.Instance != null);
+
+        if (!SaveManager.IsNewGame)
+        {
+            Debug.Log("[GameManager] 저장된 데이터를 적용합니다.");
+
+            // 명시적으로 데이터 로드
+            var data = SaveManager.Instance.LoadData();
+
+            if (data != null)
+            {
+                Debug.Log($"인벤토리 아이템 수: {data.inventoryItems?.Count ?? 0}");
+
+                playerStatus.ApplySaveStatus(data);
+                clock.ApplySaveClock(data);
+
+                playerStatus.transform.position = new Vector3(
+                    data.playerPosX,
+                    data.playerPosY,
+                    data.playerPosZ
+                );
+                foreach (var npc in FindObjectsOfType<NPCStatus>())
+                {
+                    var saved = data.npcs.Find(n => n.npcId == npc.npcId);
+                    if (saved != null)
+                    {
+                        npc.ApplySave(saved);
+                        Debug.Log($"NPC {npc.npcId} 상태 로드 완료: 레벨 {saved.curLevel}, EXP {saved.curExp}");
+                    }
+                    else
+                    {
+                        Debug.LogWarning($"NPC {npc.npcId}에 대한 저장 데이터를 찾지 못했습니다.");
+                    }
+                }
+
+
+                foreach (var savedHouse in data.houses)
+                {
+                    GameObject prefab = Resources.Load<GameObject>($"Prefabs/{savedHouse.prefabId}");
+                    if (prefab == null)
+                    {
+                        Debug.LogWarning($"House 프리팹 {savedHouse.prefabId} 를 찾을 수 없습니다.");
+                        continue;
+                    }
+
+                    GameObject go = Instantiate(prefab);
+                    House house = go.GetComponent<House>();
+                    if (house != null)
+                    {
+                        house.LoadFromSave(savedHouse);
+                    }
+                    else
+                    {
+                        Debug.LogWarning("프리팹에 House 컴포넌트가 없습니다.");
+                    }
+                }// 인벤토리 로드
+                    InventoryManager.Instance.Inventory.LoadInventory(data);
+            }
+            else
+            {
+                Debug.LogWarning("[GameManager] 저장된 데이터가 없음! 새 게임으로 시작합니다.");
+                SaveManager.IsNewGame = true;
+            }
+        }
+        else
+        {
+            Debug.Log("[GameManager] 새 게임 시작 - 초기 상태 유지");
+            SaveManager.Instance.CreateNewGameData();
+        }
+
+        // 나머지 초기화 코드...
+        sleepManager.clock = clock;
         eventManager = gameObject.AddComponent<RandomEventManager>();
         eventManager.clock = clock;
 
-        // 날짜 변경 이벤트 연결
         clock.OnDayChanged += CheckGameClearCondition;
+        clock.OnClockChanged += () => isDirty = true;
+        playerStatus.Health.onValueChanged += () => isDirty = true;
+        playerStatus.Stamina.onValueChanged += () => isDirty = true;
+        playerStatus.Hunger.onValueChanged += () => isDirty = true;
+        playerStatus.Thirst.onValueChanged += () => isDirty = true;
+    }
+
+    void Update()
+    {
+        if (isDirty && Time.time - lastSaveTime >= saveInterval)
+        {
+            SaveAll();
+            isDirty = false;
+            lastSaveTime = Time.time;
+        }
+    }
+    public void SaveAll()
+    {
+        SaveData data = new SaveData();
+        Debug.Log("[SaveAll] Called");
+
+        if (playerStatus != null)
+        {
+            Debug.Log("[SaveAll] playerStatus not null");
+            playerStatus.WriteSaveStatus(data);
+            Vector3 pos = playerStatus.transform.position;
+            data.playerPosX = pos.x;
+            data.playerPosY = pos.y;
+            data.playerPosZ = pos.z;
+        }
+        else
+        {
+            Debug.LogWarning("[SaveAll] playerStatus is NULL!!");
+        }
+
+        if (clock != null)
+            clock.WriteSaveClock(data);
+
+        InventoryManager.Instance.Inventory.SaveInventory(data);
+
+        data.npcs.Clear(); // 중복 방지
+        foreach (var npc in FindObjectsOfType<NPCStatus>())
+        {
+            npc.WriteSaveStatus(data);
+        }
+        data.houses.Clear();
+        foreach (var house in FindObjectsOfType<House>())
+        {
+            SavedHouse saved = new SavedHouse();
+            house.WriteSave(saved);
+            data.houses.Add(saved);
+        }
+
+        SaveManager.Instance.SaveData(data);
+    }
+    private void Awake()
+    {
+        if (Instance == null) Instance = this;
+        else Destroy(gameObject);
     }
 
     private void CheckGameClearCondition(int day)
@@ -42,7 +187,7 @@ public class GameManager : MonoBehaviour
 
     public void GameOver()
     {
-        Debug.Log("선비가 죽었습니다...");
+        Debug.Log("게임오버");
         Fader.FadeIn();  // 페이드 인으로 보여주기
         // 조건추가 바람.
         if(gameOverUI != null)
@@ -53,5 +198,20 @@ public class GameManager : MonoBehaviour
     public void TestGameOver()
     {
         GameOver();
+    }
+
+    public void NotifyHouseDestroyed(House house)
+    {
+        destroyedHouseCount++;
+        Debug.Log($"파괴된 집 수: {destroyedHouseCount}");
+
+        AlarmUI alarm = FindObjectOfType<AlarmUI>();
+        if (alarm != null)
+            alarm.Show("집이 파괴되었습니다!");
+
+        if (destroyedHouseCount >= houses.Length)
+        {
+            GameOver();
+        }
     }
 }

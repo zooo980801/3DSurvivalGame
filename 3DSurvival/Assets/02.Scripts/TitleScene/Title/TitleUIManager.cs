@@ -12,9 +12,6 @@ public class TitleUIManager : MonoBehaviour
     {
         // 타이틀 화면에서 배경 음악 재생 시작
         BGMManager.Instance?.PlayLoadingBGM();
-
-        // 볼륨을 0.2로 낮춤 (조용한 분위기용)
-        BGMManager.Instance?.SetVolume(0.2f);
     }
 
     public SceneFader sceneFader; // Fade 효과와 씬 전환을 위한 SceneFader 연결
@@ -37,8 +34,6 @@ public class TitleUIManager : MonoBehaviour
     // "불러오기" 버튼 클릭 시 호출
     public void OnClickLoadGame()
     {
-
-
         // 저장 데이터가 존재하면
         if (SaveManager.Instance.HasSavedData())
         {

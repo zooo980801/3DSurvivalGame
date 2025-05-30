@@ -38,11 +38,13 @@ public class PlayerController : MonoBehaviour
     public Action inventory;
     private Rigidbody _rigidbody;
     private PlayerAnimationHandler animationHandler;
+    private PlayerInput playerInput;
 
     private void Awake()
     {
         _rigidbody = GetComponent<Rigidbody>();
         animationHandler = GetComponent<PlayerAnimationHandler>();
+        playerInput = GetComponent<PlayerInput>();
     }
 
     private void Start()
@@ -212,5 +214,11 @@ public class PlayerController : MonoBehaviour
         bool toggle = Cursor.lockState == CursorLockMode.Locked;
         Cursor.lockState = toggle ? CursorLockMode.None : CursorLockMode.Locked;
         canLook = !toggle;
+    }
+
+    public void Talking(bool isTalk)
+    {
+        ToggleCursor();
+        playerInput.enabled = !isTalk;
     }
 }

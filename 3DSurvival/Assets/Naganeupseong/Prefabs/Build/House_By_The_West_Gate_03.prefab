@@ -3605,9 +3605,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8198867857921294948}
+  - component: {fileID: 7276292719569629757}
   m_Layer: 0
   m_Name: House_By_The_West_Gate_03
-  m_TagString: Untagged
+  m_TagString: House
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3671,6 +3672,20 @@ Transform:
   - {fileID: 2735643367190037763}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7276292719569629757
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8716848744564901067}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 65a9d5164c7bbe740967d1857f38bc51, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHP: 100
+  gameManager: {fileID: 0}
 --- !u!1 &9127337064352647639
 GameObject:
   m_ObjectHideFlags: 0

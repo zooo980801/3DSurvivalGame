@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.AI;
 
 
-public class NPCWandering : MonoBehaviour
+public class NPCWandering : MonoBehaviour, IInteractable
 {
     [Header("AI")]
     private NavMeshAgent agent;
@@ -19,60 +19,115 @@ public class NPCWandering : MonoBehaviour
     public float maxWanderWaitTime = 10f;
 
     private Animator anim;
+    public DialogueManager dialogueManager;//임시
+    private Coroutine stateRoutine;
 
     private void Start()
     {
         agent = GetComponent<NavMeshAgent>();
         anim = GetComponent<Animator>();
         agent.speed = walkSpeed;
+        // 시작은 Idle 상태로
         SetState(ALSTATE.IDLE);
     }
 
+    private void Update()
+    {
+        // 대화 중이라면 무조건 Idle
+        if (dialogueManager.isTalk)
+        {
+            EnterIdle();//강제로 Idle
+            return;
+        }
+
+        // 대화가 끝났고 Idle 상태이고 코루틴이 없을 때 다시 배회 시작
+        if (aiState == ALSTATE.IDLE && stateRoutine == null && dialogueManager.isTalk == false)
+        {
+            SetState(ALSTATE.WANDERING);
+        }
+    }
+
+    // 강제 Idle 진입: 코루틴 정리, 애니메이션 이동 멈춤
+    private void EnterIdle()
+    {
+        StopStateRoutine();
+        aiState = ALSTATE.IDLE;
+        anim.SetBool("IsWalk", false);
+        agent.ResetPath();
+        // Idle 상태에선 대기 루틴 실행하지 않고,
+        // 대화가 끝난 뒤 Update에서 배회 재개
+        Debug.Log("강제 Idle (대화 중)");
+    }
+
+    // 상태 전환 메서드
     void SetState(ALSTATE state)
     {
+        StopStateRoutine();
         aiState = state;
 
-        switch(aiState)
+        switch (state)
         {
             case ALSTATE.IDLE:
                 anim.SetBool("IsWalk", false);
-                StartCoroutine(IdleRoutine());
-                //Debug.Log("멈춤");
+                stateRoutine = StartCoroutine(IdleRoutine());
                 break;
+
             case ALSTATE.WANDERING:
                 anim.SetBool("IsWalk", true);
-                StartCoroutine(WanderRoutine());
+                stateRoutine = StartCoroutine(WanderRoutine());
+                Debug.Log("Wandering 진입");
                 break;
         }
     }
 
-    IEnumerator IdleRoutine()
+    // 실행 중인 코루틴 정리
+
+    private void StopStateRoutine()
+    {
+        if (stateRoutine != null)
+        {
+            StopCoroutine(stateRoutine);
+            stateRoutine = null;
+        }
+    }
+
+    IEnumerator IdleRoutine()//Idle 코루틴
     {
         float waitTime = Random.Range(minWanderWaitTime, maxWanderWaitTime);
         yield return new WaitForSeconds(waitTime);
-
+        if (dialogueManager.isTalk)
+        {
+            stateRoutine = null;
+            yield break;
+        }
+        // 코루틴 종료 표시
+        stateRoutine = null;
         SetState(ALSTATE.WANDERING);
     }
 
+    #region 배회할 때 부르는 코루틴
     IEnumerator WanderRoutine()
     {
         Vector3 wanderTarget = GetWanderLocation();
         agent.SetDestination(wanderTarget);
+        agent.isStopped = false;
 
-        agent.isStopped = false;//이동재개
+        // 경로 계산 대기
+        while (agent.pathPending)
+            yield return null;
 
-        // 실제로 이동 중일 때 루프
-        while (agent.hasPath && agent.remainingDistance > agent.stoppingDistance)//유효한 경로이고 남은거리가 0보다 클때 
+        // 실제 이동 중일 때만 루프
+        while (agent.hasPath && agent.remainingDistance > agent.stoppingDistance)
         {
-            //Debug.Log("걷는중");
+            // Debug.Log("걷는중");
             yield return null;
         }
 
-        // 멈추고 Idle로 전환
-        agent.isStopped = true;//이동 중지
-
+        agent.isStopped = true;
+        stateRoutine = null;
         SetState(ALSTATE.IDLE);
     }
+    #endregion
     Vector3 GetWanderLocation()
     {
         NavMeshHit hit;
@@ -90,5 +145,17 @@ public class NPCWandering : MonoBehaviour
         }
 
         return hit.position;
+    }
+
+    public string GetInteractPrompt()
+    {
+        string str = "대화";
+        return str;
+    }
+
+    public void OnInteract()
+    {
+        dialogueManager.isTalk = true;
+        dialogueManager.StartConversation();
     }
 }

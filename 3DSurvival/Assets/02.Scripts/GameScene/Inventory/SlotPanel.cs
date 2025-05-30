@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -5,8 +6,8 @@ using UnityEngine;
 
 public class SlotPanel : MonoBehaviour
 {
-      public ItemSlot[] itemSlots;
-      public Transform slotPanel;
+    public ItemSlot[] itemSlots;
+    public Transform slotPanel;
 
     void Start()
     {
@@ -21,9 +22,8 @@ public class SlotPanel : MonoBehaviour
             itemSlots[i].inventory = InventoryManager.Instance.Inventory;
             itemSlots[i].inventory.slotPanel = this;
         }
-        
     }
-    
+
     public void AddItem()
     {
         ItemData data = CharacterManager.Instance.Player.itemData;
@@ -38,8 +38,8 @@ public class SlotPanel : MonoBehaviour
                 return;
             }
         }
-    
-        ItemSlot emptySlot = GetEmptySlot(); 
+
+        ItemSlot emptySlot = GetEmptySlot();
         if (emptySlot != null)
         {
             emptySlot.item = data;
@@ -47,25 +47,24 @@ public class SlotPanel : MonoBehaviour
             InventoryManager.Instance.InventoryUI.UIUpdate();
             return;
         }
-    
+
         InventoryManager.Instance.Inventory.ThrowItem(data);
         InventoryManager.Instance.ItemData = null;
     }
-    
+
     ItemSlot GetItemStack(ItemData data)
     {
         for (int i = 0; i < itemSlots.Length; i++)
         {
-            
             if (itemSlots[i].item == data && itemSlots[i].quantity < data.maxStackAmount)
             {
-                return itemSlots[i]; 
+                return itemSlots[i];
             }
         }
-    
+
         return null;
     }
-    
+
     ItemSlot GetEmptySlot()
     {
         for (int i = 0; i < itemSlots.Length; i++)
@@ -75,11 +74,7 @@ public class SlotPanel : MonoBehaviour
                 return itemSlots[i];
             }
         }
-    
+
         return null;
     }
-
-    
-
-    
 }

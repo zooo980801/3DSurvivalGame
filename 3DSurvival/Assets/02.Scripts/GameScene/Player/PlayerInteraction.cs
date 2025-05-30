@@ -15,9 +15,12 @@ public class PlayerInteraction : MonoBehaviour
     [SerializeField] private TextMeshProUGUI promptText;
     private Camera camera;
 
+    private PlayerController controller;
+
     void Start()
     {
         camera = Camera.main;
+        controller = GetComponent<PlayerController>();
     }
 
     void Update()
@@ -26,7 +29,17 @@ public class PlayerInteraction : MonoBehaviour
         {
             lastCheckTime = Time.time;
 
-            Ray ray = camera.ScreenPointToRay(new Vector3(Screen.width / 2, Screen.height / 2));
+            Ray ray;
+            
+            if (controller.isFirstPerson)
+            {
+                ray = camera.ScreenPointToRay(new Vector3(Screen.width / 2, Screen.height / 2));
+            }
+            else
+            {
+                ray = new Ray(controller.CameraContainer.position, camera.transform.forward);
+            }
+
             RaycastHit hit;
             if (Physics.Raycast(ray, out hit, maxCheckDistance, layerMask))
             {

@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -17,15 +18,17 @@ public class InventoryUI : MonoBehaviour
     public GameObject unEquipBtn;
     public GameObject dropBtn;
 
-
+    public Crafting crafting;
     public GameObject test;
     private PlayerController controller;
     private PlayerStatus status;
 
-    public void OnTest()
-    {
-        _inventory.AddTestItem(_inventory.selectedItem);
-    }
+    private int curEquipIdx;
+    // public void OnTest()
+    // {
+    //     _inventory.AddTestItem(_inventory.selectedItem);
+    // }
+    
     private void Start()
     {
         _inventory = InventoryManager.Instance.Inventory;
@@ -34,23 +37,12 @@ public class InventoryUI : MonoBehaviour
         status = CharacterManager.Instance.Player.status;
 
         controller.inventory += Toggle;
+        ClearSelectedItemWindow();
         inventoryWindow.SetActive(false);
     }
 
     public void SelectItemUI(int idx)//찾은(눌린)아이템 UI
     {
-        selectedItemName.text = _inventory.selectedItem.displayName;
-        selectedItemDescription.text = _inventory.selectedItem.description;
-
-        selectedItemStatName.text = string.Empty;
-        selectedItemStatValue.text = string.Empty;
-
-        for (int i = 0; i < _inventory.selectedItem.consumables.Length; i++)
-        {
-            selectedItemStatName.text += _inventory.selectedItem.consumables[i].type.ToString() + "\n";
-            selectedItemStatValue.text += _inventory.selectedItem.consumables[i].value.ToString() + "\n";
-        }
-
         useBtn.SetActive(_inventory.selectedItem.type == ITEMTYPE.CONSUMABLE);
         equipBtn.SetActive(_inventory.selectedItem.type == ITEMTYPE.EQUIPABLE && !_inventory.slotPanel.itemSlots[idx].equipped);
         unEquipBtn.SetActive(_inventory.selectedItem.type == ITEMTYPE.EQUIPABLE && _inventory.slotPanel.itemSlots[idx].equipped);
@@ -95,12 +87,12 @@ public class InventoryUI : MonoBehaviour
                 {
                     switch (InventoryManager.Instance.Inventory.selectedItem.consumables[i].type)
                     {
-                        //case CONSUMABLETYPE.HEALTH:
-                        //    InventoryManager.Instance.PlayerStatus.Heal(InventoryManager.Instance.Inventory.selectedItem.consumables[i].value);
-                        //    break;
-                        //case CONSUMABLETYPE.HUNGER:
-                        //    InventoryManager.Instance.PlayerStatus.GetStamina(InventoryManager.Instance.Inventory.selectedItem.consumables[i].value);
-                        //    break;
+                        case CONSUMABLETYPE.THIRST:
+                            CharacterManager.Instance.Player.status.Drink(InventoryManager.Instance.Inventory.selectedItem.consumables[i].value);
+                            break;
+                        case CONSUMABLETYPE.HUNGER:
+                            CharacterManager.Instance.Player.status.Eat(InventoryManager.Instance.Inventory.selectedItem.consumables[i].value);
+                            break;
                     }
                 }
             }
@@ -108,6 +100,26 @@ public class InventoryUI : MonoBehaviour
             InventoryManager.Instance.Inventory.RemoveSelectedItem();
         }
     }
+
+    public void OnCraftBtn()
+    {
+        
+    }
+
+    public void OnEquipBtn()
+    {
+        if (_inventory.slotPanel.itemSlots[curEquipIdx].equipped)
+        {
+            UnEquip(curEquipIdx);
+        }
+        _inventory.slotPanel.itemSlots[curEquipIdx].equipped = false;
+        curEquipIdx = _inventory.SelectedIdx;
+        CharacterManager.Instance.Player.equip.EquipNew(_inventory.selectedItem);
+        UIUpdate();
+        _inventory.SelectItem(_inventory.SelectedIdx);
+    }
+
+    
     public void OnDropBtn()
     {
         _inventory.ThrowItem(InventoryManager.Instance.Inventory.selectedItem);
@@ -118,4 +130,21 @@ public class InventoryUI : MonoBehaviour
     {
         inventoryWindow.SetActive(!inventoryWindow.activeInHierarchy);
     }
+    public void UnEquip(int idx)
+    {
+        _inventory.slotPanel.itemSlots[idx].equipped = false;
+        CharacterManager.Instance.Player.equip.UnEquip();
+        UIUpdate();
+        if (_inventory.SelectedIdx == idx)
+        {
+            _inventory.SelectItem(idx);
+        }
+    }
+
+    public void OnUnEquipBtn()
+    {
+        UnEquip(_inventory.SelectedIdx);  
+    }
+    
+    
 }

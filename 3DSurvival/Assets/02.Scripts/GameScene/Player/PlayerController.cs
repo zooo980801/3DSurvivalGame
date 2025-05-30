@@ -28,11 +28,13 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float maxXLook;            // 올려다볼 수 있는 각도
     [SerializeField] private LayerMask cameraCollision; // 카메라가 못 통과하는 벽 레이어
 
+    public Transform CameraContainer => cameraContainer;
+
     private float camCurXRot;           //  현재 카메라의 상하 회전값
     private Vector2 mouseDelta;         // 프레임마다 입력된 마우스 이동값
     private float firstPersonZ = 0f;    // 1인칭 위치
     private float thirdPersonZ = -12f;  // 3인칭 위치
-    private bool isFirstPerson = true;  // 현재 몇인칭인지 확인
+    public bool isFirstPerson = true;  // 현재 몇인칭인지 확인
     public bool canLook = true;
 
     public Action inventory;

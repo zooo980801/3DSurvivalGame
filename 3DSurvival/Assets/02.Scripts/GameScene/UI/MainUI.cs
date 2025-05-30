@@ -7,6 +7,7 @@ using UnityEngine.UI;
 public class MainUI : MonoBehaviour
 {
     [SerializeField] private PlayerStatus playerStatus; // 플레이어 상태
+    [SerializeField] private NPCStatus npcStatus;
 
     // 플레이어 상태 UI
     [SerializeField] private StatusUI playerHealthUI;
@@ -14,13 +15,17 @@ public class MainUI : MonoBehaviour
     [SerializeField] private StatusUI playerHungerUI;
     [SerializeField] private StatusUI playerThirstUI;
 
+    //NPC 상태 UI
+    [SerializeField] private StatusUI npcHungerUI;
+    [SerializeField] private StatusUI npcThirstUI;
+
     [Header("시간 표시")]
     [SerializeField] private GameClock gameClock;   // GameClock 연결
     [SerializeField] private GameClock gameDay;   // GameClock 연결
     [SerializeField] private TextMeshProUGUI timeText;         // 시간 표시용 UI 텍스트 (TextMeshPro 사용 시 TMPro.TextMeshProUGUI)
     [SerializeField] private TextMeshProUGUI dayText;         //  날짜 표시용 UI 텍스트 (TextMeshPro 사용 시 TMPro.TextMeshProUGUI)
 
-    [SerializeField] private NPCStatus npcStatus;
+    
     [SerializeField] private AlarmUI alarmUI;
 
     private void Start()
@@ -30,6 +35,10 @@ public class MainUI : MonoBehaviour
         playerStaminaUI.Bind(playerStatus.Stamina);
         playerHungerUI.Bind(playerStatus.Hunger);
         playerThirstUI.Bind(playerStatus.Thirst);
+
+        //NPC 상태 데이터를 각 UI에 연결
+        npcHungerUI.Bind(npcStatus.Hunger);
+        npcThirstUI.Bind(npcStatus.Thirst);
 
         gameClock.OnTimeChanged += UpdateTimeUI;
         gameClock.OnDayChanged += UpdateDayUI;

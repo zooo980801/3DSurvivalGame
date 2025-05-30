@@ -16,11 +16,15 @@ public class PlayerAttack : MonoBehaviour
     private PlayerStatus status;
     private PlayerAnimationHandler animationHandler;
 
+    private Camera camera;
+
     void Start()
     {
         controller = GetComponent<PlayerController>();
         status = GetComponent<PlayerStatus>();
         animationHandler = GetComponent<PlayerAnimationHandler>();
+
+        camera = Camera.main;
     }
 
     public void EquipNew(ItemData data)
@@ -79,7 +83,17 @@ public class PlayerAttack : MonoBehaviour
 
     public void OnPunch()
     {
-        Ray ray = Camera.main.ScreenPointToRay(new Vector3(Screen.width / 2, Screen.height / 2, 0));
+        Ray ray;
+
+        if (controller.isFirstPerson)
+        {
+            ray = camera.ScreenPointToRay(new Vector3(Screen.width / 2, Screen.height / 2));
+        }
+        else
+        {
+            ray = new Ray(controller.CameraContainer.position, camera.transform.forward);
+        }
+
         RaycastHit hit;
 
         if (Physics.Raycast(ray, out hit, status.AttackDistance))

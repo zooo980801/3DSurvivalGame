@@ -24,6 +24,9 @@ MonoBehaviour:
   maxDurability: 0
   currentDurability: 0
   consumables: []
-  material:
+  equipPrefab: {fileID: 0}
+  materials:
   - type: 0
-    value: 20
+    value: 1
+  - type: 1
+    value: 1

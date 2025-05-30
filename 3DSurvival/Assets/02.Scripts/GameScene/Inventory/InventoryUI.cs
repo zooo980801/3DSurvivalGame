@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -100,6 +101,11 @@ public class InventoryUI : MonoBehaviour
         }
     }
 
+    public void OnCraftBtn()
+    {
+        
+    }
+
     public void OnEquipBtn()
     {
         if (_inventory.slotPanel.itemSlots[curEquipIdx].equipped)
@@ -138,12 +144,6 @@ public class InventoryUI : MonoBehaviour
     public void OnUnEquipBtn()
     {
         UnEquip(_inventory.SelectedIdx);  
-    }
-    public void OnCraftBtn()
-    {
-        crafting.materialItem = "Wood";        // 예시: 나무를 재료로
-        crafting.resultItem = "Axe";           // 예시: 결과 아이템은 도끼
-        crafting.Craft();
     }
     
     

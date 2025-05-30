@@ -83,16 +83,7 @@ public class PlayerAttack : MonoBehaviour
 
     public void OnPunch()
     {
-        Ray ray;
-
-        if (controller.isFirstPerson)
-        {
-            ray = camera.ScreenPointToRay(new Vector3(Screen.width / 2, Screen.height / 2));
-        }
-        else
-        {
-            ray = new Ray(controller.CameraContainer.position, camera.transform.forward);
-        }
+        Ray ray = new Ray(controller.CameraContainer.position, camera.transform.forward);
 
         RaycastHit hit;
 

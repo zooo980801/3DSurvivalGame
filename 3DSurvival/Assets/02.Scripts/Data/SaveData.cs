@@ -1,4 +1,14 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
+
+[System.Serializable]
+public class SavedDroppedItem
+{
+    public string itemId;
+    public float posX, posY, posZ;
+    public float rotX, rotY, rotZ;
+    public int amount;
+}
+
 [System.Serializable]
 public class SavedHouse
 {
@@ -33,6 +43,7 @@ public class SaveData // ← 저장용 클래스 명칭
     public List<SavedNPC> npcs = new List<SavedNPC>();
     public List<SavedHouse> houses = new List<SavedHouse>();
     public List<string> completedQuests = new List<string>();
+    public List<SavedDroppedItem> droppedItems = new();
 
     public int currentDay;
     public int currentHour;
@@ -41,6 +52,9 @@ public class SaveData // ← 저장용 클래스 명칭
     public float playerPosX;
     public float playerPosY;
     public float playerPosZ;
+    public float playerRotY;
+    public float cameraRotX;
+
 }
 
 [System.Serializable]

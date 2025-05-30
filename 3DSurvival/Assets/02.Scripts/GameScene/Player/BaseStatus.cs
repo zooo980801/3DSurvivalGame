@@ -65,9 +65,9 @@ public class BaseStatus : MonoBehaviour
         thirst.Subtract(thirst.PassiveValue * Time.deltaTime);
     }
 
-    protected void Eat(float amount) => hunger.Add(amount);
+    public void Eat(float amount) => hunger.Add(amount);
     protected void GetHunger(float amount) => hunger.Subtract(amount);
-    protected void Drink(float amount) => thirst.Add(amount);
+    public void Drink(float amount) => thirst.Add(amount);
     protected void GetThirst(float amount) => thirst.Subtract(amount);
 
     public void ApplySaveStatus(SaveData data)

@@ -26,3 +26,4 @@ MonoBehaviour:
   consumables: []
   equipPrefab: {fileID: 0}
   materials: []
+  resultItems: []

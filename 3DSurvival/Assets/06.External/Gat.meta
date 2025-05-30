@@ -1,6 +1,10 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:3DSurvival/Assets/External/ithappy/Animals_FREE/Render_Pipeline_Convert/URP_to_BuiltIn_source.unitypackage.meta
+guid: 975b5eaab8226a84f97b800a530484a6
+========
 guid: 99d17923bbf7b00489544f1aae4c5482
 folderAsset: yes
+>>>>>>>> First_Develop:3DSurvival/Assets/06.External/Gat.meta
 DefaultImporter:
   externalObjects: {}
   userData: 

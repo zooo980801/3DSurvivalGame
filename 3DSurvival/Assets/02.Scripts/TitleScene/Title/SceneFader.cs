@@ -10,7 +10,8 @@ public class SceneFader : MonoBehaviour
 
     public SpriteRenderer birdSprite1;
     public SpriteRenderer birdSprite2;
-    public SpriteRenderer birdSprite3;
+    public SpriteRenderer birdSprite3; 
+    public CanvasGroup helpCanvasGroup;
     // 씬을 전환할 때 사용하는 메서드
     public void FadeToScene(string sceneName)
     {
@@ -62,12 +63,18 @@ public class SceneFader : MonoBehaviour
             time += Time.deltaTime;                      // 경과 시간 누적
             float t = time / fadeDuration;               // 진행률 (0~1)
             color.a = Mathf.Lerp(startAlpha, endAlpha, t); // 알파 값 보간 (Lerp)
-            fadeImage.color = color;                     // 이미지에 적용
+            fadeImage.color = color;// 이미지에 적용
+
+            if (helpCanvasGroup != null)
+                helpCanvasGroup.alpha = Mathf.Lerp(1f, 0f, t);
             yield return null;                           // 다음 프레임까지 대기
         }
 
         color.a = endAlpha;                         // 마지막 알파 값 보정
         fadeImage.color = color;                    // 이미지에 최종 색상 적용
+
+        if (helpCanvasGroup != null)
+            helpCanvasGroup.alpha = endAlpha == 0f ? 1f : 0f;
     }
     private IEnumerator FadeOutBirds()
     {

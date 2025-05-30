@@ -15,11 +15,12 @@ public class PlayerInteraction : MonoBehaviour
     [SerializeField] private TextMeshProUGUI promptText;
     private Camera camera;
 
-    [SerializeField] private DialogueManager dialogueManager;
+    private PlayerController controller;
 
     void Start()
     {
         camera = Camera.main;
+        controller = GetComponent<PlayerController>();
     }
 
     void Update()

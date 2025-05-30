@@ -18,11 +18,11 @@ public class InventoryUI : MonoBehaviour
     public GameObject dropBtn;
 
     public Crafting crafting;
-
     public GameObject test;
     private PlayerController controller;
     private PlayerStatus status;
 
+    private int curEquipIdx;
     // public void OnTest()
     // {
     //     _inventory.AddTestItem(_inventory.selectedItem);
@@ -36,6 +36,7 @@ public class InventoryUI : MonoBehaviour
         status = CharacterManager.Instance.Player.status;
 
         controller.inventory += Toggle;
+        ClearSelectedItemWindow();
         inventoryWindow.SetActive(false);
     }
 
@@ -97,12 +98,12 @@ public class InventoryUI : MonoBehaviour
                 {
                     switch (InventoryManager.Instance.Inventory.selectedItem.consumables[i].type)
                     {
-                        //case CONSUMABLETYPE.HEALTH:
-                        //    InventoryManager.Instance.PlayerStatus.Heal(InventoryManager.Instance.Inventory.selectedItem.consumables[i].value);
-                        //    break;
-                        //case CONSUMABLETYPE.HUNGER:
-                        //    InventoryManager.Instance.PlayerStatus.GetStamina(InventoryManager.Instance.Inventory.selectedItem.consumables[i].value);
-                        //    break;
+                        case CONSUMABLETYPE.THIRST:
+                            InventoryManager.Instance.PlayerStatus.Thirst.Add(InventoryManager.Instance.Inventory.selectedItem.consumables[i].value);
+                            break;
+                        case CONSUMABLETYPE.HUNGER:
+                            InventoryManager.Instance.PlayerStatus.Hunger.Add(InventoryManager.Instance.Inventory.selectedItem.consumables[i].value);
+                            break;
                     }
                 }
             }
@@ -110,6 +111,21 @@ public class InventoryUI : MonoBehaviour
             InventoryManager.Instance.Inventory.RemoveSelectedItem();
         }
     }
+
+    public void OnEquipBtn()
+    {
+        if (_inventory.slotPanel.itemSlots[curEquipIdx].equipped)
+        {
+            UnEquip(curEquipIdx);
+        }
+        _inventory.slotPanel.itemSlots[curEquipIdx].equipped = false;
+        curEquipIdx = _inventory.SelectedIdx;
+        CharacterManager.Instance.Player.equip.EquipNew(_inventory.selectedItem);
+        UIUpdate();
+        _inventory.SelectItem(_inventory.SelectedIdx);
+    }
+
+    
     public void OnDropBtn()
     {
         _inventory.ThrowItem(InventoryManager.Instance.Inventory.selectedItem);
@@ -120,11 +136,27 @@ public class InventoryUI : MonoBehaviour
     {
         inventoryWindow.SetActive(!inventoryWindow.activeInHierarchy);
     }
+    public void UnEquip(int idx)
+    {
+        _inventory.slotPanel.itemSlots[idx].equipped = false;
+        CharacterManager.Instance.Player.equip.UnEquip();
+        UIUpdate();
+        if (_inventory.SelectedIdx == idx)
+        {
+            _inventory.SelectItem(idx);
+        }
+    }
+
+    public void OnUnEquipBtn()
+    {
+        UnEquip(_inventory.SelectedIdx);  
+    }
     public void OnCraftBtn()
     {
         crafting.materialItem = "Wood";        // 예시: 나무를 재료로
         crafting.resultItem = "Axe";           // 예시: 결과 아이템은 도끼
         crafting.Craft();
     }
+    
     
 }

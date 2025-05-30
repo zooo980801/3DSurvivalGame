@@ -11,7 +11,7 @@ public class SaveData // ← 저장용 클래스 명칭
     public SaveStatusData hunger;
     public SaveStatusData thirst;
 
-    public List<SaveItem> inventory = new List<SaveItem>();
+    public List<SavedItem> inventoryItems = new List<SavedItem>();
     public SaveEquipment equipped;
     public List<string> completedQuests = new List<string>();
 

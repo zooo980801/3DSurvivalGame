@@ -708,6 +708,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 306561446}
   m_CullTransparentMesh: 1
+--- !u!212 &420533486 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 4985164385649836716, guid: 284715636c84b0b4a93205c6822ad976, type: 3}
+  m_PrefabInstance: {fileID: 1435007461}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &504374132
 GameObject:
   m_ObjectHideFlags: 0
@@ -1299,7 +1304,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1070420643}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: -41}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1862,6 +1867,16 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 284715636c84b0b4a93205c6822ad976, type: 3}
+--- !u!212 &1686918795 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 8214745841881576710, guid: 336d9060e8fa08c418c3578243a0a444, type: 3}
+  m_PrefabInstance: {fileID: 1022458213}
+  m_PrefabAsset: {fileID: 0}
+--- !u!212 &1790062298 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 9086928638984001666, guid: db61e17e824da2545ae520b78148a312, type: 3}
+  m_PrefabInstance: {fileID: 1195308569}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1847678290
 GameObject:
   m_ObjectHideFlags: 0
@@ -1989,6 +2004,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fadeImage: {fileID: 1070420645}
   fadeDuration: 2
+  birdSprite1: {fileID: 420533486}
+  birdSprite2: {fileID: 1686918795}
+  birdSprite3: {fileID: 1790062298}
 --- !u!1 &1944477390
 GameObject:
   m_ObjectHideFlags: 0

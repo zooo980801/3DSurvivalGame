@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
@@ -8,6 +8,9 @@ public class SceneFader : MonoBehaviour
     public Image fadeImage;                   // Fade 효과에 사용할 UI Image (검은 배경)
     public float fadeDuration = 1f;           // Fade에 걸리는 시간 (초)
 
+    public SpriteRenderer birdSprite1;
+    public SpriteRenderer birdSprite2;
+    public SpriteRenderer birdSprite3;
     // 씬을 전환할 때 사용하는 메서드
     public void FadeToScene(string sceneName)
     {
@@ -23,6 +26,7 @@ public class SceneFader : MonoBehaviour
     // Fade Out 후 씬을 로드하는 코루틴
     private IEnumerator FadeAndLoad(string sceneName)
     {
+        StartCoroutine(FadeOutBirds());
         yield return StartCoroutine(Fade(0f, 1f));  // 투명 → 불투명으로 Fade Out
         SceneManager.LoadScene(sceneName);          // Fade가 끝난 뒤 씬 로드
     }
@@ -31,13 +35,13 @@ public class SceneFader : MonoBehaviour
     private IEnumerator FadeAndQuitCoroutine()
     {
 
-        Debug.Log("▶ 페이드 시작");
+        Debug.Log("페이드 시작");
         yield return StartCoroutine(Fade(0f, 5f));  // 투명 → 불투명으로 Fade Out
-
-        Debug.Log("▶ 페이드 완료");
+        StartCoroutine(FadeOutBirds());
+        Debug.Log("페이드 완료");
         yield return new WaitForSeconds(5f);         // 반초 정도 기다리기 (사용자가 페이드 끝을 볼 수 있게)
 
-        Debug.Log("▶ 대기 완료 후 종료");
+        Debug.Log("대기 완료 후 종료");
         Application.Quit();                         // 애플리케이션 종료
         
 
@@ -64,5 +68,34 @@ public class SceneFader : MonoBehaviour
 
         color.a = endAlpha;                         // 마지막 알파 값 보정
         fadeImage.color = color;                    // 이미지에 최종 색상 적용
+    }
+    private IEnumerator FadeOutBirds()
+    {
+        float time = 0f;
+        Color c1 = birdSprite1.color;
+        Color c2 = birdSprite2.color;
+        Color c3 = birdSprite3.color;
+
+        while (time < fadeDuration)
+        {
+            time += Time.deltaTime;
+            float t = time / fadeDuration;
+
+            c1.a = Mathf.Lerp(1f, 0f, t);
+            c2.a = Mathf.Lerp(1f, 0f, t);
+            c3.a = Mathf.Lerp(1f, 0f, t);
+
+            birdSprite1.color = c1;
+            birdSprite2.color = c2;
+            birdSprite3.color = c3;
+
+            yield return null;
+        }
+
+        // 마지막 보정
+        c1.a = c2.a = c3.a = 0f;
+        birdSprite1.color = c1;
+        birdSprite2.color = c2;
+        birdSprite3.color = c3;
     }
 }

@@ -15,8 +15,6 @@ public class PlayerInteraction : MonoBehaviour
     [SerializeField] private TextMeshProUGUI promptText;
     private Camera camera;
 
-    [SerializeField] private DialogueManager dialogueManager;
-
     void Start()
     {
         camera = Camera.main;

@@ -4,11 +4,11 @@ using UnityEngine;
 using UnityEngine.AI;
 
 
-public class NPCWandering : MonoBehaviour
+public class NPCWandering : MonoBehaviour, IInteractable
 {
     [Header("AI")]
     private NavMeshAgent agent;
-    public float detectDistance;//ÀÚµ¿À¸·Î È¥ÀÚ ¹èÈ¸ÇÏ´Â °Å¸®
+    public float detectDistance;//ìë™ìœ¼ë¡œ í˜¼ì ë°°íšŒí•˜ëŠ” ê±°ë¦¬
     private ALSTATE aiState;
 
     [Header("Wandering")]
@@ -19,60 +19,115 @@ public class NPCWandering : MonoBehaviour
     public float maxWanderWaitTime = 10f;
 
     private Animator anim;
+    public DialogueManager dialogueManager;//ì„ì‹œ
+    private Coroutine stateRoutine;
 
     private void Start()
     {
         agent = GetComponent<NavMeshAgent>();
         anim = GetComponent<Animator>();
         agent.speed = walkSpeed;
+        // ì‹œì‘ì€ Idle ìƒíƒœë¡œ
         SetState(ALSTATE.IDLE);
     }
 
+    private void Update()
+    {
+        // ëŒ€í™” ì¤‘ì´ë¼ë©´ ë¬´ì¡°ê±´ Idle
+        if (dialogueManager.isTalk)
+        {
+            EnterIdle();//ê°•ì œë¡œ Idle
+            return;
+        }
+
+        // ëŒ€í™”ê°€ ëë‚¬ê³  Idle ìƒíƒœì´ê³  ì½”ë£¨í‹´ì´ ì—†ì„ ë•Œ ë‹¤ì‹œ ë°°íšŒ ì‹œì‘
+        if (aiState == ALSTATE.IDLE && stateRoutine == null && dialogueManager.isTalk == false)
+        {
+            SetState(ALSTATE.WANDERING);
+        }
+    }
+
+    // ê°•ì œ Idle ì§„ì…: ì½”ë£¨í‹´ ì •ë¦¬, ì• ë‹ˆë©”ì´ì…˜ ì´ë™ ë©ˆì¶¤
+    private void EnterIdle()
+    {
+        StopStateRoutine();
+        aiState = ALSTATE.IDLE;
+        anim.SetBool("IsWalk", false);
+        agent.ResetPath();
+        // Idle ìƒíƒœì—ì„  ëŒ€ê¸° ë£¨í‹´ ì‹¤í–‰í•˜ì§€ ì•Šê³ ,
+        // ëŒ€í™”ê°€ ëë‚œ ë’¤ Updateì—ì„œ ë°°íšŒ ì¬ê°œ
+        Debug.Log("ê°•ì œ Idle (ëŒ€í™” ì¤‘)");
+    }
+
+    // ìƒíƒœ ì „í™˜ ë©”ì„œë“œ
     void SetState(ALSTATE state)
     {
+        StopStateRoutine();
         aiState = state;
 
-        switch(aiState)
+        switch (state)
         {
             case ALSTATE.IDLE:
                 anim.SetBool("IsWalk", false);
-                StartCoroutine(IdleRoutine());
-                Debug.Log("¸ØÃã");
+                stateRoutine = StartCoroutine(IdleRoutine());
                 break;
+
             case ALSTATE.WANDERING:
                 anim.SetBool("IsWalk", true);
-                StartCoroutine(WanderRoutine());
+                stateRoutine = StartCoroutine(WanderRoutine());
+                Debug.Log("Wandering ì§„ì…");
                 break;
         }
     }
 
-    IEnumerator IdleRoutine()
+    // ì‹¤í–‰ ì¤‘ì¸ ì½”ë£¨í‹´ ì •ë¦¬
+
+    private void StopStateRoutine()
+    {
+        if (stateRoutine != null)
+        {
+            StopCoroutine(stateRoutine);
+            stateRoutine = null;
+        }
+    }
+
+    IEnumerator IdleRoutine()//Idle ì½”ë£¨í‹´
     {
         float waitTime = Random.Range(minWanderWaitTime, maxWanderWaitTime);
         yield return new WaitForSeconds(waitTime);
-
+        if (dialogueManager.isTalk)
+        {
+            stateRoutine = null;
+            yield break;
+        }
+        // ì½”ë£¨í‹´ ì¢…ë£Œ í‘œì‹œ
+        stateRoutine = null;
         SetState(ALSTATE.WANDERING);
     }
 
+    #region ë°°íšŒí•  ë•Œ ë¶€ë¥´ëŠ” ì½”ë£¨í‹´
     IEnumerator WanderRoutine()
     {
         Vector3 wanderTarget = GetWanderLocation();
         agent.SetDestination(wanderTarget);
+        agent.isStopped = false;
 
-        agent.isStopped = false;//ÀÌµ¿Àç°³
+        // ê²½ë¡œ ê³„ì‚° ëŒ€ê¸°
+        while (agent.pathPending)
+            yield return null;
 
-        // ½ÇÁ¦·Î ÀÌµ¿ ÁßÀÏ ¶§ ·çÇÁ
-        while (agent.hasPath && agent.remainingDistance > agent.stoppingDistance)//À¯È¿ÇÑ °æ·ÎÀÌ°í ³²Àº°Å¸®°¡ 0º¸´Ù Å¬¶§ 
+        // ì‹¤ì œ ì´ë™ ì¤‘ì¼ ë•Œë§Œ ë£¨í”„
+        while (agent.hasPath && agent.remainingDistance > agent.stoppingDistance)
         {
-            Debug.Log("°È´ÂÁß");
+            // Debug.Log("ê±·ëŠ”ì¤‘");
             yield return null;
         }
 
-        // ¸ØÃß°í Idle·Î ÀüÈ¯
-        agent.isStopped = true;//ÀÌµ¿ ÁßÁö
-
+        agent.isStopped = true;
+        stateRoutine = null;
         SetState(ALSTATE.IDLE);
     }
+    #endregion
     Vector3 GetWanderLocation()
     {
         NavMeshHit hit;
@@ -82,7 +137,7 @@ public class NPCWandering : MonoBehaviour
         int i = 0;
         while (Vector3.Distance(transform.position, hit.position) < detectDistance)
         {
-            //onUnitSphere´Â ¹İÁö¸§ÀÌ 1ÀÎ °¡»óÀÇ ±¸
+            //onUnitSphereëŠ” ë°˜ì§€ë¦„ì´ 1ì¸ ê°€ìƒì˜ êµ¬
             NavMesh.SamplePosition(transform.position + (Random.onUnitSphere * Random.Range(minWanderDistance, maxWanderDistance)), out hit, maxWanderDistance, NavMesh.AllAreas);
             i++;
             if (i == 30)
@@ -90,5 +145,17 @@ public class NPCWandering : MonoBehaviour
         }
 
         return hit.position;
+    }
+
+    public string GetInteractPrompt()
+    {
+        string str = "ëŒ€í™”";
+        return str;
+    }
+
+    public void OnInteract()
+    {
+        dialogueManager.isTalk = true;
+        dialogueManager.StartConversation();
     }
 }

@@ -9,6 +9,7 @@ public class SaveManager : MonoBehaviour
 
     public static bool IsNewGame = true; // 게임 시작 방식 플래그
 
+    public SaveData CurrentData { get; private set; } // 현재 저장된 데이터를 여기에 저장
     private void Awake()
     {
         if (Instance == null) // 싱글톤이 없으면
@@ -43,18 +44,27 @@ public class SaveManager : MonoBehaviour
     {
         string json = JsonUtility.ToJson(data, true);
         File.WriteAllText(savePath, json);
-        Debug.Log("[SAVE] 저장된 JSON:\n" + json);//저장 내용 확인용 로그
     }
 
     public SaveData LoadData()
     {
-        if (!File.Exists(savePath)) return null;
+        if (!File.Exists(savePath))
+        {
+            Debug.LogWarning("저장 파일이 존재하지 않습니다.");
+            return null;
+        }
 
         string json = File.ReadAllText(savePath);
-        //Debug.Log("[SAVE] 저장 위치: " + Application.persistentDataPath);
-        return JsonUtility.FromJson<SaveData>(json);
-    }
+        Debug.Log("[LOAD] 불러온 JSON:\n" + json);
 
+        CurrentData = JsonUtility.FromJson<SaveData>(json);
+        return CurrentData;
+    }
+    public SaveData CreateNewGameData()
+    {
+        CurrentData = new SaveData();
+        return CurrentData;
+    }
 }
 
 [System.Serializable] // 직렬화를 위해 필요 (JsonUtility 사용 시 필수)

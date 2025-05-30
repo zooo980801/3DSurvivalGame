@@ -16,10 +16,10 @@ MonoBehaviour:
   displayName: "\uC81C\uC791\uB300"
   description: "\uB2E4\uC591\uD55C \uBB3C\uD488\uC744 \uB9CC\uB4E4 \uC218 \uC788\uB2E4."
   type: 3
-  icon: {fileID: 0}
+  icon: {fileID: 1322324753, guid: 7c0facc69470ed24c90abf630334ad18, type: 3}
   dropPrefab: {fileID: 0}
-  canStack: 1
-  maxStackAmount: 12
+  canStack: 0
+  maxStackAmount: 0
   damage: 0
   maxDurability: 0
   currentDurability: 0

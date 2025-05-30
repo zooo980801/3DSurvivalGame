@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class GameClock : MonoBehaviour
 {
-    public int currentHour = 6; // 게임 시작 시 시간 (6시)
-    public int currentMinute = 0; // 게임 시작 시 분
+    public ClockValue currentHour = 12;
+    public ClockValue currentMinute = 0;
+    public ClockValue currentDay = 1;
     public float realSecondsPerGameMinute = 1f / 60f; // 현실 1초에 게임 시간 1분이 흐름 (총 24초에 하루)
 
     public TenkokuModule tenkokuModule; // Tenkoku 모듈 참조 (Inspector에서 연결하거나 Start에서 자동 탐색)
@@ -14,13 +15,16 @@ public class GameClock : MonoBehaviour
 
     public event Action<int> OnDayChanged; // 날짜 변경 이벤트 (day)
 
-    public int currentDay = 1; // 시작일 = 1일차
+    public event Action OnClockChanged;
 
     private float timer; // 시간 누적용 변수
 
     void Start()
     {
-        // tenkokuModule이 연결되지 않았을 경우 씬에서 자동으로 탐색
+        currentHour.onValueChanged += _ => OnClockChanged?.Invoke();
+        currentMinute.onValueChanged += _ => OnClockChanged?.Invoke();
+        currentDay.onValueChanged += _ => OnClockChanged?.Invoke();
+
         if (tenkokuModule == null)
             tenkokuModule = FindObjectOfType<TenkokuModule>();
     }
@@ -32,18 +36,22 @@ public class GameClock : MonoBehaviour
         if (timer >= realSecondsPerGameMinute) // 1분(가상 시간) 경과했는지 체크
         {
             timer -= realSecondsPerGameMinute; // 누적된 시간에서 1분만큼 차감
-            currentMinute++; // 게임 분 증가
+            currentMinute.Value += 1;
 
-            if (currentMinute >= 60)
+            if (currentMinute.Value >= 60)
             {
-                currentMinute = 0;
-                currentHour = (currentHour + 1) % 24; // 시간이 24를 넘으면 0으로 순환
-                if (currentHour == 0) // 자정이 되었을 때 날짜 증가
+                currentMinute.Value = 0;
+                currentHour.Value = (currentHour.Value + 1) % 24;
+
+                if (currentHour.Value == 0)
                 {
-                    currentDay++;
+                    currentDay.Value += 1;
                     OnDayChanged?.Invoke(currentDay);
                 }
             }
+
+            OnTimeChanged?.Invoke(currentHour, currentMinute);
+
 
             OnTimeChanged?.Invoke(currentHour, currentMinute); // 시간 변경 이벤트 호출
             UpdateTenkokuTime(); // Tenkoku에 현재 시간 반영
@@ -74,5 +82,22 @@ public class GameClock : MonoBehaviour
     {
         // 시간 문자열을 2자리 형식(HH:MM)으로 반환
         return $"{currentHour:D2}:{currentMinute:D2}";
+    }
+
+
+    public void WriteSaveClock(SaveData data)
+    {
+        data.currentHour = currentHour;
+        data.currentMinute = currentMinute;
+        data.currentDay = currentDay;
+
+        UpdateTenkokuTime(); // Tenkoku 시간 동기화도 반영
+    }
+
+    public void ApplySaveClock(SaveData data)
+    {
+        currentHour.Value = data.currentHour;
+        currentMinute.Value = data.currentMinute;
+        currentDay.Value = data.currentDay;
     }
 }

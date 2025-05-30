@@ -1,5 +1,22 @@
 ﻿using System.Collections.Generic;
+[System.Serializable]
+public class SavedHouse
+{
+    public string prefabId; // 예: "house_basic"
+    public float hp;
+    public float posX, posY, posZ;
+    public bool isDestroyed;
+}
 
+[System.Serializable]
+public class SavedNPC
+{
+    public string npcId; // 고유 ID (ex: "npc_kim")
+    public int curLevel;
+    public int curExp;
+    public SaveStatusData hunger;
+    public SaveStatusData thirst;
+}
 [System.Serializable]
 public class SaveData // ← 저장용 클래스 명칭
 {
@@ -11,9 +28,19 @@ public class SaveData // ← 저장용 클래스 명칭
     public SaveStatusData hunger;
     public SaveStatusData thirst;
 
-    public List<SaveItem> inventory = new List<SaveItem>();
+    public List<SavedItem> inventoryItems = new List<SavedItem>();
     public SaveEquipment equipped;
+    public List<SavedNPC> npcs = new List<SavedNPC>();
+    public List<SavedHouse> houses = new List<SavedHouse>();
     public List<string> completedQuests = new List<string>();
+
+    public int currentDay;
+    public int currentHour;
+    public int currentMinute;
+
+    public float playerPosX;
+    public float playerPosY;
+    public float playerPosZ;
 }
 
 [System.Serializable]

@@ -95,7 +95,11 @@ public class NPCWandering : MonoBehaviour, IInteractable
     {
         float waitTime = Random.Range(minWanderWaitTime, maxWanderWaitTime);
         yield return new WaitForSeconds(waitTime);
-
+        if (dialogueManager.isTalk)
+        {
+            stateRoutine = null;
+            yield break;
+        }
         // 코루틴 종료 표시
         stateRoutine = null;
         SetState(ALSTATE.WANDERING);

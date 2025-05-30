@@ -1,4 +1,3 @@
-// House.cs
 using UnityEngine;
 
 public class House : MonoBehaviour
@@ -22,6 +21,13 @@ public class House : MonoBehaviour
         if (currentHP <= 0f)
         {
             Die();
+        }
+
+        if (amount > 0f)
+        {
+            AlarmUI alarm = FindObjectOfType<AlarmUI>();
+            if (alarm != null)
+                alarm.Show("🏠 집이 공격받고 있습니다!");
         }
     }
 

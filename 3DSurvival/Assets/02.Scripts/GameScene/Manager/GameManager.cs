@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -23,47 +24,64 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
+        // 인벤토리 매니저 초기화 대기
+        StartCoroutine(InitializeGame());
+    }
+
+    IEnumerator InitializeGame()
+    {
+        // 필수 시스템 초기화 대기
+        yield return new WaitUntil(() => InventoryManager.Instance != null);
+        yield return new WaitUntil(() => SaveManager.Instance != null);
+
         if (!SaveManager.IsNewGame)
         {
             Debug.Log("[GameManager] 저장된 데이터를 적용합니다.");
-            var data = SaveManager.Instance.CurrentData;
+
+            // 명시적으로 데이터 로드
+            var data = SaveManager.Instance.LoadData();
 
             if (data != null)
             {
+                Debug.Log($"인벤토리 아이템 수: {data.inventoryItems?.Count ?? 0}");
+
                 playerStatus.ApplySaveStatus(data);
                 clock.ApplySaveClock(data);
 
                 playerStatus.transform.position = new Vector3(
-                data.playerPosX,
-                data.playerPosY,
-                data.playerPosZ
+                    data.playerPosX,
+                    data.playerPosY,
+                    data.playerPosZ
                 );
+
+                // 인벤토리 로드
+                InventoryManager.Instance.Inventory.LoadInventory(data);
             }
             else
             {
-                Debug.LogWarning("[GameManager] 저장된 데이터가 없음!");
+                Debug.LogWarning("[GameManager] 저장된 데이터가 없음! 새 게임으로 시작합니다.");
+                SaveManager.IsNewGame = true;
             }
         }
         else
         {
             Debug.Log("[GameManager] 새 게임 시작 - 초기 상태 유지");
+            SaveManager.Instance.CreateNewGameData();
         }
-        // SleepManager에 GameClock 연결
-        sleepManager.clock = clock;
 
-        // RandomEventManager를 동적으로 추가하고 GameClock 연결
+        // 나머지 초기화 코드...
+        sleepManager.clock = clock;
         eventManager = gameObject.AddComponent<RandomEventManager>();
         eventManager.clock = clock;
 
-        // 날짜 변경 이벤트 연결
         clock.OnDayChanged += CheckGameClearCondition;
         clock.OnClockChanged += () => isDirty = true;
         playerStatus.Health.onValueChanged += () => isDirty = true;
         playerStatus.Stamina.onValueChanged += () => isDirty = true;
         playerStatus.Hunger.onValueChanged += () => isDirty = true;
         playerStatus.Thirst.onValueChanged += () => isDirty = true;
-
     }
+
     void Update()
     {
         if (isDirty && Time.time - lastSaveTime >= saveInterval)
@@ -94,6 +112,8 @@ public class GameManager : MonoBehaviour
 
         if (clock != null)
             clock.WriteSaveClock(data);
+
+        InventoryManager.Instance.Inventory.SaveInventory(data);
 
         SaveManager.Instance.SaveData(data);
     }

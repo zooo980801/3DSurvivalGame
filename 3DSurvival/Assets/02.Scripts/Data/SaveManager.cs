@@ -48,14 +48,23 @@ public class SaveManager : MonoBehaviour
 
     public SaveData LoadData()
     {
-        if (!File.Exists(savePath)) return null;
+        if (!File.Exists(savePath))
+        {
+            Debug.LogWarning("저장 파일이 존재하지 않습니다.");
+            return null;
+        }
 
         string json = File.ReadAllText(savePath);
-        CurrentData = JsonUtility.FromJson<SaveData>(json); // 여기서 저장
         Debug.Log("[LOAD] 불러온 JSON:\n" + json);
+
+        CurrentData = JsonUtility.FromJson<SaveData>(json);
         return CurrentData;
     }
-
+    public SaveData CreateNewGameData()
+    {
+        CurrentData = new SaveData();
+        return CurrentData;
+    }
 }
 
 [System.Serializable] // 직렬화를 위해 필요 (JsonUtility 사용 시 필수)

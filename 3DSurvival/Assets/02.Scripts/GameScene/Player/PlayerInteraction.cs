@@ -29,16 +29,7 @@ public class PlayerInteraction : MonoBehaviour
         {
             lastCheckTime = Time.time;
 
-            Ray ray;
-            
-            if (controller.isFirstPerson)
-            {
-                ray = camera.ScreenPointToRay(new Vector3(Screen.width / 2, Screen.height / 2));
-            }
-            else
-            {
-                ray = new Ray(controller.CameraContainer.position, camera.transform.forward);
-            }
+            Ray ray = new Ray(controller.CameraContainer.position, camera.transform.forward);
 
             RaycastHit hit;
             if (Physics.Raycast(ray, out hit, maxCheckDistance, layerMask))
@@ -62,6 +53,18 @@ public class PlayerInteraction : MonoBehaviour
 
     private void SetPromptText()
     {
+        if (promptText == null)
+        {
+            Debug.LogError("[PlayerInteraction] promptText가 연결되지 않았습니다.");
+            return;
+        }
+
+        if (curInteractable == null)
+        {
+            Debug.LogWarning("[PlayerInteraction] curInteractable이 null입니다.");
+            promptText.gameObject.SetActive(false);
+            return;
+        }
         promptText.gameObject.SetActive(true);
         promptText.text = curInteractable.GetInteractPrompt();
     }

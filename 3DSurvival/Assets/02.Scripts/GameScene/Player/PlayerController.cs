@@ -19,6 +19,7 @@ public class PlayerController : MonoBehaviour
     private bool wasGrounded = true;            // 바닥이였는지 여부
 
     public float MoveSpeed { get { return moveSpeed; } set { moveSpeed = value; } }
+    public float WalkSpeed { get { return walkSpeed; } }
 
     [Header("Look")]
     [SerializeField] private Transform mainCamera;      // 메인 카메라
@@ -164,6 +165,8 @@ public class PlayerController : MonoBehaviour
 
         return false; 
     }
+
+    public bool IsGrounded => OnGround();
     #endregion
 
     #region 1인칭 3인칭 전환
@@ -223,4 +226,16 @@ public class PlayerController : MonoBehaviour
         ToggleCursor();
         playerInput.enabled = !isTalk;
     }
+
+    public float GetCamXRot()
+    {
+        return camCurXRot;
+    }
+
+    public void SetCamXRot(float xRot)
+    {
+        camCurXRot = Mathf.Clamp(xRot, minXLook, maxXLook);
+        cameraContainer.localEulerAngles = new Vector3(-camCurXRot, 0, 0); // Look 함수의 카메라 회전 적용과 동일
+    }
+
 }

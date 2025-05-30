@@ -3,17 +3,24 @@ public enum ALSTATE
     IDLE,
     WANDERING
 }
-// ¼Òºñ ¾ÆÀÌÅÛ È¿°úÀÇ Å¸ÀÔ (Çã±â È¸º¹, Ã¼·Â È¸º¹ µî)
+// ï¿½Òºï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ È¿ï¿½ï¿½ï¿½ï¿½ Å¸ï¿½ï¿½ (ï¿½ï¿½ï¿½ È¸ï¿½ï¿½, Ã¼ï¿½ï¿½ È¸ï¿½ï¿½ ï¿½ï¿½)
 public enum CONSUMABLETYPE 
 { 
     HUNGER,
     THIRST
 }
-// ¾ÆÀÌÅÛ Å¸ÀÔ ºÐ·ù (ÀÚ¿øÇü, ÀåºñÇü, ¼ÒºñÇü µî)
+// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Å¸ï¿½ï¿½ ï¿½Ð·ï¿½ (ï¿½Ú¿ï¿½ï¿½ï¿½, ï¿½ï¿½ï¿½ï¿½ï¿½, ï¿½Òºï¿½ï¿½ï¿½ ï¿½ï¿½)
 public enum ITEMTYPE 
 { 
     RESOURCE,
     EQUIPABLE,
     CONSUMABLE,
-    BUILDING
+    BUILDING,
+    CRAFT,
+}
+
+public enum MATERIALTYPE
+{
+   WOOD,
+   STONE,
 }

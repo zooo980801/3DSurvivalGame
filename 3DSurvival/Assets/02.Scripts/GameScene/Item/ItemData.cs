@@ -14,6 +14,13 @@ public class ItemDataConsumable
     public float value;         // 회복/감소 등 효과량
 }
 
+[System.Serializable]
+public class CraftMaterial
+{
+    public MATERIALTYPE type;
+    public float value;
+}
+
 // ScriptableObject를 생성할 수 있게 하는 속성
 [CreateAssetMenu(fileName = "Item", menuName = "new Item")]
 public class ItemData : ScriptableObject
@@ -41,4 +48,17 @@ public class ItemData : ScriptableObject
 
     [Header("Equip")]
     public GameObject equipPrefab;  //장착모션
+    
+    [Header("CraftMaterial")]
+    public CraftMaterial[] materials;
+
+    public Combine[] resultItems;//적용되는부분 적용 
+}
+
+[System.Serializable]
+public class Combine
+{
+    public ItemData itemA;
+    public ItemData itemB;
+    public ItemData reultItem;
 }

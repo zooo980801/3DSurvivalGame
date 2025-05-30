@@ -26,6 +26,7 @@ public class Animal : MonoBehaviour, IDamagable
                 Debug.Log($"drop {i}");
             }
         }
+        spawnAnimal = GetComponent<SpawnAnimal>();
         spawnAnimal.spawnedAnimals.Remove(gameObject);
         Destroy(gameObject);
     }

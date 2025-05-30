@@ -8,8 +8,10 @@ public class InventoryUI : MonoBehaviour
 {
     public GameObject inventoryWindow;
     private Inventory _inventory;
+
     
     [SerializeField] private DialogueManager dialogueManager;
+
     [Header("Select ItemUI")]
     public TextMeshProUGUI selectedItemName;
     public TextMeshProUGUI selectedItemDescription;

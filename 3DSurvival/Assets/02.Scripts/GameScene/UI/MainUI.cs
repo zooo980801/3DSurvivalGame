@@ -6,20 +6,18 @@ using UnityEngine.UI;
 
 public class MainUI : MonoBehaviour
 {
-    // 플레이어 상태 UI
-    [Header("플레이어 상태UI")]
     [SerializeField] private PlayerStatus playerStatus; // 플레이어 상태
+    [SerializeField] private NPCStatus npcStatus;
+
+    // 플레이어 상태 UI
     [SerializeField] private StatusUI playerHealthUI;
     [SerializeField] private StatusUI playerStaminaUI;
     [SerializeField] private StatusUI playerHungerUI;
     [SerializeField] private StatusUI playerThirstUI;
 
     //NPC 상태 UI
-    [Header("NPC 상태UI")]
-    [SerializeField] private NPCStatus npcStatus;
     [SerializeField] private StatusUI npcHungerUI;
     [SerializeField] private StatusUI npcThirstUI;
-    [SerializeField] private TextMeshProUGUI levelExp;
 
     [Header("시간 표시")]
     [SerializeField] private GameClock gameClock;   // GameClock 연결
@@ -27,8 +25,12 @@ public class MainUI : MonoBehaviour
     [SerializeField] private TextMeshProUGUI timeText;         // 시간 표시용 UI 텍스트 (TextMeshPro 사용 시 TMPro.TextMeshProUGUI)
     [SerializeField] private TextMeshProUGUI dayText;         //  날짜 표시용 UI 텍스트 (TextMeshPro 사용 시 TMPro.TextMeshProUGUI)
 
-    
+
     [SerializeField] private AlarmUI alarmUI;
+
+    private float lastHungerAlarmTime = -5f;
+    private float lastThirstAlarmTime = -5f;
+    private const float ALARM_INTERVAL = 5f; // 5초 간격
 
     private void Start()
     {
@@ -41,7 +43,6 @@ public class MainUI : MonoBehaviour
         //NPC 상태 데이터를 각 UI에 연결
         npcHungerUI.Bind(npcStatus.Hunger);
         npcThirstUI.Bind(npcStatus.Thirst);
-        UpdateLevel();
 
         gameClock.OnTimeChanged += UpdateTimeUI;
         gameClock.OnDayChanged += UpdateDayUI;
@@ -53,12 +54,31 @@ public class MainUI : MonoBehaviour
 
     private void Update()
     {
-        // 선비 상태 경고
-        if (npcStatus.Hunger.CurValue / npcStatus.Hunger.MaxValue < 0.3f)
-        alarmUI.Show("선비가 배고픕니다!");
+        float currentTime = Time.time;
+        float hungerRatio = npcStatus.Hunger.CurValue / npcStatus.Hunger.MaxValue;
+        float thirstRatio = npcStatus.Thirst.CurValue / npcStatus.Thirst.MaxValue;
 
-        if (npcStatus.Thirst.CurValue / npcStatus.Thirst.MaxValue < 0.3f)
-            alarmUI.Show("선비가 목말라합니다!");
+        bool isHungry = hungerRatio < 0.8f;
+        bool isThirsty = thirstRatio < 0.8f;
+
+        if ((isHungry || isThirsty) && currentTime - lastHungerAlarmTime >= ALARM_INTERVAL)
+        {
+            string message = "";
+
+            if (isHungry && isThirsty)
+                message = "선비가 배고프고 목말라합니다!";
+            else if (isHungry)
+                message = "선비가 배고픕니다!";
+            else if (isThirsty)
+                message = "선비가 목말라합니다!";
+
+            if (!string.IsNullOrEmpty(message))
+            {
+                alarmUI.Show(message);
+                lastHungerAlarmTime = currentTime;
+                lastThirstAlarmTime = currentTime; // 두 상태 모두 시간 갱신
+            }
+        }
     }
     private void UpdateTimeUI(int hour, int minute)
     {
@@ -69,9 +89,5 @@ public class MainUI : MonoBehaviour
     {
         if (dayText != null)
             dayText.text = $"Day {day}";
-    }
-    private void UpdateLevel()
-    {
-        levelExp.text = $"레벨 : {npcStatus.CurLevel} 경험치 : {npcStatus.CurExp}";
     }
 }

@@ -87,10 +87,10 @@ public class InventoryUI : MonoBehaviour
                     switch (InventoryManager.Instance.Inventory.selectedItem.consumables[i].type)
                     {
                         case CONSUMABLETYPE.THIRST:
-                            InventoryManager.Instance.PlayerStatus.Thirst.Add(InventoryManager.Instance.Inventory.selectedItem.consumables[i].value);
+                            CharacterManager.Instance.Player.status.Drink(InventoryManager.Instance.Inventory.selectedItem.consumables[i].value);
                             break;
                         case CONSUMABLETYPE.HUNGER:
-                            InventoryManager.Instance.PlayerStatus.Hunger.Add(InventoryManager.Instance.Inventory.selectedItem.consumables[i].value);
+                            CharacterManager.Instance.Player.status.Eat(InventoryManager.Instance.Inventory.selectedItem.consumables[i].value);
                             break;
                     }
                 }

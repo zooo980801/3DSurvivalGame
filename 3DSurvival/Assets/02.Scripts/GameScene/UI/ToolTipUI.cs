@@ -35,17 +35,9 @@ public class TooltipUI : MonoBehaviour
         nameText.text = item.displayName;
         descriptionText.text = item.description;
         statsText.text = String.Empty;
-        for (int i = 0; i < InventoryManager.Instance.Inventory.selectedItem.consumables.Length; i++)
+        for (int i = 0; i < item.consumables.Length; i++)
         {
-            statsText.text += $"{InventoryManager.Instance.Inventory.selectedItem.consumables[i].type.ToString()} : {InventoryManager.Instance.Inventory.selectedItem.consumables[i].value.ToString()} \n";
-        }
-
-        if (item.consumables != null)
-        {
-            foreach (var c in item.consumables)
-            {
-                statsText.text += $"{c.type}: {c.value}\n";
-            }
+            statsText.text += $"{item.consumables[i].type.ToString()} : {item.consumables[i].value.ToString()} \n";
         }
 
 

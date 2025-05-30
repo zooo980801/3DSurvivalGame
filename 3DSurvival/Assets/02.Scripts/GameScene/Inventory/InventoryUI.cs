@@ -42,18 +42,6 @@ public class InventoryUI : MonoBehaviour
 
     public void SelectItemUI(int idx)//찾은(눌린)아이템 UI
     {
-        selectedItemName.text = _inventory.selectedItem.displayName;
-        selectedItemDescription.text = _inventory.selectedItem.description;
-
-        selectedItemStatName.text = string.Empty;
-        selectedItemStatValue.text = string.Empty;
-
-        for (int i = 0; i < _inventory.selectedItem.consumables.Length; i++)
-        {
-            selectedItemStatName.text += _inventory.selectedItem.consumables[i].type.ToString() + "\n";
-            selectedItemStatValue.text += _inventory.selectedItem.consumables[i].value.ToString() + "\n";
-        }
-
         useBtn.SetActive(_inventory.selectedItem.type == ITEMTYPE.CONSUMABLE);
         equipBtn.SetActive(_inventory.selectedItem.type == ITEMTYPE.EQUIPABLE && !_inventory.slotPanel.itemSlots[idx].equipped);
         unEquipBtn.SetActive(_inventory.selectedItem.type == ITEMTYPE.EQUIPABLE && _inventory.slotPanel.itemSlots[idx].equipped);

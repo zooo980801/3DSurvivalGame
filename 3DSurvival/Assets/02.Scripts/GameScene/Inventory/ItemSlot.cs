@@ -2,9 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class ItemSlot : MonoBehaviour
+public class ItemSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     public ItemData item;
     
@@ -52,5 +53,16 @@ public class ItemSlot : MonoBehaviour
     public void OnClickBtn()//버튼이 눌렸을때(슬롯에 붙는거) 나오는 UI와 임시저장
     {
         InventoryManager.Instance.Inventory.SelectItem(idx);
+    }
+
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        if (item != null)
+            TooltipUI.Instance.Show(item);
+    }
+
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        TooltipUI.Instance.Hide();
     }
 }

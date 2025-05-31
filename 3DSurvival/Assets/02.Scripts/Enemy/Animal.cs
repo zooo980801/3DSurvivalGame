@@ -1,12 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Animal : MonoBehaviour, IDamagable
 {
     public StatusData hp;
     public ItemData[] dropOnDeath;
-    public SpawnAnimal spawnAnimal;
+    public SpawnAnimal spawnManager;
 
     public void TakePhysicalDamage(int damage)
     {
@@ -20,21 +21,21 @@ public class Animal : MonoBehaviour, IDamagable
     {
         if (dropOnDeath != null)
         {
-            for (int i = 0; i > dropOnDeath.Length; i++)
+            for (int i = 0; i < dropOnDeath.Length; i++)
             {
-                Instantiate(dropOnDeath[i]);
-                Debug.Log($"drop {i}");
+                Instantiate(dropOnDeath[i].dropPrefab, transform.position, Quaternion.Euler(Vector3.one * Random.value * 360));
+                Debug.Log($"drop {dropOnDeath[i].displayName}");
             }
         }
-        spawnAnimal = GetComponent<SpawnAnimal>();
-        spawnAnimal.spawnedAnimals.Remove(gameObject);
+        spawnManager.spawnedAnimals.Remove(gameObject);
+        spawnManager.SpawnAnimals();
         Destroy(gameObject);
     }
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        spawnManager = FindObjectOfType<SpawnAnimal>();
     }
 
     // Update is called once per frame

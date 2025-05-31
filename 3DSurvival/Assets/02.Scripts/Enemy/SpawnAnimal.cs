@@ -14,23 +14,22 @@ public class SpawnAnimal : MonoBehaviour
     public float outerRadius = 80f;     //생성 할 바깥쪽 원 반지름 길이
     public float spawnTime = 30f;       //임시용 소환 쿨타임
     public float curTime = 0f;
-    private Animal controller;
     // Start is called before the first frame update
     void Start()
     {
-
+        StartSpawn();
     }
 
     // Update is called once per frame
     void Update()
     {
-        SpawnAnimals();
+        
     }
 
     public void SpawnAnimals()
     {
 
-        if (spawnedAnimals.Count < maxAnimalCount) //임시 조건
+        //for (int i = 0; i < maxAnimalCount; i++) //임시 조건
         {
             float angle = Random.Range(0f, Mathf.PI * 2f);      //랜덤 각도 0~360도(2파이)
             float radius = Random.Range(innerRadius, outerRadius);  //랜덤 반지름길이
@@ -41,8 +40,15 @@ public class SpawnAnimal : MonoBehaviour
 
             Vector3 spawnSpot = new Vector3(x, y, z);
             GameObject animal = Instantiate(animalPrefabs[0], spawnSpot, Quaternion.identity);
-            controller = animal.GetComponent<Animal>();
             spawnedAnimals.Add(animal);
+        }
+    }
+
+    public void StartSpawn()
+    {
+        for (int i = 0; i < maxAnimalCount; i++)
+        {
+            SpawnAnimals();
         }
     }
 }

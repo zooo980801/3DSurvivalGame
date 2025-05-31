@@ -6,18 +6,21 @@ using UnityEngine;
 public class SpawnEnemy : MonoBehaviour
 {
     public List<GameObject> enemyPrefabs;
+    [Header("스폰장소")]
     public Transform spawnCenter;       //원 중심 위치(플레이어 집)
     public Terrain terrain;
     public float innerRadius = 30f;     //생성 안할 안쪽 원 반지름 길이 (울타리 생기면 증가?)
     public float outerRadius = 80f;     //생성 할 바깥쪽 원 반지름 길이
     public float spawnTime = 30f;       //임시용 소환 쿨타임
     public float curTime = 0f;
-    public GameObject target;   //생성돼서 향하는 타겟
-    public GameObject player;   //플레이어
-    private Enemy controller;
+    [Header("스폰시간")]
     public GameClock clock;
     public int spawnStartTime = 13;
     public int spawnEndTime = 22;
+    [Header("스폰에너미")]
+    public GameObject playerHouse;   //생성돼서 향하는 타겟
+    public GameObject player;   //플레이어
+    private Enemy controller;
 
     // Start is called before the first frame update
     void Start()
@@ -48,7 +51,7 @@ public class SpawnEnemy : MonoBehaviour
                 GameObject enemy = Instantiate(enemyPrefabs[0], spawnSpot, Quaternion.identity);
 
                 controller = enemy.GetComponent<Enemy>();
-                controller.playerHouse = target;
+                controller.playerHouse = playerHouse;
                 controller.player = player;
 
                 curTime = Time.time;

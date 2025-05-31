@@ -8,7 +8,7 @@ public class InventoryUI : MonoBehaviour
 {
     public GameObject inventoryWindow;
     private Inventory _inventory;
-    
+    public ItemCombine itemCombine;
     [SerializeField] private DialogueManager dialogueManager;
     
     [Header("Select ItemUI")]
@@ -21,8 +21,7 @@ public class InventoryUI : MonoBehaviour
     public GameObject unEquipBtn;
     public GameObject dropBtn;
 
-    public Crafting crafting;
-    public GameObject test;
+    public NPCStatus Seonbi;
     private PlayerController controller;
     private PlayerStatus status;
 
@@ -35,7 +34,7 @@ public class InventoryUI : MonoBehaviour
     private void Start()
     {
         _inventory = InventoryManager.Instance.Inventory;
-        InventoryManager.Instance.InventoryUI = this;
+        InventoryManager.Instance.Inventory.InventoryUI = this;
         controller = CharacterManager.Instance.Player.controller;
         status = CharacterManager.Instance.Player.status;
 
@@ -44,34 +43,34 @@ public class InventoryUI : MonoBehaviour
         inventoryWindow.SetActive(false);
     }
 
-    public void SelectItemUI(int idx) //찾은(눌린)아이템 에 대한 버튼UI
+    public void SelectItemBtnUI(int idx) //찾은(눌린)아이템 에 대한 버튼UI
     {
         useBtn.SetActive(_inventory.selectedItem.type == ITEMTYPE.CONSUMABLE);
         equipBtn.SetActive(_inventory.selectedItem.type == ITEMTYPE.EQUIPABLE &&
-                           !_inventory.slotPanel.itemSlots[idx].equipped);
+                           !_inventory.slotPanel.inventorySlots[idx].equipped);
         unEquipBtn.SetActive(_inventory.selectedItem.type == ITEMTYPE.EQUIPABLE &&
-                             _inventory.slotPanel.itemSlots[idx].equipped);
+                             _inventory.slotPanel.inventorySlots[idx].equipped);
         dropBtn.SetActive(true);
     }
 
-    public void UIUpdate()
+    public void UIUpdate()//UI갱신
     {
-        for (int i = 0; i < _inventory.slotPanel.itemSlots.Length; i++)
+        for (int i = 0; i < _inventory.slotPanel.inventorySlots.Length; i++)
         {
-            if (_inventory.slotPanel.itemSlots[i].item != null)
+            if (_inventory.slotPanel.inventorySlots[i].item != null)
             {
-                _inventory.slotPanel.itemSlots[i].Set();
+                _inventory.slotPanel.inventorySlots[i].Set();
             }
             else
             {
-                _inventory.slotPanel.itemSlots[i].Clear();
+                _inventory.slotPanel.inventorySlots[i].Clear();
             }
         }
 
         InventoryManager.Instance.ItemData = null;
     }
 
-    public void ClearSelectedItemWindow()
+    public void ClearSelectedItemWindow()//인벤토리창 초기화
     {
         selectedItemName.text = string.Empty;
         selectedItemDescription.text = string.Empty;
@@ -110,23 +109,18 @@ public class InventoryUI : MonoBehaviour
         }
     }
 
-    public void OnCraftBtn()
-    {
-        
-    }
-
     public void OnEquipBtn()
     {
-        if (_inventory.slotPanel.itemSlots[curEquipIdx].equipped)
+        if (_inventory.slotPanel.inventorySlots[curEquipIdx].equipped)
         {
             UnEquip(curEquipIdx);
         }
 
-        _inventory.slotPanel.itemSlots[curEquipIdx].equipped = false;
+        _inventory.slotPanel.inventorySlots[curEquipIdx].equipped = true;
         curEquipIdx = _inventory.SelectedIdx;
         CharacterManager.Instance.Player.equip.EquipNew(_inventory.selectedItem);
         UIUpdate();
-        _inventory.SelectItem(_inventory.SelectedIdx);
+        _inventory.SelectItem(_inventory.SelectedIdx,_inventory.slotPanel.inventorySlots[curEquipIdx].slotType);
     }
 
 
@@ -143,12 +137,12 @@ public class InventoryUI : MonoBehaviour
 
     public void UnEquip(int idx)
     {
-        _inventory.slotPanel.itemSlots[idx].equipped = false;
+        _inventory.slotPanel.inventorySlots[idx].equipped = false;
         CharacterManager.Instance.Player.equip.UnEquip();
         UIUpdate();
         if (_inventory.SelectedIdx == idx)
         {
-            _inventory.SelectItem(idx);
+            _inventory.SelectItem(idx,_inventory.slotPanel.inventorySlots[idx].slotType);
         }
     }
 
@@ -160,6 +154,30 @@ public class InventoryUI : MonoBehaviour
     {
         inventoryWindow.SetActive(false);
         dialogueManager.EndConversation();
+    }
+
+    public void OnFoodEatBtn()
+    {
+        if (InventoryManager.Instance.Inventory.selectedItem.type == ITEMTYPE.CONSUMABLE)
+        {
+            for (int i = 0; i < InventoryManager.Instance.Inventory.selectedItem.consumables.Length; i++)
+            {
+                if (i >= 0 && i < InventoryManager.Instance.Inventory.selectedItem.consumables.Length)
+                {
+                    switch (InventoryManager.Instance.Inventory.selectedItem.consumables[i].type)
+                    {
+                        case CONSUMABLETYPE.THIRST:
+                            Seonbi.Drink(InventoryManager.Instance.Inventory.selectedItem.consumables[i].value);
+                            break;
+                        case CONSUMABLETYPE.HUNGER:
+                            Seonbi.Eat(InventoryManager.Instance.Inventory.selectedItem.consumables[i].value);
+                            break;
+                    }
+                }
+            }
+
+            InventoryManager.Instance.Inventory.RemoveSelectedItem();
+        }
     }
 
 }

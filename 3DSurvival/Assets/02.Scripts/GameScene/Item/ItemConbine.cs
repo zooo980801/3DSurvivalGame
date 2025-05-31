@@ -31,7 +31,7 @@ public class ItemConbine : MonoBehaviour
         {
             if ((combine.itemA == itemA && combine.itemB == itemB) || (combine.itemA == itemB && combine.itemB == itemA))
             {
-                if (( HasItem(itemA,1)||(HasItem(itemB,1))))
+                if (( HasItem(itemA,1)&&(HasItem(itemB,1))))
                 {
                     CharacterManager.Instance.Player.itemData = combine.reultItem;
                     InventoryManager.Instance.Inventory.slotPanel.AddItem();

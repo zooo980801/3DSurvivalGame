@@ -41,12 +41,14 @@ public class PlayerController : MonoBehaviour
     public Action inventory;
     private Rigidbody _rigidbody;
     private PlayerAnimationHandler animationHandler;
+    private PlayerSoundHandler soundHandler;
     private PlayerInput playerInput;
 
     private void Awake()
     {
         _rigidbody = GetComponent<Rigidbody>();
         animationHandler = GetComponent<PlayerAnimationHandler>();
+        soundHandler = GetComponent<PlayerSoundHandler>();
         playerInput = GetComponent<PlayerInput>();
     }
 
@@ -140,6 +142,7 @@ public class PlayerController : MonoBehaviour
             {
                 _rigidbody.AddForce(Vector3.up * jumpPower, ForceMode.Impulse); // 점프
                 animationHandler.Jump(true);
+                soundHandler.JumpSound();
             }
         }
 

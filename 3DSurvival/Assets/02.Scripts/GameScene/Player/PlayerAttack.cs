@@ -15,6 +15,7 @@ public class PlayerAttack : MonoBehaviour
     private PlayerController controller;
     private PlayerStatus status;
     private PlayerAnimationHandler animationHandler;
+    private PlayerSoundHandler soundHandler;
 
     private Camera camera;
 
@@ -23,7 +24,7 @@ public class PlayerAttack : MonoBehaviour
         controller = GetComponent<PlayerController>();
         status = GetComponent<PlayerStatus>();
         animationHandler = GetComponent<PlayerAnimationHandler>();
-
+        soundHandler = GetComponent<PlayerSoundHandler>();
         camera = Camera.main;
     }
 
@@ -83,6 +84,9 @@ public class PlayerAttack : MonoBehaviour
 
     public void OnPunch()
     {
+        soundHandler.AttackGruntSound();
+        soundHandler.PunchSound();
+
         Ray ray = new Ray(controller.CameraContainer.position, camera.transform.forward);
 
         RaycastHit hit;

@@ -10,7 +10,7 @@ public class PlayerAnimationEvent : MonoBehaviour
     {
         if (playerAttack != null)
         {
-            playerAttack.OnPunch(); // Player에 있는 함수 호출
+            playerAttack.OnPunch();
         }
     }
 }

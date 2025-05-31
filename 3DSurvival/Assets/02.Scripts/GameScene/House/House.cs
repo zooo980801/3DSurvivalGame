@@ -1,10 +1,10 @@
-﻿using UnityEngine;
+using UnityEngine;
 
 public class House : MonoBehaviour
 {
     public string prefabId = "house_basic";
     public float maxHP = 100f;
-    private float currentHP;
+    [SerializeField] private float currentHP;
     private bool isDestroyed = false;
 
     private void Start()

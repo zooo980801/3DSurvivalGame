@@ -8,7 +8,9 @@ public class InventoryUI : MonoBehaviour
 {
     public GameObject inventoryWindow;
     private Inventory _inventory;
+    
     [SerializeField] private DialogueManager dialogueManager;
+    
     [Header("Select ItemUI")]
     public TextMeshProUGUI selectedItemName;
     public TextMeshProUGUI selectedItemDescription;
@@ -29,7 +31,7 @@ public class InventoryUI : MonoBehaviour
     // {
     //     _inventory.AddTestItem(_inventory.selectedItem);
     // }
-    
+
     private void Start()
     {
         _inventory = InventoryManager.Instance.Inventory;
@@ -42,14 +44,16 @@ public class InventoryUI : MonoBehaviour
         inventoryWindow.SetActive(false);
     }
 
-    public void SelectItemUI(int idx)//찾은(눌린)아이템 UI
+    public void SelectItemUI(int idx) //찾은(눌린)아이템 에 대한 버튼UI
     {
         useBtn.SetActive(_inventory.selectedItem.type == ITEMTYPE.CONSUMABLE);
-        equipBtn.SetActive(_inventory.selectedItem.type == ITEMTYPE.EQUIPABLE && !_inventory.slotPanel.itemSlots[idx].equipped);
-        unEquipBtn.SetActive(_inventory.selectedItem.type == ITEMTYPE.EQUIPABLE && _inventory.slotPanel.itemSlots[idx].equipped);
+        equipBtn.SetActive(_inventory.selectedItem.type == ITEMTYPE.EQUIPABLE &&
+                           !_inventory.slotPanel.itemSlots[idx].equipped);
+        unEquipBtn.SetActive(_inventory.selectedItem.type == ITEMTYPE.EQUIPABLE &&
+                             _inventory.slotPanel.itemSlots[idx].equipped);
         dropBtn.SetActive(true);
-
     }
+
     public void UIUpdate()
     {
         for (int i = 0; i < _inventory.slotPanel.itemSlots.Length; i++)
@@ -66,6 +70,7 @@ public class InventoryUI : MonoBehaviour
 
         InventoryManager.Instance.ItemData = null;
     }
+
     public void ClearSelectedItemWindow()
     {
         selectedItemName.text = string.Empty;
@@ -78,6 +83,7 @@ public class InventoryUI : MonoBehaviour
         unEquipBtn.SetActive(false);
         dropBtn.SetActive(false);
     }
+
     public void OnUseBtn()
     {
         if (InventoryManager.Instance.Inventory.selectedItem.type == ITEMTYPE.CONSUMABLE)
@@ -89,10 +95,12 @@ public class InventoryUI : MonoBehaviour
                     switch (InventoryManager.Instance.Inventory.selectedItem.consumables[i].type)
                     {
                         case CONSUMABLETYPE.THIRST:
-                            CharacterManager.Instance.Player.status.Drink(InventoryManager.Instance.Inventory.selectedItem.consumables[i].value);
+                            CharacterManager.Instance.Player.status.Drink(InventoryManager.Instance.Inventory
+                                .selectedItem.consumables[i].value);
                             break;
                         case CONSUMABLETYPE.HUNGER:
-                            CharacterManager.Instance.Player.status.Eat(InventoryManager.Instance.Inventory.selectedItem.consumables[i].value);
+                            CharacterManager.Instance.Player.status.Eat(InventoryManager.Instance.Inventory.selectedItem
+                                .consumables[i].value);
                             break;
                     }
                 }
@@ -113,6 +121,7 @@ public class InventoryUI : MonoBehaviour
         {
             UnEquip(curEquipIdx);
         }
+
         _inventory.slotPanel.itemSlots[curEquipIdx].equipped = false;
         curEquipIdx = _inventory.SelectedIdx;
         CharacterManager.Instance.Player.equip.EquipNew(_inventory.selectedItem);
@@ -120,7 +129,7 @@ public class InventoryUI : MonoBehaviour
         _inventory.SelectItem(_inventory.SelectedIdx);
     }
 
-    
+
     public void OnDropBtn()
     {
         _inventory.ThrowItem(InventoryManager.Instance.Inventory.selectedItem);
@@ -131,6 +140,7 @@ public class InventoryUI : MonoBehaviour
     {
         inventoryWindow.SetActive(!inventoryWindow.activeInHierarchy);
     }
+
     public void UnEquip(int idx)
     {
         _inventory.slotPanel.itemSlots[idx].equipped = false;
@@ -144,7 +154,7 @@ public class InventoryUI : MonoBehaviour
 
     public void OnUnEquipBtn()
     {
-        UnEquip(_inventory.SelectedIdx);  
+        UnEquip(_inventory.SelectedIdx);
     }
     public void OnCloseBtn()
     {

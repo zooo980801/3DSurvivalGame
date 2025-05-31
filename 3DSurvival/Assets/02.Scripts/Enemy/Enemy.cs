@@ -1,20 +1,19 @@
 using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.AI;
 
 public enum EnemyState
 {
-    Idle,
-    Attacking,
+    Move,
     Chasing,
-    Move
+    Attacking,
 }
 public class Enemy : MonoBehaviour, IDamagable
 {
-    //public int hp;
     public int atk;
     public float speed;
 
@@ -39,6 +38,9 @@ public class Enemy : MonoBehaviour, IDamagable
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
+        animator = GetComponent<Animator>();
+        dropOnDeath[0] = ItemDatabase.Instance.items[0];
+        dropOnDeath[1] = ItemDatabase.Instance.items[4];
     }
 
     // Update is called once per frame
@@ -50,53 +52,76 @@ public class Enemy : MonoBehaviour, IDamagable
             Die();
         }
         playerDistance = Vector3.Distance(transform.position, player.transform.position);
-        
-        if (playerDistance < detectedDistance || (enemyState == EnemyState.Chasing && playerDistance < chaseMaxDistance))
+
+        if(enemyState != EnemyState.Chasing && enemyState != EnemyState.Attacking)
         {
-            
-            ChasePlayer();
-            if (playerDistance < attackDistance)
-            {
-                AttackPlayer();
-            }
+            enemyState = EnemyState.Move;
         }
-        else
+
+        switch (enemyState)
         {
-            MoveToHouse();
+            case EnemyState.Move:
+                MoveToHouse();
+                break;
+            case EnemyState.Chasing:
+                ChasePlayer();
+                break;
+            case EnemyState.Attacking:
+                AttackPlayer();
+                break;
         }
     }
 
     public void MoveToHouse()
     {
-        enemyState = EnemyState.Move;
         speed = 0.5f;
-        //animator.SetBool("Walk", true);
-        //animator.SetBool("Sprint", false);
-        //animator.SetBool("Punch", false);
+        animator.SetBool("IsWalk", true);
+        animator.SetBool("IsChase", false);
+        animator.SetBool("IsAttack", false);
         agent.SetDestination(playerHouse.transform.position);
+        if (playerDistance < detectedDistance)
+        {
+            enemyState = EnemyState.Chasing;
+            return;
+        }
+        //건물에 도착하면
+        //멈춰서
+        //건물에 데미지
     }
 
     public void ChasePlayer()
     {
-        enemyState = EnemyState.Chasing;
-        target = player;
-        speed = 1.0f;
-        //animator.SetBool("Walk", false);
-        //animator.SetBool("Sprint", true);
-        //animator.SetBool("Punch", false);
+        speed = 1f;
+        animator.SetBool("IsWalk", false);
+        animator.SetBool("IsChase", true);
+        animator.SetBool("IsAttack", false);
         agent.SetDestination(player.transform.position);
+        if (playerDistance < attackDistance)
+        {
+            enemyState = EnemyState.Attacking;
+            return;
+        }
+        if (playerDistance > chaseMaxDistance)
+        {
+            enemyState = EnemyState.Move;
+            return;
+        }
     }
 
     public void AttackPlayer()
     {
-        enemyState = EnemyState.Attacking;
         speed = 0f;
+        if (playerDistance > attackDistance)
+        {
+            enemyState = EnemyState.Chasing;
+            return;
+        }
         if(Time.time > lastAttackTime + attackCooldown)
         {
             lastAttackTime = Time.time;
-            //animator.SetBool("Walk", false);
-            //animator.SetBool("Sprint", false);
-            //animator.SetBool("Punch", true);
+            animator.SetBool("IsWalk", false);
+            animator.SetBool("IsChase", false);
+            animator.SetBool("IsAttack", true);
             IDamagable damagable = player.GetComponent<IDamagable>();
             if (damagable != null)
             {
@@ -115,11 +140,11 @@ public class Enemy : MonoBehaviour, IDamagable
 
     public void Die()
     {
-        if (dropOnDeath  != null)
+        if (dropOnDeath != null)
         {
-            for (int i = 0; i > dropOnDeath.Length; i++)
+            for (int i = 0; i < dropOnDeath.Length; i++)
             {
-                Instantiate(dropOnDeath[i]);
+                Instantiate(dropOnDeath[i]/*,transform.position, Quaternion.identity*/);
                 Debug.Log($"drop {i}");
             }
         }

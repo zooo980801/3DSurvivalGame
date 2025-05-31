@@ -2845,10 +2845,10 @@ Animator:
   m_GameObject: {fileID: 1000014232435074}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: fe55e5a0c1bcd72488aa4508bea6f93b, type: 3}
-  m_Controller: {fileID: 9100000, guid: 4675f30ca1f2ec4419c0a84c62a76e47, type: 2}
+  m_Controller: {fileID: 9100000, guid: a8e8dcace6d7e0a439c3b5e0dcec0a34, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
-  m_ApplyRootMotion: 1
+  m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
   m_WarningMessage: 
@@ -2875,7 +2875,7 @@ NavMeshAgent:
   m_AutoBraking: 1
   m_AutoRepath: 1
   m_Height: 2
-  m_BaseOffset: 0
+  m_BaseOffset: -0.1
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
 --- !u!114 &4700907726125662727
@@ -2896,7 +2896,7 @@ MonoBehaviour:
   playerDistance: 0
   detectedDistance: 10
   chaseMaxDistance: 15
-  attackDistance: 1
+  attackDistance: 2
   attackCooldown: 1.5
   lastAttackTime: 0
   dropOnDeath:

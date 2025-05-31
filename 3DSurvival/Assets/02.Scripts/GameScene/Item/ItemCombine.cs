@@ -4,10 +4,11 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class ItemConbine : MonoBehaviour
+public class ItemCombine : MonoBehaviour
 {
     public List<Combine> combines;
     public Inventory inventory;
+    public InventoryUI inventoryUI;
     private void Start()
     {
         inventory = InventoryManager.Instance.Inventory;
@@ -34,10 +35,10 @@ public class ItemConbine : MonoBehaviour
                 if (( HasItem(itemA,1)&&(HasItem(itemB,1))))
                 {
                     CharacterManager.Instance.Player.itemData = combine.reultItem;
-                    InventoryManager.Instance.Inventory.slotPanel.AddItem();
+                    inventory.slotPanel.AddItem();
             
                     InventoryManager.Instance.Inventory.RemoveItemByName(itemA.displayName,1);
-                    InventoryManager.Instance.Inventory.RemoveItemByName(itemB.displayName,1); 
+                    inventory.RemoveItemByName(itemB.displayName,1); 
                     return true;
                 }
             }
@@ -47,7 +48,7 @@ public class ItemConbine : MonoBehaviour
     public bool HasItem(ItemData item, int count)
     {
         int total = 0;
-        foreach (var slot in inventory.slotPanel.itemSlots)
+        foreach (var slot in inventory.slotPanel.inventorySlots)
         {
             if (slot.item == item)
             {

@@ -14,6 +14,7 @@ public class ItemSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     public TextMeshProUGUI quantityText;
     private Outline outline;
     public Inventory inventory;
+    public SLOTTYPE slotType;
     
     public int idx;
     public bool equipped;
@@ -52,7 +53,7 @@ public class ItemSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 
     public void OnClickBtn()//버튼이 눌렸을때(슬롯에 붙는거) 나오는 UI와 임시저장
     {
-        InventoryManager.Instance.Inventory.SelectItem(idx);
+        InventoryManager.Instance.Inventory.SelectItem(idx,slotType);
     }
 
     public void OnPointerEnter(PointerEventData eventData)

@@ -46,9 +46,6 @@ public class InventoryManager : MonoBehaviour
     private PlayerStatus _playerStatus;
     public PlayerStatus PlayerStatus{get{return _playerStatus;}set{_playerStatus=value;}}
     
-    private InventoryUI _inventoryUI;
-    public InventoryUI InventoryUI{get{return _inventoryUI;}set{_inventoryUI=value;}}
-    
     private ItemData _itemData;
     public ItemData ItemData{get{return _itemData;}set{_itemData=value;}}
 

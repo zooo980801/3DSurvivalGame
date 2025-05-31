@@ -242,6 +242,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inventoryWindow: {fileID: 436461085363391788}
+  itemCombine: {fileID: 0}
   dialogueManager: {fileID: 0}
   selectedItemName: {fileID: 774887667653919715}
   selectedItemDescription: {fileID: 4898441987273264991}
@@ -251,8 +252,7 @@ MonoBehaviour:
   equipBtn: {fileID: 4021335655800355858}
   unEquipBtn: {fileID: 3899434014140335323}
   dropBtn: {fileID: 8243444685894639252}
-  crafting: {fileID: 0}
-  test: {fileID: 0}
+  Seonbi: {fileID: 0}
 --- !u!1 &593178001478669428
 GameObject:
   m_ObjectHideFlags: 0
@@ -918,7 +918,7 @@ GameObject:
   - component: {fileID: 702549873864317766}
   - component: {fileID: 4456098632677068978}
   m_Layer: 5
-  m_Name: BluePrint_BG
+  m_Name: Crafting_BG
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -959,6 +959,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   combines: []
   inventory: {fileID: 0}
+  inventoryUI: {fileID: 0}
 --- !u!1 &1409062185993411148
 GameObject:
   m_ObjectHideFlags: 0
@@ -976,7 +977,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &2492951882670745673
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2145,7 +2146,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2090885581268811610}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2023277954901891776}
+        m_TargetAssemblyTypeName: InventoryUI, Assembly-CSharp
+        m_MethodName: OnCloseBtn
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &3899434014140335323
 GameObject:
   m_ObjectHideFlags: 0
@@ -2162,6 +2175,8 @@ GameObject:
   - component: {fileID: 1491851232285274265}
   - component: {fileID: 6094484106823617001}
   - component: {fileID: 5413427022313713109}
+  - component: {fileID: 2439442385027155559}
+  - component: {fileID: 3764665182998196090}
   m_Layer: 5
   m_Name: UnEquipButton
   m_TagString: Untagged
@@ -2331,6 +2346,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ef15c695a6adbc449611eadc471f0bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &2439442385027155559
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3899434014140335323}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ef15c695a6adbc449611eadc471f0bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &3764665182998196090
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3899434014140335323}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ef15c695a6adbc449611eadc471f0bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4021335655800355858
 GameObject:
   m_ObjectHideFlags: 0
@@ -2347,6 +2386,8 @@ GameObject:
   - component: {fileID: 2634409019570791515}
   - component: {fileID: 1975445387785919781}
   - component: {fileID: 3822837216579491165}
+  - component: {fileID: 1089458396311710002}
+  - component: {fileID: 8098507939235803356}
   m_Layer: 5
   m_Name: EquipButton
   m_TagString: Untagged
@@ -2505,6 +2546,30 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &3822837216579491165
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4021335655800355858}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ef15c695a6adbc449611eadc471f0bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1089458396311710002
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4021335655800355858}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ef15c695a6adbc449611eadc471f0bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &8098507939235803356
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2942,6 +3007,8 @@ GameObject:
   - component: {fileID: 5125062547744910824}
   - component: {fileID: 3907117074121900323}
   - component: {fileID: 5600181265559084092}
+  - component: {fileID: 5560038783262761104}
+  - component: {fileID: 1481716999581592977}
   m_Layer: 5
   m_Name: UseButton
   m_TagString: Untagged
@@ -3100,6 +3167,30 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &5600181265559084092
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5082299238169471143}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ef15c695a6adbc449611eadc471f0bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &5560038783262761104
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5082299238169471143}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ef15c695a6adbc449611eadc471f0bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1481716999581592977
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -4566,7 +4657,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 4456098632677068978}
-        m_TargetAssemblyTypeName: ItemConbine, Assembly-CSharp
+        m_TargetAssemblyTypeName: ItemCombine, Assembly-CSharp
         m_MethodName: OnCombineBtn
         m_Mode: 1
         m_Arguments:
@@ -4727,6 +4818,8 @@ GameObject:
   - component: {fileID: 8695982787090124279}
   - component: {fileID: 2185504360471879352}
   - component: {fileID: 2612110113223674470}
+  - component: {fileID: 5923245499727027051}
+  - component: {fileID: 6889737876331453799}
   m_Layer: 5
   m_Name: DropButton
   m_TagString: Untagged
@@ -4896,6 +4989,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ef15c695a6adbc449611eadc471f0bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &5923245499727027051
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8243444685894639252}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ef15c695a6adbc449611eadc471f0bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &6889737876331453799
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8243444685894639252}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ef15c695a6adbc449611eadc471f0bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8328362224018515335
 GameObject:
   m_ObjectHideFlags: 0
@@ -4996,8 +5113,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e345d6cebfa62b4cb57e1df25e43d4c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemSlots: []
-  slotPanel: {fileID: 7965413980819230905}
+  recipeSlots: []
+  inventorySlots: []
+  equipmentSlots: []
+  inventoryPanel: {fileID: 7965413980819230905}
+  recipePanel: {fileID: 1939213625020623468}
+  equipmentPanel: {fileID: 8016909666502684295}
+  recipeSlotCount: 0
+  inventorySlotCount: 0
+  equipmentSlotCount: 0
 --- !u!1 &8428150422647289070
 GameObject:
   m_ObjectHideFlags: 0

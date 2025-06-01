@@ -7,8 +7,7 @@ public class PlayerAnimationHandler : MonoBehaviour
     private static readonly int IsWalking = Animator.StringToHash("IsWalk");
     private static readonly int IsRunning = Animator.StringToHash("IsRun");
     private static readonly int IsJumping = Animator.StringToHash("IsJump");
-    private static readonly int IsAttacking = Animator.StringToHash("IsAttack");
-    private static readonly int AttackType = Animator.StringToHash("AttackType");
+    private static readonly int IsAttacking = Animator.StringToHash("Attack");
 
     private Animator animator;
 
@@ -34,7 +33,6 @@ public class PlayerAnimationHandler : MonoBehaviour
 
     public void Punch()
     {
-        animator.SetInteger(AttackType, 0); // 0: 주먹질
         animator.SetTrigger(IsAttacking);
     }
 }

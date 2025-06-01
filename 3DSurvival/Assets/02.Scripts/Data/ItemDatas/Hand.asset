@@ -10,19 +10,19 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 96daef7365f29f640a6906ad837eae36, type: 3}
-  m_Name: 12.Spear
+  m_Name: Hand
   m_EditorClassIdentifier: 
-  id: 12
-  displayName: "\uCC3D"
-  description: "\uB0A0\uCE74\uB85C\uC6B4 \uCC3D\uC774\uB2E4."
+  id: 
+  displayName: 
+  description: 
   type: 1
-  icon: {fileID: -430400712, guid: 7c0facc69470ed24c90abf630334ad18, type: 3}
-  dropPrefab: {fileID: 4048687338177258051, guid: dc7ae2fb3ee3ed740b493688c20e78af, type: 3}
+  icon: {fileID: 0}
+  dropPrefab: {fileID: 0}
   canStack: 0
   maxStackAmount: 0
-  damage: 20
-  maxDurability: 30
+  damage: 2
+  maxDurability: 0
   currentDurability: 0
   consumables: []
-  equipPrefab: {fileID: 1519577255529602414, guid: a3eb4ef4211f42547a5f9529ed33ab3c, type: 3}
+  equipPrefab: {fileID: 2729912654240237763, guid: f22a2b28d6750404f93fd58487ae9908, type: 3}
   resultItems: []

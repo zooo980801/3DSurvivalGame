@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class EquipTool : Equip
@@ -19,7 +20,7 @@ public class EquipTool : Equip
     private Animator animator;
     private Camera _camera;
 
-    void Start()
+    void Awake()
     {
         animator = GetComponent<Animator>();
         _camera = Camera.main;
@@ -27,19 +28,17 @@ public class EquipTool : Equip
 
     public override void OnAttackInput()
     {
-        if (!attacking)
+        if (!attacking && CharacterManager.Instance.Player.status.UseStamina(useStamina))
         {
-            if (CharacterManager.Instance.Player.status.UseStamina(useStamina))
-            {
-                attacking = true;
-                animator.SetTrigger("Attack");
-                Invoke("OnCanAttack", attackRate);
-            }
+            //animator.SetTrigger("Attack");
+            OnHit();
+            StartCoroutine(CanAttackDelay());
+            attacking = true;
         }
     }
-
-    void OnCanAttack()
+    private IEnumerator CanAttackDelay()
     {
+        yield return new WaitForSeconds(attackRate);
         attacking = false;
     }
 

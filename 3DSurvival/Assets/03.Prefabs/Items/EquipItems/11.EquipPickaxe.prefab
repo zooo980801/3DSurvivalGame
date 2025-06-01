@@ -48,7 +48,7 @@ MonoBehaviour:
   attackRate: 0.8
   attackDistance: 1
   useStamina: 15
-  doesGatherResources: 0
+  doesGatherResources: 1
   doesDealDamage: 1
   damage: 10
   toolItemData: {fileID: 11400000, guid: bbc7d57f49409294ca28b6c82d1f2657, type: 2}

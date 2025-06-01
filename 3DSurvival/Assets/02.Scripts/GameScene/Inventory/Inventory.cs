@@ -48,6 +48,7 @@ public class Inventory : MonoBehaviour
                 break;
             case SLOTTYPE.EQUIPMENT:
                 SelectItemFromEquipment(idx);
+                _inventoryUI.SelectEquipmentBtnUI(idx);
                 break;
         }
         _selectedSlotType = slotType;
@@ -135,6 +136,11 @@ public class Inventory : MonoBehaviour
                 }
             }
         }
+    }
+    public void ClearSelectedSlotState()
+    {
+        selectedItem = null;
+        selectedIdx = -1;
     }
     public void SaveInventory(SaveData data)
     {

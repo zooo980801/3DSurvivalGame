@@ -62,6 +62,7 @@ public class NPCWandering : MonoBehaviour, IInteractable
         agent.ResetPath();
         // Idle 상태에선 대기 루틴 실행하지 않고,
         // 대화가 끝난 뒤 Update에서 배회 재개
+        Debug.Log("강제 Idle (대화 중)");
     }
 
     // 상태 전환 메서드
@@ -80,6 +81,7 @@ public class NPCWandering : MonoBehaviour, IInteractable
             case ALSTATE.WANDERING:
                 anim.SetBool("IsWalk", true);
                 stateRoutine = StartCoroutine(WanderRoutine());
+                Debug.Log("Wandering 진입");
                 break;
         }
     }
@@ -116,9 +118,6 @@ public class NPCWandering : MonoBehaviour, IInteractable
         agent.SetDestination(wanderTarget);
         agent.isStopped = false;
 
-        float startTime = Time.time; //걷기 시작 시간
-        float maxWanderTime = 5f; //5초 내에 목표 지점에 도착하지 못하면 재계산 하기 위한 변수
-
         // 경로 계산 대기
         while (agent.pathPending)
             yield return null;
@@ -126,14 +125,7 @@ public class NPCWandering : MonoBehaviour, IInteractable
         // 실제 이동 중일 때만 루프
         while (agent.hasPath && agent.remainingDistance > agent.stoppingDistance)
         {
-            if(Time.time - startTime > maxWanderTime)
-            {
-                Debug.Log("[NPCWandering] 배회 시간초과. 재계산");
-                agent.isStopped = true;
-                stateRoutine = null;
-                SetState(ALSTATE.IDLE);
-                yield break;
-            }
+            // Debug.Log("걷는중");
             yield return null;
         }
 

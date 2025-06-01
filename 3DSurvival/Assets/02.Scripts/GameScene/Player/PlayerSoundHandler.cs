@@ -15,14 +15,10 @@ public class PlayerSoundHandler : MonoBehaviour
     [Header("JumpSound")]
     [SerializeField] private AudioClip jumpGruntClip;
 
-    [Header("GruntSound")]
+
+    [Header("PunchSound")]
     [SerializeField] private AudioClip attackGruntClip;
-
-    [Header("PunchSound")]
     [SerializeField] private AudioClip punchClip;
-
-    [Header("PunchSound")]
-    [SerializeField] private AudioClip toolClip;
 
 
     private AudioSource audioSource;
@@ -78,10 +74,5 @@ public class PlayerSoundHandler : MonoBehaviour
     public void PunchSound()
     {
         audioSource.PlayOneShot(punchClip, 0.5f);
-    }
-
-    public void ToolSound()
-    {
-        audioSource.PlayOneShot(toolClip, 0.5f);
     }
 }

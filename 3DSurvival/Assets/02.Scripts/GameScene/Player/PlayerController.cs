@@ -211,6 +211,9 @@ public class PlayerController : MonoBehaviour
     {
         if (context.phase == InputActionPhase.Started)
         {
+            InventoryManager.Instance.InventoryBG.SetActive(true);
+            InventoryManager.Instance.SeonbiBG.SetActive(false);
+            InventoryManager.Instance.CraftingBG.SetActive(false);
             inventory?.Invoke();
             ToggleCursor();
         }

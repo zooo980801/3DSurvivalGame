@@ -38,8 +38,6 @@ public class InventoryUI : MonoBehaviour
     private float seonbiCurHunger;
     private float seonbiCurThirst;
 
-    private int curEquipIdx;
-
     private bool isFirst = true;
     // public void OnTest()
     // {
@@ -76,10 +74,22 @@ public class InventoryUI : MonoBehaviour
     public void SelectItemBtnUI(int idx) //찾은(눌린)아이템 에 대한 버튼UI
     {
         useBtn.SetActive(_inventory.selectedItem.type == ITEMTYPE.CONSUMABLE);
+        
         equipBtn.SetActive(_inventory.selectedItem.type == ITEMTYPE.EQUIPABLE &&
+                           !_inventory.slotPanel.inventorySlots[idx].equipped||
+                           _inventory.selectedItem.type == ITEMTYPE.BUILDING&&
                            !_inventory.slotPanel.inventorySlots[idx].equipped);
+        
+        dropBtn.SetActive(true);
+    }
+    public void SelectEquipmentBtnUI(int idx) //장비창에서 찾은(눌린)아이템 에 대한 버튼UI
+    {
+        useBtn.SetActive(_inventory.selectedItem.type == ITEMTYPE.CONSUMABLE);
         unEquipBtn.SetActive(_inventory.selectedItem.type == ITEMTYPE.EQUIPABLE &&
-                             _inventory.slotPanel.inventorySlots[idx].equipped);
+                             _inventory.slotPanel.equipmentSlots[idx].equipped||
+                             _inventory.selectedItem.type == ITEMTYPE.BUILDING&&
+                             _inventory.slotPanel.equipmentSlots[idx].equipped);
+        
         dropBtn.SetActive(true);
     }
 
@@ -145,16 +155,31 @@ public class InventoryUI : MonoBehaviour
 
     public void OnEquipBtn()
     {
-        if (_inventory.slotPanel.inventorySlots[curEquipIdx].equipped)
+        // 기존 장비가 있으면 해제
+        if (_inventory.slotPanel.equipmentSlots[0].item != null)
         {
-            UnEquip(curEquipIdx);
+            UnEquip(0);
         }
 
-        _inventory.slotPanel.inventorySlots[curEquipIdx].equipped = true;
-        curEquipIdx = _inventory.SelectedIdx;
-        CharacterManager.Instance.Player.equip.EquipNew(_inventory.selectedItem);
+        // 선택된 아이템 장비 슬롯으로 이동
+        var selectedSlot = _inventory.slotPanel.inventorySlots[_inventory.SelectedIdx];
+
+        _inventory.slotPanel.equipmentSlots[0].item = selectedSlot.item;
+        _inventory.slotPanel.equipmentSlots[0].quantity = selectedSlot.quantity;
+        _inventory.slotPanel.equipmentSlots[0].equipped = true;
+        _inventory.slotPanel.equipmentSlots[0].Set();
+
+        CharacterManager.Instance.Player.equip.EquipNew(selectedSlot.item);
+
+        // 인벤토리 슬롯 비우기
+        selectedSlot.item = null;
+        selectedSlot.quantity = 0;
+        selectedSlot.Clear();
+
+        _inventory.selectedItem = null;
+        InventoryManager.Instance.Inventory.ClearSelectedSlotState();
+        ClearSelectedItemWindow();
         UIUpdate();
-        _inventory.SelectItem(_inventory.SelectedIdx,_inventory.slotPanel.inventorySlots[curEquipIdx].slotType);
     }
 
 
@@ -171,13 +196,27 @@ public class InventoryUI : MonoBehaviour
 
     public void UnEquip(int idx)
     {
-        _inventory.slotPanel.inventorySlots[idx].equipped = false;
+        var equipSlot = _inventory.slotPanel.equipmentSlots[idx];
+
+        if (equipSlot.item == null) return;
+
+        // 플레이어 해제 처리
         CharacterManager.Instance.Player.equip.UnEquip();
+
+        // 장비 해제, 인벤토리에 되돌리기
+        CharacterManager.Instance.Player.itemData = equipSlot.item;
+        CharacterManager.Instance.Player.addItem(); // 인벤토리에 추가됨
+        CharacterManager.Instance.Player.itemData = null;
+
+        // 슬롯 비우기
+        equipSlot.item = null;
+        equipSlot.quantity = 0;
+        equipSlot.equipped = false;
+        equipSlot.Clear();
+
+        _inventory.selectedItem = null;
+        ClearSelectedItemWindow();
         UIUpdate();
-        if (_inventory.SelectedIdx == idx)
-        {
-            _inventory.SelectItem(idx,_inventory.slotPanel.inventorySlots[idx].slotType);
-        }
     }
 
     public void OnUnEquipBtn()

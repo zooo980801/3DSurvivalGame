@@ -59,6 +59,7 @@ public class PlayerStatus : BaseStatus, IDamagable
     public void TakePhysicalDamage(int damage)
     {
         health.Subtract(damage);
+        CharacterManager.Instance.Player.soundHandler.DamageSound();
         onTakeDamage?.Invoke();     // 데미지를 받았다는 이벤트 발생
     }
 

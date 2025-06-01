@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerSoundHandler : MonoBehaviour
+public class PlayerSoundHandler : CreatureSoundHandler
 {
     [Header("StepSound")]
     [SerializeField] private AudioClip[] footstepClips;
@@ -20,15 +20,13 @@ public class PlayerSoundHandler : MonoBehaviour
     [SerializeField] private AudioClip attackGruntClip;
     [SerializeField] private AudioClip punchClip;
 
-
-    private AudioSource audioSource;
     private Rigidbody _rigidbody;
     private PlayerController controller;
 
-    void Start()
+    protected override void Start()
     {
+        base.Start();
         _rigidbody = GetComponent<Rigidbody>();
-        audioSource = GetComponent<AudioSource>();
         controller = GetComponent<PlayerController>();
     }
 
@@ -55,7 +53,7 @@ public class PlayerSoundHandler : MonoBehaviour
                 if (Time.time - footstepTime > stepRate)
                 {
                     footstepTime = Time.time;
-                    audioSource.PlayOneShot(footstepClips[Random.Range(0, footstepClips.Length)]);
+                    AudioSource.PlayOneShot(footstepClips[Random.Range(0, footstepClips.Length)]);
                 }
             }
         }
@@ -63,16 +61,16 @@ public class PlayerSoundHandler : MonoBehaviour
 
     public void JumpSound()
     {
-        audioSource.PlayOneShot(jumpGruntClip);
+        AudioSource.PlayOneShot(jumpGruntClip);
     }
 
     public void AttackGruntSound()
     {
-        audioSource.PlayOneShot(attackGruntClip);
+        AudioSource.PlayOneShot(attackGruntClip);
     }
 
     public void PunchSound()
     {
-        audioSource.PlayOneShot(punchClip, 0.5f);
+        AudioSource.PlayOneShot(punchClip, 0.5f);
     }
 }

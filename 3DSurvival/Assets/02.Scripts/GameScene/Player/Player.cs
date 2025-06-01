@@ -8,6 +8,7 @@ public class Player : MonoBehaviour
     public PlayerController controller;
     public PlayerStatus status;
     public PlayerAnimationHandler animationHandler;
+    public PlayerSoundHandler soundHandler;
     public PlayerAttack equip;
 
     public ItemData itemData;
@@ -22,6 +23,7 @@ public class Player : MonoBehaviour
         controller = GetComponent<PlayerController>();
         status = GetComponent<PlayerStatus>();
         animationHandler = GetComponent<PlayerAnimationHandler>();
+        soundHandler = GetComponent<PlayerSoundHandler>();
         equip = GetComponent<PlayerAttack>();
     }
 }

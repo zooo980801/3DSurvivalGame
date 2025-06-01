@@ -8,8 +8,9 @@ public class CreatureSoundHandler : MonoBehaviour
     [SerializeField] private AudioClip damageClip;
 
     private AudioSource audioSource;
+    public AudioSource AudioSource => audioSource;
 
-    void Start()
+    protected virtual void Start()
     {
         audioSource = GetComponent<AudioSource>();
     }
@@ -21,7 +22,7 @@ public class CreatureSoundHandler : MonoBehaviour
 
     IEnumerator Damage()
     {
-        yield return new WaitForSeconds(0.25f);
+        yield return new WaitForSeconds(0.15f);
         audioSource.PlayOneShot(damageClip);
     }
 }

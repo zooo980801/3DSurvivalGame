@@ -9,8 +9,11 @@ public class Animal : MonoBehaviour, IDamagable
     public ItemData[] dropOnDeath;
     public SpawnAnimal spawnManager;
 
+    private CreatureSoundHandler soundHandler;
+
     public void TakePhysicalDamage(int damage)
     {
+        soundHandler.DamageSound();
         hp.Subtract(damage);
         Debug.Log("동물 아야");
         //onTakeDamage?.Invoke();     // 데미지를 받았다는 이벤트 발생
@@ -36,6 +39,7 @@ public class Animal : MonoBehaviour, IDamagable
     void Start()
     {
         spawnManager = FindObjectOfType<SpawnAnimal>();
+        soundHandler = GetComponent<CreatureSoundHandler>();
     }
 
     // Update is called once per frame

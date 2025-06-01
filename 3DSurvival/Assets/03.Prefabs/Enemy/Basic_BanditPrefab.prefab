@@ -2904,9 +2904,10 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 134e1a43429003f40a8215ec80032db5, type: 2}
   - {fileID: 11400000, guid: e142ba98f4bd34c4e9aff0abe182d9ef, type: 2}
   target: {fileID: 0}
-  playerHouse: {fileID: 0}
+  playerHouse:
+  - {fileID: 0}
   house: {fileID: 0}
-  samplePositionDistance: 0
+  samplePositionDistance: 10
   player: {fileID: 0}
   hp:
     curValue: 10

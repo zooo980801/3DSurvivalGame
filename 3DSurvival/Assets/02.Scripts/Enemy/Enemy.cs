@@ -10,7 +10,8 @@ public enum EnemyState
 {
     Move,
     Chasing,
-    Attacking,
+    AttackPlayer,
+    AttackHouse,
 }
 public class Enemy : MonoBehaviour, IDamagable
 {
@@ -30,10 +31,13 @@ public class Enemy : MonoBehaviour, IDamagable
     public GameObject target;
     public GameObject[] playerHouse;
     public House house;
-    public float samplePositionDistance = 0f;
+    public float samplePositionDistance = 10f;
     public GameObject player;
     private NavMeshAgent agent;
     private Animator animator;
+    private int index = 0;
+    [SerializeField] private float remainingDistance;
+    NavMeshHit hit;
 
 
     public StatusData hp;
@@ -47,6 +51,8 @@ public class Enemy : MonoBehaviour, IDamagable
 
         dropOnDeath[0] = ItemDatabase.Instance.items[0];    //아이템 책
         dropOnDeath[1] = ItemDatabase.Instance.items[4];    //아이템 야채
+        enemyState = EnemyState.Move;
+        
     }
 
     // Update is called once per frame
@@ -59,10 +65,22 @@ public class Enemy : MonoBehaviour, IDamagable
         }
         playerDistance = Vector3.Distance(transform.position, player.transform.position);
 
-        if(enemyState != EnemyState.Chasing && enemyState != EnemyState.Attacking)
+        if (playerHouse[index] == null)
         {
-            enemyState = EnemyState.Move;
+            index++;
+            Debug.Log($"index = {index}");
+            house = playerHouse[index].GetComponent<House>();
+            if (NavMesh.SamplePosition(playerHouse[index].transform.position, out hit, samplePositionDistance, NavMesh.AllAreas))
+            {
+                agent.SetDestination(hit.position);
+                remainingDistance = agent.remainingDistance;    //인스펙터 확인용
+            }
         }
+
+        //if (enemyState != EnemyState.Chasing && enemyState != EnemyState.AttackPlayer && enemyState != EnemyState.AttackHouse)
+        //{
+        //    enemyState = EnemyState.Move;
+        //}
 
         switch (enemyState)
         {
@@ -72,8 +90,11 @@ public class Enemy : MonoBehaviour, IDamagable
             case EnemyState.Chasing:
                 ChasePlayer();
                 break;
-            case EnemyState.Attacking:
+            case EnemyState.AttackPlayer:
                 AttackPlayer();
+                break;            
+            case EnemyState.AttackHouse:
+                AttackHouse();
                 break;
         }
     }
@@ -93,49 +114,47 @@ public class Enemy : MonoBehaviour, IDamagable
     }
     public void MoveToHouse()
     {
-        //speed = 0.5f;
+
+        speed = 0.5f;
         agent.isStopped = false;
         animator.SetBool("IsWalk", true);
         animator.SetBool("IsChase", false);
         animator.SetBool("IsAttack", false);
-        agent.SetDestination(playerHouse[0].transform.position);
-        //NavMeshHit hit;
-        //if (NavMesh.SamplePosition(playerHouse.transform.position, out hit, samplePositionDistance, NavMesh.AllAreas))
-        //{
-        //    agent.SetDestination(hit.position);
-        //}
+        //agent.SetDestination(playerHouse[0].transform.position);
+        
+        if (NavMesh.SamplePosition(playerHouse[index].transform.position, out hit, samplePositionDistance, NavMesh.AllAreas))
+        {
+            agent.SetDestination(hit.position);
+            remainingDistance = agent.remainingDistance;    //인스펙터 확인용
+        }
         if (playerDistance < detectedDistance)
         {
             enemyState = EnemyState.Chasing;
             return;
         }
         //건물에 도착하면
-        if (Vector3.Distance(transform.position,playerHouse[0].transform.position)  < attackDistance)
+        //if (agent.remainingDistance < attackDistance)
+        if (Vector3.Distance(transform.position, hit.position) < attackDistance)
         {
-            agent.isStopped = true;
-            if (Time.time > lastAttackTime + attackCooldown)
-            {
-                lastAttackTime = Time.time;
-                animator.SetBool("IsWalk", false);
-                animator.SetBool("IsChase", false);
-                animator.SetBool("IsAttack", true);
-                house.TakeDamage(atk);
-            }
+            enemyState = EnemyState.AttackHouse;
+            return;
         }
+
     }
 
     public void ChasePlayer()
     {
         agent.isStopped = false;
-        //speed = 1f;
+        speed = 1f;
         LookAtPlayer();
         animator.SetBool("IsWalk", false);
         animator.SetBool("IsChase", true);
         animator.SetBool("IsAttack", false);
         agent.SetDestination(player.transform.position);
+        remainingDistance = agent.remainingDistance;    //인스펙터 확인용
         if (playerDistance < attackDistance)
         {
-            enemyState = EnemyState.Attacking;
+            enemyState = EnemyState.AttackPlayer;
             return;
         }
         if (playerDistance > chaseMaxDistance)
@@ -154,7 +173,8 @@ public class Enemy : MonoBehaviour, IDamagable
             enemyState = EnemyState.Chasing;
             return;
         }
-        if(Time.time > lastAttackTime + attackCooldown)
+
+        if (Time.time > lastAttackTime + attackCooldown)
         {
             lastAttackTime = Time.time;
             animator.SetBool("IsWalk", false);
@@ -165,6 +185,29 @@ public class Enemy : MonoBehaviour, IDamagable
             {
                 damagable.TakePhysicalDamage(atk);
             }
+        }
+    }
+
+    public void AttackHouse()
+    {
+        agent.isStopped = true;
+        if (playerDistance < detectedDistance)
+        {
+            enemyState = EnemyState.Chasing;
+            return;
+        }
+        if (Vector3.Distance(transform.position, hit.position) > attackDistance)
+        {
+            enemyState = EnemyState.Move;
+            return;
+        }
+        if (Time.time > lastAttackTime + attackCooldown)
+        {
+            lastAttackTime = Time.time;
+            animator.SetBool("IsWalk", false);
+            animator.SetBool("IsChase", false);
+            animator.SetBool("IsAttack", true);
+            house.TakeDamage(atk);
         }
     }
 

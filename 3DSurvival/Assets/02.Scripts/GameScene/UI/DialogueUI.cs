@@ -10,6 +10,8 @@ public class DialogueUI : MonoBehaviour
     [Header("대화창 & 텍스트")]
     public GameObject dialogue;      // 대화창 전체 
     public TextMeshProUGUI dialogueText;  // 대사 텍스트
+    public float typingSpeed = 0.05f;     // 대사 타이핑 속도
+    private Coroutine typingRoutine; //진행중인 타이핑 코루틴 
 
     [Header("선택지 버튼")]
     public GameObject selectBtn1;    // 선택지 버튼 1
@@ -20,7 +22,6 @@ public class DialogueUI : MonoBehaviour
 
     [Header("식사 대접하기")]
     //버튼 누르면 인벤토리 열림
-    //문제는... 어떻게 끄는가 / 켜져 있을 때 다른 대화창을 어떻게 할 것인가 
     public GameObject Inventory;//식사 제공 버튼. 누르면 인벤토리 나옴
 
 
@@ -28,6 +29,8 @@ public class DialogueUI : MonoBehaviour
     private Button btn2;
     private TextMeshProUGUI btn1Text;
     private TextMeshProUGUI btn2Text;
+
+
 
     private void Awake()
     {
@@ -54,7 +57,20 @@ public class DialogueUI : MonoBehaviour
     //대사 텍스트 변경할 때 호출
     public void SetDialogueText(string txt)
     {
-        dialogueText.text = txt;
+
+        typingRoutine = StartCoroutine(TextCoroutine(txt));
+    }
+
+    //문자열을 한 글자씩 나타내는 코루틴
+    private IEnumerator TextCoroutine(string txt)
+    {
+        dialogueText.text = "";//텍스트 초기화
+        foreach(char c in txt)
+        {
+            dialogueText.text += c;//한 글자씩 추가
+            yield return new WaitForSeconds(typingSpeed);
+        }
+        typingRoutine = null;//이제 진행중인 타이핑 코루틴 없다(대사 종료)
     }
 
     //선택지 버튼 보이기
@@ -99,6 +115,8 @@ public class DialogueUI : MonoBehaviour
     }
     public void FeedOn()
     {
+        //InventoryManager.Instance.InventoryBG.SetActive(false);
+        //InventoryManager.Instance.SeonbiBG.SetActive(true);
         Inventory.SetActive(true);
         dialogue.SetActive(false);
     }

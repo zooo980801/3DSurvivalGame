@@ -70,12 +70,12 @@ public class EquipTool : Equip
         }
         else if (Physics.Raycast(ray, out hit, attackDistance))
         {
-            //자원 수집 처리
-            if (doesGatherResources && hit.collider.TryGetComponent(out Resource resource))
-            {
-                string currentToolId = (toolItemData != null) ? toolItemData.id : "";
-                resource.Gather(hit.point, hit.normal, currentToolId);
-            }
+            // //자원 수집 처리
+            // if (doesGatherResources && hit.collider.TryGetComponent(out Resource resource))
+            // {
+            //     string currentToolId = (toolItemData != null) ? toolItemData.id : "";
+            //     resource.Gather(hit.point, hit.normal, currentToolId);
+            // }
 
             //적 공격 처리
             if (doesDealDamage && hit.collider.TryGetComponent(out IDamagable target))

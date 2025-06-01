@@ -56,6 +56,7 @@ public class InventoryUI : MonoBehaviour
 
     private void Start()
     {
+        
         _playerStatus = CharacterManager.Instance.Player.status;
         Seonbi.Hunger.onValueChanged += SeonbiStatusUI;
         Seonbi.Thirst.onValueChanged += ChangedSlot;
@@ -68,7 +69,6 @@ public class InventoryUI : MonoBehaviour
         controller.inventory += Toggle;
         ClearSelectedItemWindow();
         inventoryWindow.SetActive(false);
-        
     }
 
     public void SelectItemBtnUI(int idx) //찾은(눌린)아이템 에 대한 버튼UI

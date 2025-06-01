@@ -109,6 +109,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Meat1
       objectReference: {fileID: 0}
+    - target: {fileID: 6069844887605053465, guid: 2c53fbdb3e9a9ce42b34631394511fb7, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 6879173013696926371, guid: 2c53fbdb3e9a9ce42b34631394511fb7, type: 3}
       propertyPath: m_LocalScale.x
       value: 1.5

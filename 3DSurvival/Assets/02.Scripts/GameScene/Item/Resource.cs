@@ -6,11 +6,10 @@ public class Resource : MonoBehaviour
 {
     public ItemData itemToGive;
     public int quantityPerHit = 1; // 기본 획득량
-    public int capacity;
+    public int capacity = 5; // 총 용량
 
     [Header("Bonus Resources with Specific Tools")]
-    public ItemData bonusItemToGive; // 추가로 줄 아이템
-    public int bonusQuantityOnToolUse = 2; // 특정 도구 사용 시 추가 획득량
+    public int bonusQuantityOnToolUse = 1; // 특정 도구 사용 시 추가 획득량
 
     public void Gather(Vector3 hitPoint, Vector3 hitNormal, string toolIDUsed)
     {
@@ -20,17 +19,17 @@ public class Resource : MonoBehaviour
         if (capacity > 0)
         {
             // 특정 도구 사용 시 추가 획득 조건
-            if (bonusItemToGive != null && bonusQuantityOnToolUse > 0)
+            if (itemToGive != null && bonusQuantityOnToolUse > 0)
             {
-                // 도끼(ID: "tool_axe")로 나무("Tree" 태그)를 쳤을 때
+                // 도끼로 나무를 쳤을 때
                 if (toolIDUsed == "10" && this.CompareTag("Tree"))
                 {
-                    DropItem(bonusItemToGive, bonusQuantityOnToolUse, hitPoint, hitNormal);
+                    DropItem(itemToGive, bonusQuantityOnToolUse, hitPoint, hitNormal);
                 }
-                // 곡괭이(ID: "tool_pickaxe")로 돌("Rock" 태그)을 쳤을 때
+                // 곡괭이로 돌을 쳤을 때
                 else if (toolIDUsed == "11" && this.CompareTag("Rock"))
                 {
-                    DropItem(bonusItemToGive, bonusQuantityOnToolUse, hitPoint, hitNormal);
+                    DropItem(itemToGive, bonusQuantityOnToolUse, hitPoint, hitNormal);
                 }
             }
         }
@@ -44,5 +43,10 @@ public class Resource : MonoBehaviour
             capacity -= 1;
             Instantiate(itemData.dropPrefab, hitPoint + Vector3.up, Quaternion.LookRotation(hitNormal, Vector3.up));
         }
+    }
+
+    public void ResetCapacity()
+    {
+        capacity = 5;
     }
 }

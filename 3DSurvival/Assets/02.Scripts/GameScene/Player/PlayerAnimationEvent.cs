@@ -10,7 +10,7 @@ public class PlayerAnimationEvent : MonoBehaviour
     {
         if (playerAttack != null)
         {
-            playerAttack.OnPunch();
+            //playerAttack.OnPunch();
         }
     }
 }

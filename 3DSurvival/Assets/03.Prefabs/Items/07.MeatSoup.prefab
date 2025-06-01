@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 298938554341944190}
   - component: {fileID: 6416183179912601693}
   - component: {fileID: 4479985806160923655}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: 07.MeatSoup
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -109,6 +109,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Ramen_Shoyu_02_Free
       objectReference: {fileID: 0}
+    - target: {fileID: 4532680964238722738, guid: b67ab9b21a2afd242874c2e8fc060cae, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 6142691113509039583, guid: b67ab9b21a2afd242874c2e8fc060cae, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 6464899924777210265, guid: b67ab9b21a2afd242874c2e8fc060cae, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -171,6 +179,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Ramen_Bow_01_Free
       objectReference: {fileID: 0}
+    - target: {fileID: 4247630783476154325, guid: 923556c084868dc4491066a08e4be034, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 7992506398187603631, guid: 923556c084868dc4491066a08e4be034, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.5
@@ -227,6 +239,10 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7995516947196977651, guid: 923556c084868dc4491066a08e4be034, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
@@ -254,6 +270,10 @@ PrefabInstance:
     - target: {fileID: 2411625152465041856, guid: 2fe95f2e5d24a1943b1f5619d2488e0b, type: 3}
       propertyPath: m_Name
       value: Ramen_GreenOnion_05_Free
+      objectReference: {fileID: 0}
+    - target: {fileID: 2411625152465041856, guid: 2fe95f2e5d24a1943b1f5619d2488e0b, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 5772652982099117497, guid: 2fe95f2e5d24a1943b1f5619d2488e0b, type: 3}
       propertyPath: m_LocalPosition.x
@@ -294,6 +314,10 @@ PrefabInstance:
     - target: {fileID: 5772652982099117497, guid: 2fe95f2e5d24a1943b1f5619d2488e0b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9190012589883137309, guid: 2fe95f2e5d24a1943b1f5619d2488e0b, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

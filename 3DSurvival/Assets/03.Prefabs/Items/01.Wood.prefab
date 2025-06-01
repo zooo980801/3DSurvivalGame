@@ -109,6 +109,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_AFS_Log10_LowEndPC
       objectReference: {fileID: 0}
+    - target: {fileID: 7215446796151021784, guid: f90b0c6cb322a0c4abac04b5052be846, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 8028152377221560930, guid: f90b0c6cb322a0c4abac04b5052be846, type: 3}
       propertyPath: m_LocalScale.x
       value: 1.5

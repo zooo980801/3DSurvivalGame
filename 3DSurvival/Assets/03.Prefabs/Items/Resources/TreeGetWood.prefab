@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 1498414728793232134}
   m_Layer: 11
   m_Name: TreeGetWood
-  m_TagString: Rock
+  m_TagString: Tree
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

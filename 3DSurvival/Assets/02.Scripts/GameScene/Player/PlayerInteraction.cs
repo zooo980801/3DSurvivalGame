@@ -13,13 +13,13 @@ public class PlayerInteraction : MonoBehaviour
     private IInteractable curInteractable;
 
     [SerializeField] private TextMeshProUGUI promptText;
-    private Camera camera;
+    private Camera _camera;
 
     private PlayerController controller;
 
     void Start()
     {
-        camera = Camera.main;
+        _camera = Camera.main;
         controller = GetComponent<PlayerController>();
     }
 
@@ -29,7 +29,7 @@ public class PlayerInteraction : MonoBehaviour
         {
             lastCheckTime = Time.time;
 
-            Ray ray = new Ray(controller.CameraContainer.position, camera.transform.forward);
+            Ray ray = new Ray(controller.CameraContainer.position, _camera.transform.forward);
 
             RaycastHit hit;
             if (Physics.Raycast(ray, out hit, maxCheckDistance, layerMask))

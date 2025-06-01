@@ -28,7 +28,7 @@ public class Enemy : MonoBehaviour, IDamagable
     public ItemData[] dropOnDeath;
 
     public GameObject target;
-    public GameObject playerHouse;
+    public GameObject[] playerHouse;
     public House house;
     public float samplePositionDistance = 0f;
     public GameObject player;
@@ -43,7 +43,7 @@ public class Enemy : MonoBehaviour, IDamagable
     {
         agent = GetComponent<NavMeshAgent>();
         animator = GetComponent<Animator>();
-        house = FindObjectOfType<House>();
+        //house = FindObjectOfType<House>();
 
         dropOnDeath[0] = ItemDatabase.Instance.items[0];    //아이템 책
         dropOnDeath[1] = ItemDatabase.Instance.items[4];    //아이템 야채
@@ -98,7 +98,7 @@ public class Enemy : MonoBehaviour, IDamagable
         animator.SetBool("IsWalk", true);
         animator.SetBool("IsChase", false);
         animator.SetBool("IsAttack", false);
-        agent.SetDestination(playerHouse.transform.position);
+        agent.SetDestination(playerHouse[0].transform.position);
         //NavMeshHit hit;
         //if (NavMesh.SamplePosition(playerHouse.transform.position, out hit, samplePositionDistance, NavMesh.AllAreas))
         //{
@@ -110,7 +110,7 @@ public class Enemy : MonoBehaviour, IDamagable
             return;
         }
         //건물에 도착하면
-        if (Vector3.Distance(transform.position,playerHouse.transform.position)  < attackDistance)
+        if (Vector3.Distance(transform.position,playerHouse[0].transform.position)  < attackDistance)
         {
             agent.isStopped = true;
             if (Time.time > lastAttackTime + attackCooldown)

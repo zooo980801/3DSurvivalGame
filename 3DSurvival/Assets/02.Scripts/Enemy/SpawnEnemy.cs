@@ -5,7 +5,6 @@ using UnityEngine;
 
 public class SpawnEnemy : MonoBehaviour
 {
-    public List<GameObject> enemyPrefabs;
     [Header("스폰장소")]
     public Transform spawnCenter;       //원 중심 위치(플레이어 집)
     public Terrain terrain;
@@ -18,7 +17,8 @@ public class SpawnEnemy : MonoBehaviour
     public int spawnStartTime = 13;
     public int spawnEndTime = 22;
     [Header("스폰에너미")]
-    public GameObject playerHouse;   //생성돼서 향하는 타겟
+    public List<GameObject> enemyPrefabs;
+    public GameObject[] playerHouse;   //생성돼서 향하는 타겟
     public GameObject player;   //플레이어
     private Enemy controller;
 
@@ -53,6 +53,14 @@ public class SpawnEnemy : MonoBehaviour
                 controller = enemy.GetComponent<Enemy>();
                 controller.playerHouse = playerHouse;
                 controller.player = player;
+                for(int i = 0;  i < playerHouse.Length; i++)
+                {
+                    if (playerHouse[i] != null)
+                    {
+                        controller.house = playerHouse[i].GetComponent<House>();
+                        break;
+                    }
+                }
 
                 curTime = Time.time;
             }

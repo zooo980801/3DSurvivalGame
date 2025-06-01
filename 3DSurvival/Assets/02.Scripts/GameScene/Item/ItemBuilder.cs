@@ -4,16 +4,14 @@ using UnityEngine;
 
 public class ItemBuilder : MonoBehaviour
 {
-    public GameObject placeablePrefab;     // 설치할 프리팹
+    public ItemData item;     // 설치할 아이템
     public float placeDistance = 2f;       // 설치 위치: 플레이어 앞 몇 미터
 
-    public void InstallItem()
+    public void BuildingItem()
     {
-        if (placeablePrefab == null) return;
+        if (item == null) return;
 
         Vector3 placePos = transform.position + transform.forward * placeDistance;
-        
-
-        Instantiate(placeablePrefab, placePos, Quaternion.identity);
+        Instantiate(item.dropPrefab, placePos, Quaternion.identity);
     }
 }

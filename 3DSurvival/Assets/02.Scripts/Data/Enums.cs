@@ -19,8 +19,9 @@ public enum ITEMTYPE
     CRAFT,
 }
 
-public enum MATERIALTYPE
+public enum SLOTTYPE
 {
-   WOOD,
-   STONE,
+    RECIPE,
+    INVENTORY,
+    EQUIPMENT
 }

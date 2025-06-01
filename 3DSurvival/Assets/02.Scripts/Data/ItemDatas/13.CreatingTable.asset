@@ -15,7 +15,7 @@ MonoBehaviour:
   id: 13
   displayName: "\uC81C\uC791\uB300"
   description: "\uB2E4\uC591\uD55C \uBB3C\uD488\uC744 \uB9CC\uB4E4 \uC218 \uC788\uB2E4."
-  type: 3
+  type: 0
   icon: {fileID: 1322324753, guid: 7c0facc69470ed24c90abf630334ad18, type: 3}
   dropPrefab: {fileID: 0}
   canStack: 0
@@ -25,5 +25,4 @@ MonoBehaviour:
   currentDurability: 0
   consumables: []
   equipPrefab: {fileID: 0}
-  materials: []
   resultItems: []

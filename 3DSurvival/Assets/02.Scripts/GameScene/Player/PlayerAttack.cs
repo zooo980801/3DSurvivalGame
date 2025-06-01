@@ -15,32 +15,41 @@ public class PlayerAttack : MonoBehaviour
     private PlayerController controller;
     private PlayerStatus status;
     private PlayerAnimationHandler animationHandler;
+    private PlayerSoundHandler soundHandler;
 
     private Camera camera;
-
+    private Equip hand;
     void Start()
     {
         controller = GetComponent<PlayerController>();
         status = GetComponent<PlayerStatus>();
         animationHandler = GetComponent<PlayerAnimationHandler>();
-
+        soundHandler = GetComponent<PlayerSoundHandler>();
         camera = Camera.main;
+
+        hand = Instantiate(CharacterManager.Instance.Player.hand.equipPrefab, equipParent).GetComponent<Equip>();
+        curEquip = hand;
     }
 
     public void EquipNew(ItemData data)
     {
         UnEquip();
-        // 장비 장착
+
+        curEquip = Instantiate(data.equipPrefab, equipParent).GetComponent<Equip>();
+
+        //if (curEquip is EquipTool tool)
+        //    tool.toolItemData = data;
+        //// 장비 장착
 
     }
 
     public void UnEquip()
     {
         // 장비 해제
-        if (curEquip != null)
+        if (curEquip != hand)
         {
             Destroy(curEquip.gameObject);
-            curEquip = null;
+            curEquip = hand;
         }
     }
 
@@ -48,16 +57,17 @@ public class PlayerAttack : MonoBehaviour
     {
         if (context.phase == InputActionPhase.Performed &&controller.canLook)
         {
-            if (curEquip == null)
-            {
-                // 장비가 없을 경우
-                Attack();
-            }
-            else
-            {
-                // 장비가 있을 경우
-                curEquip.OnAttackInput();
-            }
+            curEquip.OnAttackInput();
+            //if (curEquip == null)
+            //{
+            //    // 장비가 없을 경우
+            //    Attack();
+            //}
+            //else
+            //{
+            //    // 장비가 있을 경우
+            //    curEquip.OnAttackInput();
+            //}
         }
     }
 
@@ -83,6 +93,9 @@ public class PlayerAttack : MonoBehaviour
 
     public void OnPunch()
     {
+        soundHandler.AttackGruntSound();
+        soundHandler.PunchSound();
+
         Ray ray = new Ray(controller.CameraContainer.position, camera.transform.forward);
 
         RaycastHit hit;

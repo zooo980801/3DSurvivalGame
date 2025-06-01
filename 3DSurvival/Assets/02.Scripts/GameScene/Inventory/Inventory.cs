@@ -8,9 +8,17 @@ public class Inventory : MonoBehaviour
 {
     private SlotPanel _slotPanel;
     public SlotPanel slotPanel{get{return _slotPanel;}set{_slotPanel = value;}}
-    public ItemData selectedItem;
+    
+    private SLOTTYPE _selectedSlotType;
+    public SLOTTYPE SelectedSlotType{get{return _selectedSlotType;}set{_selectedSlotType = value;}}
+    
+    private InventoryUI _inventoryUI;
+    public InventoryUI InventoryUI{get{return _inventoryUI;}set{_inventoryUI=value;}}
+    
     private int selectedIdx;
     public int SelectedIdx{get{return selectedIdx;}set{selectedIdx=value;}}
+    
+    public ItemData selectedItem;
     public Transform dropPosition;
 
     void Awake()
@@ -27,27 +35,83 @@ public class Inventory : MonoBehaviour
     //     }
     // }
 
-    public void SelectItem(int idx)
+    public void SelectItem(int idx,SLOTTYPE slotType)
     {
-        if (slotPanel.itemSlots[idx].item == null) return;
+        switch (slotType)
+        {
+            case SLOTTYPE.INVENTORY:
+                SelectItemFromInventory(idx);
+                InventoryUI.SelectItemBtnUI(idx);
+                break;
+            case SLOTTYPE.RECIPE:
+                SelectItemFromRecipe(idx);
+                break;
+            case SLOTTYPE.EQUIPMENT:
+                SelectItemFromEquipment(idx);
+                break;
+        }
+        _selectedSlotType = slotType;
+    }
 
-        selectedItem = slotPanel.itemSlots[idx].item;
+    public void SelectItemFromInventory(int idx)
+    {
+        ItemSlot selectSlot = slotPanel.inventorySlots[idx];
+        if (selectSlot.item == null)return;
+        
+        selectedItem = selectSlot.item;
         selectedIdx = idx;
-
-        InventoryManager.Instance.InventoryUI.SelectItemUI(idx);//버튼,UI 아이템에따라 활성화
+ 
+    }
+    public void SelectItemFromRecipe(int idx)
+    {
+        ItemSlot selectSlot = slotPanel.recipeSlots[idx];
+        if (selectSlot.item == null)return;
+        
+        selectedItem = selectSlot.item;
+        selectedIdx = idx;
+ 
+    }
+    public void SelectItemFromEquipment(int idx)//장비창인덱스
+    {
+        ItemSlot selectSlot = slotPanel.equipmentSlots[idx];
+        if (selectSlot.item == null || selectSlot.item == null)return;
+        
+        selectedItem = selectSlot.item;
+        selectedIdx = idx;
+ 
     }
     public void RemoveSelectedItem()
     {
-        slotPanel.itemSlots[selectedIdx].quantity--;
-        if (slotPanel.itemSlots[selectedIdx].quantity <= 0)
+        switch (_selectedSlotType)
         {
-            selectedItem = null;
-            slotPanel.itemSlots[selectedIdx].item = null;
-            selectedIdx = -1;
-            InventoryManager.Instance.InventoryUI.ClearSelectedItemWindow();
+            case SLOTTYPE.INVENTORY:
+                var slot = slotPanel.inventorySlots[selectedIdx];
+                slot.quantity--;
+                if (slot.quantity <= 0)
+                {
+                    slot.item = null;
+                    selectedItem = null;
+                    selectedIdx = -1;
+                }
+                break;
+
+            case SLOTTYPE.RECIPE:
+                // 레시피는 일반적으로 삭제하지 않음
+                Debug.LogWarning("레시피 슬롯에서 삭제는 허용되지 않습니다.");
+                return;
+
+            case SLOTTYPE.EQUIPMENT:
+                var equipSlot = slotPanel.equipmentSlots[selectedIdx];
+                equipSlot.item = null;
+                equipSlot.quantity = 0;
+                equipSlot.equipped = false;
+                selectedItem = null;
+                selectedIdx = -1;
+                break;
         }
 
-        InventoryManager.Instance.InventoryUI.UIUpdate();
+        InventoryUI.ClearSelectedItemWindow();
+        InventoryUI.UIUpdate();
     }
     public void ThrowItem(ItemData data)
     {
@@ -55,7 +119,7 @@ public class Inventory : MonoBehaviour
     }
     public void RemoveItemByName(string name, int count)//설계도에서 사용할 이름으로 아이템지우기
     {
-        foreach (var slot in slotPanel.itemSlots)
+        foreach (var slot in slotPanel.inventorySlots)
         {
             if (slot.item != null && slot.item.displayName == name)
             {
@@ -66,7 +130,7 @@ public class Inventory : MonoBehaviour
                     {
                         slot.item = null;
                     }
-                    InventoryManager.Instance.InventoryUI.UIUpdate();
+                    InventoryUI.UIUpdate();
                     return;
                 }
             }
@@ -76,9 +140,9 @@ public class Inventory : MonoBehaviour
     {
         data.inventoryItems.Clear();
 
-        for (int i = 0; i < slotPanel.itemSlots.Length; i++)
+        for (int i = 0; i < slotPanel.inventorySlots.Length; i++)
         {
-            var slot = slotPanel.itemSlots[i];
+            var slot = slotPanel.inventorySlots[i];
             if (slot.item != null)
             {
                 SavedItem savedItem = new SavedItem
@@ -110,7 +174,7 @@ public class Inventory : MonoBehaviour
         Debug.Log($"로드 시작 - 저장된 아이템 수: {data.inventoryItems.Count}");
 
         // 모든 슬롯 초기화
-        foreach (var slot in slotPanel.itemSlots)
+        foreach (var slot in slotPanel.inventorySlots)
         {
             slot.Clear();
             slot.equipped = false;
@@ -119,12 +183,12 @@ public class Inventory : MonoBehaviour
         // 아이템 로드
         foreach (var savedItem in data.inventoryItems)
         {
-            if (savedItem.slotIndex < slotPanel.itemSlots.Length)
+            if (savedItem.slotIndex < slotPanel.inventorySlots.Length)
             {
                 ItemData itemData = ItemDatabase.Instance?.GetItemById(savedItem.itemId);
                 if (itemData != null)
                 {
-                    var slot = slotPanel.itemSlots[savedItem.slotIndex];
+                    var slot = slotPanel.inventorySlots[savedItem.slotIndex];
                     slot.item = itemData;
                     slot.quantity = savedItem.amount;
                     slot.equipped = savedItem.equipped;
@@ -145,8 +209,8 @@ public class Inventory : MonoBehaviour
         // UI 갱신
         selectedItem = null;
         selectedIdx = -1;
-        InventoryManager.Instance.InventoryUI.ClearSelectedItemWindow();
-        InventoryManager.Instance.InventoryUI.UIUpdate();
+        InventoryUI.ClearSelectedItemWindow();
+        InventoryUI.UIUpdate();
     }
 
 

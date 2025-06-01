@@ -24,3 +24,5 @@ MonoBehaviour:
   maxDurability: 30
   currentDurability: 0
   consumables: []
+  equipPrefab: {fileID: 1519577255529602414, guid: a3eb4ef4211f42547a5f9529ed33ab3c, type: 3}
+  resultItems: []

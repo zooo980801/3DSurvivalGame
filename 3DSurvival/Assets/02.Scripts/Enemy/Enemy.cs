@@ -18,19 +18,23 @@ public class Enemy : MonoBehaviour, IDamagable
     public float speed;
 
     public EnemyState enemyState;
-    public float playerDistance;    //타겟과의 거리
+    public float playerDistance;    //플레이어와의 거리
     public float detectedDistance = 10f;  //감지 거리
     public float chaseMaxDistance = 15f;     //추격가능한 거리
-    public float attackDistance = 1f;
+    public float attackDistance = 2f;
     public float attackCooldown = 1.5f;
     public float lastAttackTime;
+    public float lookAtSpeed = 5f;
     public ItemData[] dropOnDeath;
 
     public GameObject target;
     public GameObject playerHouse;
+    public House house;
+    public float samplePositionDistance = 0f;
     public GameObject player;
     private NavMeshAgent agent;
     private Animator animator;
+
 
     public StatusData hp;
 
@@ -39,8 +43,10 @@ public class Enemy : MonoBehaviour, IDamagable
     {
         agent = GetComponent<NavMeshAgent>();
         animator = GetComponent<Animator>();
-        dropOnDeath[0] = ItemDatabase.Instance.items[0];
-        dropOnDeath[1] = ItemDatabase.Instance.items[4];
+        house = FindObjectOfType<House>();
+
+        dropOnDeath[0] = ItemDatabase.Instance.items[0];    //아이템 책
+        dropOnDeath[1] = ItemDatabase.Instance.items[4];    //아이템 야채
     }
 
     // Update is called once per frame
@@ -71,27 +77,58 @@ public class Enemy : MonoBehaviour, IDamagable
                 break;
         }
     }
+    public void LookAtPlayer()
+    {
+        // 높이 맞추기
+        Vector3 targetPos = player.transform.position;
+        targetPos.y = transform.position.y;
 
+        // 회전 계산
+        Quaternion targetRot = Quaternion.LookRotation(targetPos - transform.position);
+        transform.rotation = Quaternion.Slerp(
+            transform.rotation,
+            targetRot,
+            Time.deltaTime * lookAtSpeed
+        );
+    }
     public void MoveToHouse()
     {
-        speed = 0.5f;
+        //speed = 0.5f;
+        agent.isStopped = false;
         animator.SetBool("IsWalk", true);
         animator.SetBool("IsChase", false);
         animator.SetBool("IsAttack", false);
         agent.SetDestination(playerHouse.transform.position);
+        //NavMeshHit hit;
+        //if (NavMesh.SamplePosition(playerHouse.transform.position, out hit, samplePositionDistance, NavMesh.AllAreas))
+        //{
+        //    agent.SetDestination(hit.position);
+        //}
         if (playerDistance < detectedDistance)
         {
             enemyState = EnemyState.Chasing;
             return;
         }
         //건물에 도착하면
-        //멈춰서
-        //건물에 데미지
+        if (Vector3.Distance(transform.position,playerHouse.transform.position)  < attackDistance)
+        {
+            agent.isStopped = true;
+            if (Time.time > lastAttackTime + attackCooldown)
+            {
+                lastAttackTime = Time.time;
+                animator.SetBool("IsWalk", false);
+                animator.SetBool("IsChase", false);
+                animator.SetBool("IsAttack", true);
+                house.TakeDamage(atk);
+            }
+        }
     }
 
     public void ChasePlayer()
     {
-        speed = 1f;
+        agent.isStopped = false;
+        //speed = 1f;
+        LookAtPlayer();
         animator.SetBool("IsWalk", false);
         animator.SetBool("IsChase", true);
         animator.SetBool("IsAttack", false);
@@ -110,7 +147,8 @@ public class Enemy : MonoBehaviour, IDamagable
 
     public void AttackPlayer()
     {
-        speed = 0f;
+        agent.isStopped = true;
+        LookAtPlayer();
         if (playerDistance > attackDistance)
         {
             enemyState = EnemyState.Chasing;
@@ -144,8 +182,8 @@ public class Enemy : MonoBehaviour, IDamagable
         {
             for (int i = 0; i < dropOnDeath.Length; i++)
             {
-                Instantiate(dropOnDeath[i]/*,transform.position, Quaternion.identity*/);
-                Debug.Log($"drop {i}");
+                Instantiate(dropOnDeath[i].dropPrefab, transform.position, Quaternion.Euler(Vector3.one * Random.value * 360));
+                Debug.Log($"drop {dropOnDeath[i].displayName}");
             }
         }
         Destroy(gameObject);

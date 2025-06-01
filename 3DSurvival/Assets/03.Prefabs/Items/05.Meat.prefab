@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 7860469420866541719}
   - component: {fileID: 5147293540642987891}
   - component: {fileID: 7394166222410330596}
+  - component: {fileID: 165925375865779796}
   m_Layer: 8
   m_Name: 05.Meat
   m_TagString: Untagged
@@ -68,6 +69,34 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   data: {fileID: 11400000, guid: 1f9a2e06c7f85264b919d39253bb4c34, type: 2}
+  quantity: 1
+--- !u!54 &165925375865779796
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5689431944321795660}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1001 &6774168572591216772
 PrefabInstance:
   m_ObjectHideFlags: 0

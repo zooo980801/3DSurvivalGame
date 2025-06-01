@@ -15,7 +15,7 @@ MonoBehaviour:
   id: 14
   displayName: "\uC6B8\uD0C0\uB9AC"
   description: "\uC801\uC758 \uC774\uB3D9\uACBD\uB85C\uB97C \uBC29\uD574\uD55C\uB2E4."
-  type: 3
+  type: 0
   icon: {fileID: 806955922, guid: 7c0facc69470ed24c90abf630334ad18, type: 3}
   dropPrefab: {fileID: 0}
   canStack: 1
@@ -24,3 +24,5 @@ MonoBehaviour:
   maxDurability: 0
   currentDurability: 0
   consumables: []
+  equipPrefab: {fileID: 0}
+  resultItems: []

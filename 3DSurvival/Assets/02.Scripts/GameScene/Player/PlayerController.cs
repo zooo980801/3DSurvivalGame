@@ -11,12 +11,15 @@ public class PlayerController : MonoBehaviour
     [Header("Move")]
     [SerializeField] private float walkSpeed;   // 플레이어 걷기 속도
     [SerializeField] private float runSpeed;    // 플레이어 달리기 속도
+    [SerializeField] private float runStamina;  // 플레이어 달리기 스테미나
     [SerializeField] private float jumpPower;   // 플레이어 점프력
+    [SerializeField] private float jumpStamina; // 플레이어 점프 스테미나
     [SerializeField] private LayerMask groundLayer; // 바닥 체크를 위한 레이어마스크
     private float moveSpeed;   // 플레이어에 적용될 이동 속도
     private Vector2 moveDirection;              // 이동 방향 
     private bool isMove = false;                // 움직이는지 여부
     private bool wasGrounded = true;            // 바닥이였는지 여부
+    private bool isRunning = false;             // 달리기 중 여부
 
     public float MoveSpeed { get { return moveSpeed; } set { moveSpeed = value; } }
     public float WalkSpeed { get { return walkSpeed; } }
@@ -40,6 +43,7 @@ public class PlayerController : MonoBehaviour
 
     public Action inventory;
     private Rigidbody _rigidbody;
+    private PlayerStatus status;
     private PlayerAnimationHandler animationHandler;
     private PlayerSoundHandler soundHandler;
     private PlayerInput playerInput;
@@ -47,6 +51,7 @@ public class PlayerController : MonoBehaviour
     private void Awake()
     {
         _rigidbody = GetComponent<Rigidbody>();
+        status = GetComponent<PlayerStatus>();
         animationHandler = GetComponent<PlayerAnimationHandler>();
         soundHandler = GetComponent<PlayerSoundHandler>();
         playerInput = GetComponent<PlayerInput>();
@@ -62,6 +67,17 @@ public class PlayerController : MonoBehaviour
     {
         Movement();     // 플레이어 이동
 
+        if (isRunning)
+        {
+            bool success = status.UseStamina(Time.fixedDeltaTime * runStamina);
+            if (!success)
+            {
+                StopRunning();
+            }
+        }
+
+
+        // 플레이어 점프 애니메이션 종료를 위한 코드
         bool isGrounded = OnGround();
         if (!wasGrounded && isGrounded)
         {
@@ -138,7 +154,7 @@ public class PlayerController : MonoBehaviour
     {
         if (context.phase == InputActionPhase.Started)
         {
-            if (OnGround()) // 플레이어가 바닥에 있을 경우
+            if (OnGround() && status.UseStamina(jumpStamina)) // 플레이어가 바닥에 있을 경우
             {
                 _rigidbody.AddForce(Vector3.up * jumpPower, ForceMode.Impulse); // 점프
                 animationHandler.Jump(true);
@@ -175,7 +191,7 @@ public class PlayerController : MonoBehaviour
     #region 1인칭 3인칭 전환
     public void OnCameraToggle(InputAction.CallbackContext context)
     {
-        if (context.phase == InputActionPhase.Started)
+        if (context.phase == InputActionPhase.Started && status.UseStamina(jumpStamina))
         {
             isFirstPerson = !isFirstPerson;                         // 1인칭 3인칭 시점 전환
             Vector3 pos = mainCamera.localPosition;                 // 현재 카메라 위치 가져오기
@@ -188,21 +204,25 @@ public class PlayerController : MonoBehaviour
     #region 달리기
     public void OnRun(InputAction.CallbackContext context)
     {
-        if (context.phase == InputActionPhase.Performed)
+        if (context.phase == InputActionPhase.Performed && status.Stamina.CurValue > 0f)
         {
             moveSpeed = runSpeed;
             animationHandler.Walk(false);
             animationHandler.Run(true);
+            isRunning = true;
         }
         else if (context.phase == InputActionPhase.Canceled)
         {
-            moveSpeed = walkSpeed;
-            animationHandler.Run(false);
-            if (isMove)
-            {
-                animationHandler.Walk(true);
-            }
+            StopRunning();
         }
+    }
+
+    private void StopRunning()
+    {
+        moveSpeed = walkSpeed;
+        animationHandler.Run(false);
+        if (isMove) animationHandler.Walk(true);
+        isRunning = false;
     }
     #endregion
 

@@ -51,6 +51,8 @@ public class EquipTool : Equip
 
     public void OnHit()
     {
+        CharacterManager.Instance.Player.soundHandler.AttackGruntSound();
+
         Transform cameraContainer = CharacterManager.Instance.Player.controller.CameraContainer;
         Ray ray = new Ray(cameraContainer.position, cameraContainer.forward);
         RaycastHit hit;
@@ -70,12 +72,12 @@ public class EquipTool : Equip
         }
         else if (Physics.Raycast(ray, out hit, attackDistance))
         {
-            // //자원 수집 처리
-            // if (doesGatherResources && hit.collider.TryGetComponent(out Resource resource))
-            // {
-            //     string currentToolId = (toolItemData != null) ? toolItemData.id : "";
-            //     resource.Gather(hit.point, hit.normal, currentToolId);
-            // }
+            //자원 수집 처리
+            if (doesGatherResources && hit.collider.TryGetComponent(out ResourceObj resource))
+            {
+                string currentToolId = (toolItemData != null) ? toolItemData.id : "";
+                resource.Gather(hit.point, hit.normal, currentToolId);
+            }
 
             //적 공격 처리
             if (doesDealDamage && hit.collider.TryGetComponent(out IDamagable target))
@@ -84,5 +86,4 @@ public class EquipTool : Equip
             }
         }
     }
-
 }

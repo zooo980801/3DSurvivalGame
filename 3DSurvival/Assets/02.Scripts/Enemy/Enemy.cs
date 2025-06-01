@@ -49,12 +49,15 @@ public class Enemy : MonoBehaviour, IDamagable
 
 
 
+    private CreatureSoundHandler soundHandler;
+
     // Start is called before the first frame update
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
         animator = GetComponent<Animator>();
         //house = FindObjectOfType<House>();
+        soundHandler = GetComponent<CreatureSoundHandler>();
 
         dropOnDeath[0] = ItemDatabase.Instance.items[0];    //아이템 책
         dropOnDeath[1] = ItemDatabase.Instance.items[4];    //아이템 야채
@@ -243,6 +246,7 @@ public class Enemy : MonoBehaviour, IDamagable
 
     public void TakePhysicalDamage(int damage)
     {
+        soundHandler.DamageSound();
         hp.Subtract(damage);
         Debug.Log("산적 아야");
         //onTakeDamage?.Invoke();     // 데미지를 받았다는 이벤트 발생

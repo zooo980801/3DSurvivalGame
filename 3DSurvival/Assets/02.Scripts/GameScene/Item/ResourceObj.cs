@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Resource : MonoBehaviour
+public class ResourceObj : MonoBehaviour
 {
     public ItemData itemToGive;
     public int quantityPerHit = 1; // 기본 획득량

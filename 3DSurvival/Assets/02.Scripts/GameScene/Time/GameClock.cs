@@ -18,7 +18,8 @@ public class GameClock : MonoBehaviour
     public event Action OnClockChanged;
 
     private float timer; // 시간 누적용 변수
-
+    
+    private ResourceObj[] resources;
     void Start()
     {
         currentHour.onValueChanged += _ => OnClockChanged?.Invoke();
@@ -27,6 +28,9 @@ public class GameClock : MonoBehaviour
 
         if (tenkokuModule == null)
             tenkokuModule = FindObjectOfType<TenkokuModule>();
+
+        //ResourceObj 스크립트가 붙은 오브젝트 탐색
+        resources = UnityEngine.Object.FindObjectsByType<ResourceObj>(FindObjectsInactive.Include, FindObjectsSortMode.None);
     }
 
     void Update()
@@ -46,6 +50,14 @@ public class GameClock : MonoBehaviour
                 if (currentHour.Value == 0)
                 {
                     currentDay.Value += 1;
+                    //리소스아이템(나무,돌) 리셋
+                    foreach (ResourceObj obj in resources)
+                    {
+                        if (obj != null)
+                        {
+                            obj.ResetResource(); // 리셋 실행
+                        }
+                    }
                     OnDayChanged?.Invoke(currentDay);
                 }
             }

@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6001143347689400098}
   - component: {fileID: 8944955646772253139}
+  - component: {fileID: -5486759581836440918}
   m_Layer: 0
   m_Name: Hand
   m_TagString: Untagged
@@ -51,3 +52,24 @@ MonoBehaviour:
   doesDealDamage: 1
   damage: 2
   toolItemData: {fileID: 11400000, guid: ff5a5256497b3464ebfbddd2732d1f70, type: 2}
+--- !u!95 &-5486759581836440918
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2729912654240237763}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 2fb197a15c6a64640baae8bf38949992, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0

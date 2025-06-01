@@ -30,7 +30,7 @@ public class EquipTool : Equip
     {
         if (!attacking && CharacterManager.Instance.Player.status.UseStamina(useStamina))
         {
-            //animator.SetTrigger("Attack");
+            animator.SetTrigger("Attack");
             OnHit();
             StartCoroutine(CanAttackDelay());
             attacking = true;

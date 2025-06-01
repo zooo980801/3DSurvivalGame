@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4311962977650542877}
   - component: {fileID: 3802225680233787980}
+  - component: {fileID: 5533670050054659356}
   m_Layer: 10
   m_Name: 11.EquipPickaxe
   m_TagString: Untagged
@@ -52,6 +53,27 @@ MonoBehaviour:
   doesDealDamage: 1
   damage: 10
   toolItemData: {fileID: 11400000, guid: bbc7d57f49409294ca28b6c82d1f2657, type: 2}
+--- !u!95 &5533670050054659356
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6991080445665920293}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: dea4e9278e4d2514b96017232d4c3bf9, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1001 &9016668806170949154
 PrefabInstance:
   m_ObjectHideFlags: 0

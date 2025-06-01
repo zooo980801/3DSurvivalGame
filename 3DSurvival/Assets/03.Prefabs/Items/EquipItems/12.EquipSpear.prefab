@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3221695323652509929}
   - component: {fileID: 9012979573525006922}
+  - component: {fileID: 6288856622388537206}
   m_Layer: 10
   m_Name: 12.EquipSpear
   m_TagString: Untagged
@@ -52,6 +53,27 @@ MonoBehaviour:
   doesDealDamage: 1
   damage: 20
   toolItemData: {fileID: 11400000, guid: 47e93b7dc9f83c54e89f972ee3bb702b, type: 2}
+--- !u!95 &6288856622388537206
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1519577255529602414}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 6ed6ae904d4a1f541bf1506c8894e92e, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1001 &8979457800937764043
 PrefabInstance:
   m_ObjectHideFlags: 0

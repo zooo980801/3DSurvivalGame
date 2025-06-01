@@ -1,2 +1,0 @@
-# 3DSurvivalGame
-SpartaTeamProject

@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class PlayerAnimationEvent : MonoBehaviour
 {
-    public PlayerAttack playerAttack;
+    public EquipTool punchAttack;
 
     public void AttackHit()
     {
-        if (playerAttack != null)
+        if (punchAttack != null)
         {
-            //playerAttack.OnPunch();
+            punchAttack.OnHit();
         }
     }
 }

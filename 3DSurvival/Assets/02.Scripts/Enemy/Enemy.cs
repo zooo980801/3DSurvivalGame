@@ -15,32 +15,36 @@ public enum EnemyState
 }
 public class Enemy : MonoBehaviour, IDamagable
 {
-    public int atk;
-    public float speed;
+    [Header("Enemy Stat")]
+    public StatusData hp;
 
+    public float speed;
+    [Header("Attack")]
+    public int atk;
+    public float attackDistance = 2f;
+    public float attackCooldown = 1.5f;
+    public float lastAttackTime;
+    public GameObject lookedTarget;
+    public float lookAtSpeed = 5f;
+
+    [Header("Current State")]
     public EnemyState enemyState;
     public float playerDistance;    //플레이어와의 거리
     public float detectedDistance = 10f;  //감지 거리
     public float chaseMaxDistance = 15f;     //추격가능한 거리
-    public float attackDistance = 2f;
-    public float attackCooldown = 1.5f;
-    public float lastAttackTime;
-    public float lookAtSpeed = 5f;
     public ItemData[] dropOnDeath;
+    public float samplePositionDistance = 10f;
 
-    public GameObject target;
     public GameObject[] playerHouse;
     public House house;
-    public float samplePositionDistance = 10f;
     public GameObject player;
+    [SerializeField] private float remainingDistance;
     private NavMeshAgent agent;
     private Animator animator;
     private int index = 0;
-    [SerializeField] private float remainingDistance;
-    NavMeshHit hit;
+    private NavMeshHit hit;
 
 
-    public StatusData hp;
 
     // Start is called before the first frame update
     void Start()
@@ -101,7 +105,7 @@ public class Enemy : MonoBehaviour, IDamagable
     public void LookAtTarget()
     {
         // 높이 맞추기
-        Vector3 targetPos = target.transform.position;
+        Vector3 targetPos = lookedTarget.transform.position;
         targetPos.y = transform.position.y;
 
         // 회전 계산
@@ -146,7 +150,7 @@ public class Enemy : MonoBehaviour, IDamagable
     {
         agent.isStopped = false;
         speed = 1f;
-        target = player;
+        lookedTarget = player;
         LookAtTarget();
         animator.SetBool("IsWalk", false);
         animator.SetBool("IsChase", true);
@@ -168,7 +172,7 @@ public class Enemy : MonoBehaviour, IDamagable
     public void AttackPlayer()
     {
         agent.isStopped = true;
-        target = player;
+        lookedTarget = player;
         LookAtTarget();
         if (playerDistance > attackDistance)
         {
@@ -193,7 +197,7 @@ public class Enemy : MonoBehaviour, IDamagable
     public void AttackHouse()
     {
         agent.isStopped = true;
-        target = playerHouse[index];
+        lookedTarget = playerHouse[index];
         LookAtTarget();
         if (playerDistance < detectedDistance)
         {

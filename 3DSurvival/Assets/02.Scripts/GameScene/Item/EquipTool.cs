@@ -51,8 +51,6 @@ public class EquipTool : Equip
 
     public void OnHit()
     {
-        // 수정
-
         Transform cameraContainer = CharacterManager.Instance.Player.controller.CameraContainer;
         Ray ray = new Ray(cameraContainer.position, cameraContainer.forward);
         RaycastHit hit;

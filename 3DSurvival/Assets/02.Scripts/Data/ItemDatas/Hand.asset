@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 96daef7365f29f640a6906ad837eae36, type: 3}
   m_Name: Hand
   m_EditorClassIdentifier: 
-  id: 
+  id: hand
   displayName: 
   description: 
   type: 1

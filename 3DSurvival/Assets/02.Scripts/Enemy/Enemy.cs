@@ -34,6 +34,9 @@ public class Enemy : MonoBehaviour, IDamagable
     public float chaseMaxDistance = 15f;     //추격가능한 거리
     public ItemData[] dropOnDeath;
     public float samplePositionDistance = 10f;
+    public float chasingMaxTime = 7f;
+    public float chaseStartTime;
+    public bool isAlreadyChase = false;
 
     public GameObject[] playerHouse;
     public House house;
@@ -56,7 +59,7 @@ public class Enemy : MonoBehaviour, IDamagable
         dropOnDeath[0] = ItemDatabase.Instance.items[0];    //아이템 책
         dropOnDeath[1] = ItemDatabase.Instance.items[4];    //아이템 야채
         enemyState = EnemyState.Move;
-        
+
     }
 
     // Update is called once per frame
@@ -80,11 +83,10 @@ public class Enemy : MonoBehaviour, IDamagable
                 remainingDistance = agent.remainingDistance;    //인스펙터 확인용
             }
         }
-
-        //if (enemyState != EnemyState.Chasing && enemyState != EnemyState.AttackPlayer && enemyState != EnemyState.AttackHouse)
-        //{
-        //    enemyState = EnemyState.Move;
-        //}
+        if (playerDistance > detectedDistance)   //디텍거리 밖으로 나가면
+        {
+            isAlreadyChase = false;              //이미 추격했더라도 다시 추격가능
+        }
 
         switch (enemyState)
         {
@@ -96,7 +98,7 @@ public class Enemy : MonoBehaviour, IDamagable
                 break;
             case EnemyState.AttackPlayer:
                 AttackPlayer();
-                break;            
+                break;
             case EnemyState.AttackHouse:
                 AttackHouse();
                 break;
@@ -125,15 +127,16 @@ public class Enemy : MonoBehaviour, IDamagable
         animator.SetBool("IsChase", false);
         animator.SetBool("IsAttack", false);
         //agent.SetDestination(playerHouse[0].transform.position);
-        
+
         if (NavMesh.SamplePosition(playerHouse[index].transform.position, out hit, samplePositionDistance, NavMesh.AllAreas))
         {
             agent.SetDestination(hit.position);
             remainingDistance = agent.remainingDistance;    //인스펙터 확인용
         }
-        if (playerDistance < detectedDistance)
+        if (playerDistance < detectedDistance && !isAlreadyChase)   //평범하게 추격하다가 최대추격 지나서 무브로 왔다면 !isAlreadyChase는 자연스럽게 false
         {
             enemyState = EnemyState.Chasing;
+            chaseStartTime = Time.time;
             return;
         }
         //건물에 도착하면
@@ -148,6 +151,7 @@ public class Enemy : MonoBehaviour, IDamagable
 
     public void ChasePlayer()
     {
+
         agent.isStopped = false;
         speed = 1f;
         lookedTarget = player;
@@ -167,6 +171,21 @@ public class Enemy : MonoBehaviour, IDamagable
             enemyState = EnemyState.Move;
             return;
         }
+        if (Time.time > chaseStartTime + chasingMaxTime)    //최대 추격시간 초과
+        {
+            isAlreadyChase = true;  //최대추격시간 지남 -> 건물내로 숨었을 수 있음
+            Debug.Log("흥 재미없는 녀석");
+            if (Vector3.Distance(transform.position, hit.position) < attackDistance)    //건물이 공격가능한 범위
+            {
+                enemyState = EnemyState.AttackHouse;    //여기로 가면 건물내 숨기이므로 패널티
+                return;
+            }
+            else
+            {
+                enemyState = EnemyState.Move;   //이동이면 어차피 
+                return;
+            }
+        }
     }
 
     public void AttackPlayer()
@@ -177,6 +196,7 @@ public class Enemy : MonoBehaviour, IDamagable
         if (playerDistance > attackDistance)
         {
             enemyState = EnemyState.Chasing;
+            chaseStartTime = Time.time;
             return;
         }
 
@@ -199,9 +219,10 @@ public class Enemy : MonoBehaviour, IDamagable
         agent.isStopped = true;
         lookedTarget = playerHouse[index];
         LookAtTarget();
-        if (playerDistance < detectedDistance)
+        if (playerDistance < detectedDistance && !isAlreadyChase)   //패널티 -> 한번 추격하다가 바로 건물때리는 경우라면 다시 추격x
         {
             enemyState = EnemyState.Chasing;
+            chaseStartTime = Time.time;
             return;
         }
         if (Vector3.Distance(transform.position, hit.position) > attackDistance)
@@ -225,7 +246,7 @@ public class Enemy : MonoBehaviour, IDamagable
         hp.Subtract(damage);
         Debug.Log("산적 아야");
         //onTakeDamage?.Invoke();     // 데미지를 받았다는 이벤트 발생
-    
+
     }
 
     public void Die()
@@ -240,4 +261,4 @@ public class Enemy : MonoBehaviour, IDamagable
         }
         Destroy(gameObject);
     }
-}   
+}

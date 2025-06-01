@@ -98,10 +98,10 @@ public class Enemy : MonoBehaviour, IDamagable
                 break;
         }
     }
-    public void LookAtPlayer()
+    public void LookAtTarget()
     {
         // 높이 맞추기
-        Vector3 targetPos = player.transform.position;
+        Vector3 targetPos = target.transform.position;
         targetPos.y = transform.position.y;
 
         // 회전 계산
@@ -146,7 +146,8 @@ public class Enemy : MonoBehaviour, IDamagable
     {
         agent.isStopped = false;
         speed = 1f;
-        LookAtPlayer();
+        target = player;
+        LookAtTarget();
         animator.SetBool("IsWalk", false);
         animator.SetBool("IsChase", true);
         animator.SetBool("IsAttack", false);
@@ -167,7 +168,8 @@ public class Enemy : MonoBehaviour, IDamagable
     public void AttackPlayer()
     {
         agent.isStopped = true;
-        LookAtPlayer();
+        target = player;
+        LookAtTarget();
         if (playerDistance > attackDistance)
         {
             enemyState = EnemyState.Chasing;
@@ -191,6 +193,8 @@ public class Enemy : MonoBehaviour, IDamagable
     public void AttackHouse()
     {
         agent.isStopped = true;
+        target = playerHouse[index];
+        LookAtTarget();
         if (playerDistance < detectedDistance)
         {
             enemyState = EnemyState.Chasing;
@@ -201,6 +205,7 @@ public class Enemy : MonoBehaviour, IDamagable
             enemyState = EnemyState.Move;
             return;
         }
+
         if (Time.time > lastAttackTime + attackCooldown)
         {
             lastAttackTime = Time.time;

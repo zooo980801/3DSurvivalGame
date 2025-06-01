@@ -116,7 +116,7 @@ public class DialogueUI : MonoBehaviour
         InventoryManager.Instance.InventoryBG.SetActive(false);
         InventoryManager.Instance.SeonbiBG.SetActive(true);
         InventoryManager.Instance.CraftingBG.SetActive(false);
-        Inventory.SetActive(true);
+        InventoryManager.Instance.Inventory.InventoryUI.inventoryWindow.SetActive(true);
         dialogue.SetActive(false);
     }
 }

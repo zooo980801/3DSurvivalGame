@@ -16,31 +16,61 @@ public class InventoryUI : MonoBehaviour
     public TextMeshProUGUI selectedItemDescription;
     public TextMeshProUGUI selectedItemStatName;
     public TextMeshProUGUI selectedItemStatValue;
+    
+    [Header("Seonbi StatusUI")]
+    public TextMeshProUGUI seonbiCurrentStatusText;
+    public TextMeshProUGUI seonbiResultStatusText;
+    
+    public TextMeshProUGUI playerStatusText;
+    
+    [Header("Inventory Button")]
     public GameObject useBtn;
     public GameObject equipBtn;
     public GameObject unEquipBtn;
     public GameObject dropBtn;
-
+    
     public NPCStatus Seonbi;
     private PlayerController controller;
-    private PlayerStatus status;
+    private PlayerStatus _playerStatus;
+    public PlayerStatus PlayerStatus{get{return _playerStatus;}}
+    
+    
+    private float seonbiCurHunger;
+    private float seonbiCurThirst;
 
     private int curEquipIdx;
+
+    private bool isFirst = true;
     // public void OnTest()
     // {
     //     _inventory.AddTestItem(_inventory.selectedItem);
     // }
 
+    private void OnEnable()
+    {
+        if (isFirst)
+        {
+            isFirst = false;
+            return;
+        }
+        UIUpdate();
+    }
+
     private void Start()
     {
+        _playerStatus = CharacterManager.Instance.Player.status;
+        Seonbi.Hunger.onValueChanged += SeonbiStatusUI;
+        Seonbi.Thirst.onValueChanged += ChangedSlot;
+        _playerStatus.Hunger.onValueChanged += InventoryPlayerInfo;
         _inventory = InventoryManager.Instance.Inventory;
         InventoryManager.Instance.Inventory.InventoryUI = this;
         controller = CharacterManager.Instance.Player.controller;
-        status = CharacterManager.Instance.Player.status;
-
+        _playerStatus = CharacterManager.Instance.Player.status;
+        
         controller.inventory += Toggle;
         ClearSelectedItemWindow();
         inventoryWindow.SetActive(false);
+        
     }
 
     public void SelectItemBtnUI(int idx) //찾은(눌린)아이템 에 대한 버튼UI
@@ -55,6 +85,10 @@ public class InventoryUI : MonoBehaviour
 
     public void UIUpdate()//UI갱신
     {
+        if (isFirst)
+        {
+            return;
+        }
         for (int i = 0; i < _inventory.slotPanel.inventorySlots.Length; i++)
         {
             if (_inventory.slotPanel.inventorySlots[i].item != null)
@@ -156,6 +190,32 @@ public class InventoryUI : MonoBehaviour
         dialogueManager.EndConversation();
     }
 
+    public void ChangedSlot()
+    {
+        if (InventoryManager.Instance.Inventory.selectedItem is null)
+        {
+            return;
+        }
+        if (InventoryManager.Instance.Inventory.selectedItem.type == ITEMTYPE.CONSUMABLE)
+        {
+            for (int i = 0; i < InventoryManager.Instance.Inventory.selectedItem.consumables.Length; i++)
+            {
+                if (i >= 0 && i < InventoryManager.Instance.Inventory.selectedItem.consumables.Length)
+                {
+                    switch (InventoryManager.Instance.Inventory.selectedItem.consumables[i].type)
+                    {
+                        case CONSUMABLETYPE.THIRST:
+                            seonbiCurThirst = InventoryManager.Instance.Inventory.selectedItem.consumables[i].value;
+                            break;
+                        case CONSUMABLETYPE.HUNGER:
+                            seonbiCurHunger = InventoryManager.Instance.Inventory.selectedItem.consumables[i].value;
+                            break;
+                    }
+                }
+            }
+        }
+    }
+
     public void OnFoodEatBtn()
     {
         if (InventoryManager.Instance.Inventory.selectedItem.type == ITEMTYPE.CONSUMABLE)
@@ -178,6 +238,17 @@ public class InventoryUI : MonoBehaviour
 
             InventoryManager.Instance.Inventory.RemoveSelectedItem();
         }
+    }
+
+    public void SeonbiStatusUI()
+    {
+        seonbiCurrentStatusText.text = $"배고픔 : {Seonbi.Hunger.CurValue:f0}/{Seonbi.Hunger.MaxValue}\n목마름 : {Seonbi.Thirst.CurValue:f0}/{Seonbi.Thirst.MaxValue}";
+        seonbiResultStatusText.text = $"배고픔 : {((Seonbi.Hunger.CurValue + seonbiCurHunger)>=100? 100:Seonbi.Hunger.CurValue + seonbiCurHunger) :f0}/{Seonbi.Hunger.MaxValue:f0}\n목마름{((Seonbi.Thirst.CurValue + seonbiCurThirst)>=100?100:Seonbi.Thirst.CurValue + seonbiCurThirst):f0}/{Seonbi.Thirst.MaxValue}";
+    }
+
+    public void InventoryPlayerInfo()
+    {
+        playerStatusText.text = $"체력 : {_playerStatus.Health.CurValue:f0}/{_playerStatus.Health.MaxValue}\n체력재생 : {_playerStatus.Health.PassiveValue:f0}\n공격력 : {_playerStatus.AttackPower:f0}";
     }
 
 }

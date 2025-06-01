@@ -22,7 +22,9 @@ public class InventoryManager : MonoBehaviour
     }
     private void Awake()
     {
-    
+        InventoryBG.SetActive(true);
+        SeonbiBG.SetActive(true);
+        CraftingBG.SetActive(true);
         if (_instance == null)
         {
             _instance = this;
@@ -35,7 +37,9 @@ public class InventoryManager : MonoBehaviour
                 Destroy(gameObject);
             }
         }
-        
+        InventoryBG.SetActive(false);
+        SeonbiBG.SetActive(false);
+        CraftingBG.SetActive(false);
     }
 //========================================================================//
     #endregion
@@ -43,10 +47,11 @@ public class InventoryManager : MonoBehaviour
     private Inventory _inventory;
     public Inventory Inventory{get{return _inventory;}set{_inventory = value;}}
     
-    private PlayerStatus _playerStatus;
-    public PlayerStatus PlayerStatus{get{return _playerStatus;}set{_playerStatus=value;}}
-    
     private ItemData _itemData;
     public ItemData ItemData{get{return _itemData;}set{_itemData=value;}}
+
+    public GameObject InventoryBG;
+    public GameObject SeonbiBG;
+    public GameObject CraftingBG;
 
 }

@@ -99,6 +99,9 @@ public class DialogueUI : MonoBehaviour
     }
     public void FeedOn()
     {
+        InventoryManager.Instance.InventoryBG.SetActive(false);
+        InventoryManager.Instance.SeonbiBG.SetActive(true);
+        InventoryManager.Instance.CraftingBG.SetActive(false);
         Inventory.SetActive(true);
         dialogue.SetActive(false);
     }

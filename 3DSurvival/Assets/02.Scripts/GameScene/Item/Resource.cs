@@ -1,5 +1,3 @@
-// Resource.cs
-
 using UnityEngine;
 
 public class Resource : MonoBehaviour
@@ -39,14 +37,19 @@ public class Resource : MonoBehaviour
     {
         for (int i = 0; i < quantity; i++)
         {
-            if (capacity <= 0) break; // 용량이 없으면 드롭 중단
+            if (capacity <= 0)
+            {
+                gameObject.SetActive(false);
+                break; // 용량이 없으면 드롭 중단
+            }
             capacity -= 1;
             Instantiate(itemData.dropPrefab, hitPoint + Vector3.up, Quaternion.LookRotation(hitNormal, Vector3.up));
         }
     }
 
-    public void ResetCapacity()
+    public void ResetResource()
     {
         capacity = 5;
+        gameObject.SetActive(true);
     }
 }

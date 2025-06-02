@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class InGameMenuController : MonoBehaviour
@@ -39,6 +39,7 @@ public class InGameMenuController : MonoBehaviour
     public void OnClickGoToMain()
     {
         Time.timeScale = 1f;
+        Debug.Log("[OnClickGoToMain] 씬 전환 시도: " + mainMenuSceneName);
         SceneManager.LoadScene(mainMenuSceneName);
     }
 

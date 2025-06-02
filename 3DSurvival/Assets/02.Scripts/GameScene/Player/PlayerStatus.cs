@@ -34,8 +34,23 @@ public class PlayerStatus : BaseStatus, IDamagable
     {
         base.Update();
 
-        health.Add(health.PassiveValue * Time.deltaTime);  // 기본 체력 증가
-        stamina.Add(stamina.PassiveValue * Time.deltaTime);  // 기본 스테미나 증가
+        if ((hunger.CurValue <= 0f || thirst.CurValue <= 0f) && health.CurValue > 0f)
+        {
+            health.Subtract(1f * Time.deltaTime);
+        }
+        else
+        {
+            health.Add(health.PassiveValue * Time.deltaTime);
+        }
+
+        stamina.Add(stamina.PassiveValue * Time.deltaTime);
+
+        if (health.CurValue <= 0f)
+        {
+            Debug.Log("[PlayerStatus] 체력이 0이 되어 게임 오버 처리됩니다.");
+            GameManager.Instance.GameOver();
+            enabled = false; // 플레이어 상태 업데이트 중지 (옵션)
+        }
 
     }
     void Awake()
@@ -76,6 +91,8 @@ public class PlayerStatus : BaseStatus, IDamagable
     public void ApplySaveStatus(SaveData data)
     {
         base.ApplySaveStatus(data);
+        hunger.FromSaveData(data.playerHunger);
+        thirst.FromSaveData(data.playerThirst);
         health.FromSaveData(data.health);
         stamina.FromSaveData(data.stamina);
     }
@@ -85,6 +102,8 @@ public class PlayerStatus : BaseStatus, IDamagable
 
         Debug.Log("[WriteSaveStatus] called");
         base.WriteSaveStatus(data);
+        data.playerHunger = hunger.ToSaveData();
+        data.playerThirst = thirst.ToSaveData();
         data.health = health.ToSaveData();
         data.stamina = stamina.ToSaveData();
     }

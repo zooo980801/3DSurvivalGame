@@ -62,8 +62,8 @@ public class MainUI : MonoBehaviour
         float hungerRatio = npcStatus.Hunger.CurValue / npcStatus.Hunger.MaxValue;
         float thirstRatio = npcStatus.Thirst.CurValue / npcStatus.Thirst.MaxValue;
 
-        bool isHungry = hungerRatio < 0.8f;
-        bool isThirsty = thirstRatio < 0.8f;
+        bool isHungry = hungerRatio < 0.3f;
+        bool isThirsty = thirstRatio < 0.3f;
 
         if ((isHungry || isThirsty) && currentTime - lastHungerAlarmTime >= ALARM_INTERVAL)
         {

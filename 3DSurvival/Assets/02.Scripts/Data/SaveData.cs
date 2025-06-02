@@ -33,6 +33,8 @@ public class SaveData // ← 저장용 클래스 명칭
     public SaveLevel level;
     public int gold;
 
+    public SaveStatusData playerHunger;
+    public SaveStatusData playerThirst;
     public SaveStatusData health;
     public SaveStatusData stamina;
     public SaveStatusData hunger;

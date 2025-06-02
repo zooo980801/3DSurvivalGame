@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.16949126, g: 0.30674207, b: 0.6252666, a: 1}
+  m_IndirectSpecularColor: {r: 0.16949481, g: 0.30673724, b: 0.6252237, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -128,6 +128,44 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4641201997778117340, guid: a4a5f926fd3307f419615ecc9a853ea6, type: 3}
   m_PrefabInstance: {fileID: 1533903786}
   m_PrefabAsset: {fileID: 0}
+--- !u!84 &9458271
+RenderTexture:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  m_ImageContentsHash:
+    serializedVersion: 2
+    Hash: 00000000000000000000000000000000
+  m_ForcedFallbackFormat: 4
+  m_DownscaleFallback: 0
+  m_IsAlphaChannelOptional: 0
+  serializedVersion: 5
+  m_Width: 128
+  m_Height: 128
+  m_AntiAliasing: 1
+  m_MipCount: -1
+  m_DepthStencilFormat: 94
+  m_ColorFormat: 48
+  m_MipMap: 1
+  m_GenerateMips: 1
+  m_SRGB: 0
+  m_UseDynamicScale: 0
+  m_BindMS: 0
+  m_EnableCompatibleFormat: 1
+  m_EnableRandomWrite: 0
+  m_TextureSettings:
+    serializedVersion: 2
+    m_FilterMode: 1
+    m_Aniso: 1
+    m_MipBias: 0
+    m_WrapU: 1
+    m_WrapV: 1
+    m_WrapW: 1
+  m_Dimension: 2
+  m_VolumeDepth: 1
+  m_ShadowSamplingMode: 2
 --- !u!4 &14223486 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4641201997778117340, guid: fa13bd5a519b6b146af34459e9f352fa, type: 3}
@@ -283,6 +321,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: RockGetStone 0 (11)
       objectReference: {fileID: 0}
+    - target: {fileID: 5467978820789255797, guid: 6ad208584d97c7b4284a71f4e7071b11, type: 3}
+      propertyPath: itemToGive
+      value: 
+      objectReference: {fileID: 11400000, guid: 880c1597ce2416e44814d759bab829b6, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -296,6 +338,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 671462990}
     m_Modifications:
+    - target: {fileID: 3009874456710488933, guid: f1d5b5ae208b9f847b4bc518407eede8, type: 3}
+      propertyPath: itemToGive
+      value: 
+      objectReference: {fileID: 11400000, guid: 40d7c742152d9a34e83ac75be3a88226, type: 2}
     - target: {fileID: 4641201997778117340, guid: f1d5b5ae208b9f847b4bc518407eede8, type: 3}
       propertyPath: m_LocalPosition.x
       value: -51.683937
@@ -442,6 +488,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 671462990}
     m_Modifications:
+    - target: {fileID: 3009874456710488933, guid: edbcd6b7eaa554f4f9101ecb27f7970c, type: 3}
+      propertyPath: itemToGive
+      value: 
+      objectReference: {fileID: 11400000, guid: 40d7c742152d9a34e83ac75be3a88226, type: 2}
     - target: {fileID: 4641201997778117340, guid: edbcd6b7eaa554f4f9101ecb27f7970c, type: 3}
       propertyPath: m_LocalPosition.x
       value: -57.570637
@@ -7456,6 +7506,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: RockGetStone 1 (8)
       objectReference: {fileID: 0}
+    - target: {fileID: 5467978820789255797, guid: 18b83b84dab7d8b458256cd9ad41fffc, type: 3}
+      propertyPath: itemToGive
+      value: 
+      objectReference: {fileID: 11400000, guid: 880c1597ce2416e44814d759bab829b6, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -7515,6 +7569,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 671462990}
     m_Modifications:
+    - target: {fileID: 3009874456710488933, guid: fa13bd5a519b6b146af34459e9f352fa, type: 3}
+      propertyPath: itemToGive
+      value: 
+      objectReference: {fileID: 11400000, guid: 40d7c742152d9a34e83ac75be3a88226, type: 2}
     - target: {fileID: 4641201997778117340, guid: fa13bd5a519b6b146af34459e9f352fa, type: 3}
       propertyPath: m_LocalPosition.x
       value: -16.114124
@@ -7572,6 +7630,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 671462990}
     m_Modifications:
+    - target: {fileID: 3009874456710488933, guid: a4a5f926fd3307f419615ecc9a853ea6, type: 3}
+      propertyPath: itemToGive
+      value: 
+      objectReference: {fileID: 11400000, guid: 40d7c742152d9a34e83ac75be3a88226, type: 2}
     - target: {fileID: 4641201997778117340, guid: a4a5f926fd3307f419615ecc9a853ea6, type: 3}
       propertyPath: m_LocalPosition.x
       value: -66.30716
@@ -8032,6 +8094,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 671462990}
     m_Modifications:
+    - target: {fileID: 3009874456710488933, guid: fa13bd5a519b6b146af34459e9f352fa, type: 3}
+      propertyPath: itemToGive
+      value: 
+      objectReference: {fileID: 11400000, guid: 40d7c742152d9a34e83ac75be3a88226, type: 2}
     - target: {fileID: 4641201997778117340, guid: fa13bd5a519b6b146af34459e9f352fa, type: 3}
       propertyPath: m_LocalPosition.x
       value: 3.6377563
@@ -12954,6 +13020,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 671462990}
     m_Modifications:
+    - target: {fileID: 3009874456710488933, guid: fa13bd5a519b6b146af34459e9f352fa, type: 3}
+      propertyPath: itemToGive
+      value: 
+      objectReference: {fileID: 11400000, guid: 40d7c742152d9a34e83ac75be3a88226, type: 2}
     - target: {fileID: 4641201997778117340, guid: fa13bd5a519b6b146af34459e9f352fa, type: 3}
       propertyPath: m_LocalPosition.x
       value: 29.119349
@@ -13011,6 +13081,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 671462990}
     m_Modifications:
+    - target: {fileID: 3009874456710488933, guid: a4a5f926fd3307f419615ecc9a853ea6, type: 3}
+      propertyPath: itemToGive
+      value: 
+      objectReference: {fileID: 11400000, guid: 40d7c742152d9a34e83ac75be3a88226, type: 2}
     - target: {fileID: 4641201997778117340, guid: a4a5f926fd3307f419615ecc9a853ea6, type: 3}
       propertyPath: m_LocalPosition.x
       value: -55.51588
@@ -13073,6 +13147,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 671462990}
     m_Modifications:
+    - target: {fileID: 3009874456710488933, guid: f1d5b5ae208b9f847b4bc518407eede8, type: 3}
+      propertyPath: itemToGive
+      value: 
+      objectReference: {fileID: 11400000, guid: 40d7c742152d9a34e83ac75be3a88226, type: 2}
     - target: {fileID: 4641201997778117340, guid: f1d5b5ae208b9f847b4bc518407eede8, type: 3}
       propertyPath: m_LocalPosition.x
       value: 11.134506
@@ -13264,6 +13342,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 671462990}
     m_Modifications:
+    - target: {fileID: 3009874456710488933, guid: fa13bd5a519b6b146af34459e9f352fa, type: 3}
+      propertyPath: itemToGive
+      value: 
+      objectReference: {fileID: 11400000, guid: 40d7c742152d9a34e83ac75be3a88226, type: 2}
     - target: {fileID: 4641201997778117340, guid: fa13bd5a519b6b146af34459e9f352fa, type: 3}
       propertyPath: m_LocalPosition.x
       value: -15.857143
@@ -13534,6 +13616,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 671462990}
     m_Modifications:
+    - target: {fileID: 3009874456710488933, guid: f1d5b5ae208b9f847b4bc518407eede8, type: 3}
+      propertyPath: itemToGive
+      value: 
+      objectReference: {fileID: 11400000, guid: 40d7c742152d9a34e83ac75be3a88226, type: 2}
     - target: {fileID: 4641201997778117340, guid: f1d5b5ae208b9f847b4bc518407eede8, type: 3}
       propertyPath: m_LocalPosition.x
       value: -51.0212
@@ -13831,6 +13917,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 671462990}
     m_Modifications:
+    - target: {fileID: 3009874456710488933, guid: fa13bd5a519b6b146af34459e9f352fa, type: 3}
+      propertyPath: itemToGive
+      value: 
+      objectReference: {fileID: 11400000, guid: 40d7c742152d9a34e83ac75be3a88226, type: 2}
     - target: {fileID: 4641201997778117340, guid: fa13bd5a519b6b146af34459e9f352fa, type: 3}
       propertyPath: m_LocalPosition.x
       value: 10.939651
@@ -13932,6 +14022,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: RockGetStone 1 (9)
       objectReference: {fileID: 0}
+    - target: {fileID: 5467978820789255797, guid: 18b83b84dab7d8b458256cd9ad41fffc, type: 3}
+      propertyPath: itemToGive
+      value: 
+      objectReference: {fileID: 11400000, guid: 880c1597ce2416e44814d759bab829b6, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -13994,6 +14088,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: RockGetStone 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5467978820789255797, guid: 18b83b84dab7d8b458256cd9ad41fffc, type: 3}
+      propertyPath: itemToGive
+      value: 
+      objectReference: {fileID: 11400000, guid: 880c1597ce2416e44814d759bab829b6, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -14007,6 +14105,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 671462990}
     m_Modifications:
+    - target: {fileID: 3009874456710488933, guid: fa13bd5a519b6b146af34459e9f352fa, type: 3}
+      propertyPath: itemToGive
+      value: 
+      objectReference: {fileID: 11400000, guid: 40d7c742152d9a34e83ac75be3a88226, type: 2}
     - target: {fileID: 4641201997778117340, guid: fa13bd5a519b6b146af34459e9f352fa, type: 3}
       propertyPath: m_LocalPosition.x
       value: 48.249596
@@ -14123,6 +14225,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: RockGetStone 2
       objectReference: {fileID: 0}
+    - target: {fileID: 5467978820789255797, guid: eaed3c4471157f842ad5e3d732b1e4b8, type: 3}
+      propertyPath: itemToGive
+      value: 
+      objectReference: {fileID: 11400000, guid: 880c1597ce2416e44814d759bab829b6, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -14141,6 +14247,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 671462990}
     m_Modifications:
+    - target: {fileID: 3009874456710488933, guid: fa13bd5a519b6b146af34459e9f352fa, type: 3}
+      propertyPath: itemToGive
+      value: 
+      objectReference: {fileID: 11400000, guid: 40d7c742152d9a34e83ac75be3a88226, type: 2}
     - target: {fileID: 4641201997778117340, guid: fa13bd5a519b6b146af34459e9f352fa, type: 3}
       propertyPath: m_LocalPosition.x
       value: 20.278011
@@ -14442,6 +14552,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: RockGetStone 0 (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 5467978820789255797, guid: 6ad208584d97c7b4284a71f4e7071b11, type: 3}
+      propertyPath: itemToGive
+      value: 
+      objectReference: {fileID: 11400000, guid: 880c1597ce2416e44814d759bab829b6, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -14470,6 +14584,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 671462990}
     m_Modifications:
+    - target: {fileID: 3009874456710488933, guid: 57668c53d6e367c42b7ef9fa1d9caa51, type: 3}
+      propertyPath: itemToGive
+      value: 
+      objectReference: {fileID: 11400000, guid: 40d7c742152d9a34e83ac75be3a88226, type: 2}
     - target: {fileID: 4641201997778117340, guid: 57668c53d6e367c42b7ef9fa1d9caa51, type: 3}
       propertyPath: m_LocalPosition.x
       value: 57.940594
@@ -14581,6 +14699,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: RockGetStone 1 (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 5467978820789255797, guid: 18b83b84dab7d8b458256cd9ad41fffc, type: 3}
+      propertyPath: itemToGive
+      value: 
+      objectReference: {fileID: 11400000, guid: 880c1597ce2416e44814d759bab829b6, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -14594,6 +14716,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 671462990}
     m_Modifications:
+    - target: {fileID: 3009874456710488933, guid: a4a5f926fd3307f419615ecc9a853ea6, type: 3}
+      propertyPath: itemToGive
+      value: 
+      objectReference: {fileID: 11400000, guid: 40d7c742152d9a34e83ac75be3a88226, type: 2}
     - target: {fileID: 4641201997778117340, guid: a4a5f926fd3307f419615ecc9a853ea6, type: 3}
       propertyPath: m_LocalPosition.x
       value: 28.323227
@@ -15103,6 +15229,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 671462990}
     m_Modifications:
+    - target: {fileID: 3009874456710488933, guid: 2e5bd131f0074a848a464e284de72353, type: 3}
+      propertyPath: itemToGive
+      value: 
+      objectReference: {fileID: 11400000, guid: 40d7c742152d9a34e83ac75be3a88226, type: 2}
     - target: {fileID: 4641201997778117340, guid: 2e5bd131f0074a848a464e284de72353, type: 3}
       propertyPath: m_LocalPosition.x
       value: 12.15809
@@ -15160,6 +15290,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 671462990}
     m_Modifications:
+    - target: {fileID: 3009874456710488933, guid: f1d5b5ae208b9f847b4bc518407eede8, type: 3}
+      propertyPath: itemToGive
+      value: 
+      objectReference: {fileID: 11400000, guid: 40d7c742152d9a34e83ac75be3a88226, type: 2}
     - target: {fileID: 4641201997778117340, guid: f1d5b5ae208b9f847b4bc518407eede8, type: 3}
       propertyPath: m_LocalPosition.x
       value: -29.043728
@@ -15313,6 +15447,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 671462990}
     m_Modifications:
+    - target: {fileID: 3009874456710488933, guid: 2e5bd131f0074a848a464e284de72353, type: 3}
+      propertyPath: itemToGive
+      value: 
+      objectReference: {fileID: 11400000, guid: 40d7c742152d9a34e83ac75be3a88226, type: 2}
     - target: {fileID: 4641201997778117340, guid: 2e5bd131f0074a848a464e284de72353, type: 3}
       propertyPath: m_LocalPosition.x
       value: 45.86142
@@ -15370,6 +15508,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 671462990}
     m_Modifications:
+    - target: {fileID: 3009874456710488933, guid: edbcd6b7eaa554f4f9101ecb27f7970c, type: 3}
+      propertyPath: itemToGive
+      value: 
+      objectReference: {fileID: 11400000, guid: 40d7c742152d9a34e83ac75be3a88226, type: 2}
     - target: {fileID: 4641201997778117340, guid: edbcd6b7eaa554f4f9101ecb27f7970c, type: 3}
       propertyPath: m_LocalPosition.x
       value: -65.68627
@@ -15427,6 +15569,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 671462990}
     m_Modifications:
+    - target: {fileID: 3009874456710488933, guid: 2e5bd131f0074a848a464e284de72353, type: 3}
+      propertyPath: itemToGive
+      value: 
+      objectReference: {fileID: 11400000, guid: 40d7c742152d9a34e83ac75be3a88226, type: 2}
     - target: {fileID: 4641201997778117340, guid: 2e5bd131f0074a848a464e284de72353, type: 3}
       propertyPath: m_LocalPosition.x
       value: -30.69852
@@ -15499,6 +15645,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 671462990}
     m_Modifications:
+    - target: {fileID: 3009874456710488933, guid: f1d5b5ae208b9f847b4bc518407eede8, type: 3}
+      propertyPath: itemToGive
+      value: 
+      objectReference: {fileID: 11400000, guid: 40d7c742152d9a34e83ac75be3a88226, type: 2}
     - target: {fileID: 4641201997778117340, guid: f1d5b5ae208b9f847b4bc518407eede8, type: 3}
       propertyPath: m_LocalPosition.x
       value: -17.220137
@@ -15556,6 +15706,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 671462990}
     m_Modifications:
+    - target: {fileID: 3009874456710488933, guid: 09903a40d79539b4eb8a1dd6cd170941, type: 3}
+      propertyPath: itemToGive
+      value: 
+      objectReference: {fileID: 11400000, guid: 40d7c742152d9a34e83ac75be3a88226, type: 2}
     - target: {fileID: 4641201997778117340, guid: 09903a40d79539b4eb8a1dd6cd170941, type: 3}
       propertyPath: m_LocalPosition.x
       value: 10.657899
@@ -15613,6 +15767,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 671462990}
     m_Modifications:
+    - target: {fileID: 3009874456710488933, guid: edbcd6b7eaa554f4f9101ecb27f7970c, type: 3}
+      propertyPath: itemToGive
+      value: 
+      objectReference: {fileID: 11400000, guid: 40d7c742152d9a34e83ac75be3a88226, type: 2}
     - target: {fileID: 4641201997778117340, guid: edbcd6b7eaa554f4f9101ecb27f7970c, type: 3}
       propertyPath: m_LocalPosition.x
       value: -69.81353
@@ -15670,6 +15828,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 671462990}
     m_Modifications:
+    - target: {fileID: 3009874456710488933, guid: fa13bd5a519b6b146af34459e9f352fa, type: 3}
+      propertyPath: itemToGive
+      value: 
+      objectReference: {fileID: 11400000, guid: 40d7c742152d9a34e83ac75be3a88226, type: 2}
     - target: {fileID: 4641201997778117340, guid: fa13bd5a519b6b146af34459e9f352fa, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.17009163
@@ -15788,6 +15950,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 671462990}
     m_Modifications:
+    - target: {fileID: 3009874456710488933, guid: fa13bd5a519b6b146af34459e9f352fa, type: 3}
+      propertyPath: itemToGive
+      value: 
+      objectReference: {fileID: 11400000, guid: 40d7c742152d9a34e83ac75be3a88226, type: 2}
     - target: {fileID: 4641201997778117340, guid: fa13bd5a519b6b146af34459e9f352fa, type: 3}
       propertyPath: m_LocalPosition.x
       value: -15.602302
@@ -20898,7 +21064,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cameraType: 1
-  renderTexDiff: {fileID: 1467942894}
+  renderTexDiff: {fileID: 2081127818}
 --- !u!20 &456977531
 Camera:
   m_ObjectHideFlags: 0
@@ -21043,6 +21209,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: RockGetStone 1 (5)
       objectReference: {fileID: 0}
+    - target: {fileID: 5467978820789255797, guid: 18b83b84dab7d8b458256cd9ad41fffc, type: 3}
+      propertyPath: itemToGive
+      value: 
+      objectReference: {fileID: 11400000, guid: 880c1597ce2416e44814d759bab829b6, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -21273,6 +21443,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 671462990}
     m_Modifications:
+    - target: {fileID: 3009874456710488933, guid: 2c1fb231d77c99e4aa2ffa05505b9873, type: 3}
+      propertyPath: itemToGive
+      value: 
+      objectReference: {fileID: 11400000, guid: 40d7c742152d9a34e83ac75be3a88226, type: 2}
     - target: {fileID: 4641201997778117340, guid: 2c1fb231d77c99e4aa2ffa05505b9873, type: 3}
       propertyPath: m_LocalPosition.x
       value: 36.38625
@@ -21330,6 +21504,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 671462990}
     m_Modifications:
+    - target: {fileID: 3009874456710488933, guid: a4a5f926fd3307f419615ecc9a853ea6, type: 3}
+      propertyPath: itemToGive
+      value: 
+      objectReference: {fileID: 11400000, guid: 40d7c742152d9a34e83ac75be3a88226, type: 2}
     - target: {fileID: 4641201997778117340, guid: a4a5f926fd3307f419615ecc9a853ea6, type: 3}
       propertyPath: m_LocalPosition.x
       value: 17.909615
@@ -21462,6 +21640,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 671462990}
     m_Modifications:
+    - target: {fileID: 3009874456710488933, guid: 297c87c834466f245b0ed489e3bea76b, type: 3}
+      propertyPath: itemToGive
+      value: 
+      objectReference: {fileID: 11400000, guid: 40d7c742152d9a34e83ac75be3a88226, type: 2}
     - target: {fileID: 4641201997778117340, guid: 297c87c834466f245b0ed489e3bea76b, type: 3}
       propertyPath: m_LocalPosition.x
       value: -26.552732
@@ -21524,6 +21706,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 671462990}
     m_Modifications:
+    - target: {fileID: 3009874456710488933, guid: a4a5f926fd3307f419615ecc9a853ea6, type: 3}
+      propertyPath: itemToGive
+      value: 
+      objectReference: {fileID: 11400000, guid: 40d7c742152d9a34e83ac75be3a88226, type: 2}
     - target: {fileID: 4641201997778117340, guid: a4a5f926fd3307f419615ecc9a853ea6, type: 3}
       propertyPath: m_LocalPosition.x
       value: -55.181633
@@ -21586,6 +21772,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 671462990}
     m_Modifications:
+    - target: {fileID: 3009874456710488933, guid: a4a5f926fd3307f419615ecc9a853ea6, type: 3}
+      propertyPath: itemToGive
+      value: 
+      objectReference: {fileID: 11400000, guid: 40d7c742152d9a34e83ac75be3a88226, type: 2}
     - target: {fileID: 4641201997778117340, guid: a4a5f926fd3307f419615ecc9a853ea6, type: 3}
       propertyPath: m_LocalPosition.x
       value: 49.6612
@@ -21648,6 +21838,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 671462990}
     m_Modifications:
+    - target: {fileID: 3009874456710488933, guid: edbcd6b7eaa554f4f9101ecb27f7970c, type: 3}
+      propertyPath: itemToGive
+      value: 
+      objectReference: {fileID: 11400000, guid: 40d7c742152d9a34e83ac75be3a88226, type: 2}
     - target: {fileID: 4641201997778117340, guid: edbcd6b7eaa554f4f9101ecb27f7970c, type: 3}
       propertyPath: m_LocalPosition.x
       value: -67.9418
@@ -21865,6 +22059,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 671462990}
     m_Modifications:
+    - target: {fileID: 3009874456710488933, guid: f1d5b5ae208b9f847b4bc518407eede8, type: 3}
+      propertyPath: itemToGive
+      value: 
+      objectReference: {fileID: 11400000, guid: 40d7c742152d9a34e83ac75be3a88226, type: 2}
     - target: {fileID: 4641201997778117340, guid: f1d5b5ae208b9f847b4bc518407eede8, type: 3}
       propertyPath: m_LocalPosition.x
       value: 46.26572
@@ -21927,6 +22125,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 671462990}
     m_Modifications:
+    - target: {fileID: 3009874456710488933, guid: 2c1fb231d77c99e4aa2ffa05505b9873, type: 3}
+      propertyPath: itemToGive
+      value: 
+      objectReference: {fileID: 11400000, guid: 40d7c742152d9a34e83ac75be3a88226, type: 2}
     - target: {fileID: 4641201997778117340, guid: 2c1fb231d77c99e4aa2ffa05505b9873, type: 3}
       propertyPath: m_LocalPosition.x
       value: -9.374021
@@ -22052,6 +22254,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 671462990}
     m_Modifications:
+    - target: {fileID: 3009874456710488933, guid: a4a5f926fd3307f419615ecc9a853ea6, type: 3}
+      propertyPath: itemToGive
+      value: 
+      objectReference: {fileID: 11400000, guid: 40d7c742152d9a34e83ac75be3a88226, type: 2}
     - target: {fileID: 4641201997778117340, guid: a4a5f926fd3307f419615ecc9a853ea6, type: 3}
       propertyPath: m_LocalPosition.x
       value: -41.14947
@@ -23181,7 +23387,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  randSeed: 294925140
+  randSeed: 297475234
   isDoingTransition: 0
   minimumHeight: 0
 --- !u!114 &633636797
@@ -23288,6 +23494,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: RockGetStone 0 (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 5467978820789255797, guid: 6ad208584d97c7b4284a71f4e7071b11, type: 3}
+      propertyPath: itemToGive
+      value: 
+      objectReference: {fileID: 11400000, guid: 880c1597ce2416e44814d759bab829b6, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -23508,6 +23718,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: RockGetStone 1 (7)
       objectReference: {fileID: 0}
+    - target: {fileID: 5467978820789255797, guid: 18b83b84dab7d8b458256cd9ad41fffc, type: 3}
+      propertyPath: itemToGive
+      value: 
+      objectReference: {fileID: 11400000, guid: 880c1597ce2416e44814d759bab829b6, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -23678,6 +23892,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: RockGetStone 0 (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 5467978820789255797, guid: 6ad208584d97c7b4284a71f4e7071b11, type: 3}
+      propertyPath: itemToGive
+      value: 
+      objectReference: {fileID: 11400000, guid: 880c1597ce2416e44814d759bab829b6, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -23883,6 +24101,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 671462990}
     m_Modifications:
+    - target: {fileID: 3009874456710488933, guid: 57668c53d6e367c42b7ef9fa1d9caa51, type: 3}
+      propertyPath: itemToGive
+      value: 
+      objectReference: {fileID: 11400000, guid: 40d7c742152d9a34e83ac75be3a88226, type: 2}
     - target: {fileID: 4641201997778117340, guid: 57668c53d6e367c42b7ef9fa1d9caa51, type: 3}
       propertyPath: m_LocalPosition.x
       value: -40.628967
@@ -23945,6 +24167,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 671462990}
     m_Modifications:
+    - target: {fileID: 3009874456710488933, guid: 2e5bd131f0074a848a464e284de72353, type: 3}
+      propertyPath: itemToGive
+      value: 
+      objectReference: {fileID: 11400000, guid: 40d7c742152d9a34e83ac75be3a88226, type: 2}
     - target: {fileID: 4641201997778117340, guid: 2e5bd131f0074a848a464e284de72353, type: 3}
       propertyPath: m_LocalPosition.x
       value: -19.82458
@@ -24046,6 +24272,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: RockGetStone 0 (8)
       objectReference: {fileID: 0}
+    - target: {fileID: 5467978820789255797, guid: 6ad208584d97c7b4284a71f4e7071b11, type: 3}
+      propertyPath: itemToGive
+      value: 
+      objectReference: {fileID: 11400000, guid: 880c1597ce2416e44814d759bab829b6, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -24496,6 +24726,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 671462990}
     m_Modifications:
+    - target: {fileID: 3009874456710488933, guid: 4aad8f15bd331b04e859096e6c545de6, type: 3}
+      propertyPath: itemToGive
+      value: 
+      objectReference: {fileID: 11400000, guid: 40d7c742152d9a34e83ac75be3a88226, type: 2}
     - target: {fileID: 4641201997778117340, guid: 4aad8f15bd331b04e859096e6c545de6, type: 3}
       propertyPath: m_LocalPosition.x
       value: -56.956097
@@ -24659,6 +24893,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 671462990}
     m_Modifications:
+    - target: {fileID: 3009874456710488933, guid: 2e5bd131f0074a848a464e284de72353, type: 3}
+      propertyPath: itemToGive
+      value: 
+      objectReference: {fileID: 11400000, guid: 40d7c742152d9a34e83ac75be3a88226, type: 2}
     - target: {fileID: 4641201997778117340, guid: 2e5bd131f0074a848a464e284de72353, type: 3}
       propertyPath: m_LocalPosition.x
       value: -51.60881
@@ -29577,6 +29815,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 671462990}
     m_Modifications:
+    - target: {fileID: 3009874456710488933, guid: a4a5f926fd3307f419615ecc9a853ea6, type: 3}
+      propertyPath: itemToGive
+      value: 
+      objectReference: {fileID: 11400000, guid: 40d7c742152d9a34e83ac75be3a88226, type: 2}
     - target: {fileID: 4641201997778117340, guid: a4a5f926fd3307f419615ecc9a853ea6, type: 3}
       propertyPath: m_LocalPosition.x
       value: -36.217808
@@ -29716,6 +29958,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 671462990}
     m_Modifications:
+    - target: {fileID: 3009874456710488933, guid: fa13bd5a519b6b146af34459e9f352fa, type: 3}
+      propertyPath: itemToGive
+      value: 
+      objectReference: {fileID: 11400000, guid: 40d7c742152d9a34e83ac75be3a88226, type: 2}
     - target: {fileID: 4641201997778117340, guid: fa13bd5a519b6b146af34459e9f352fa, type: 3}
       propertyPath: m_LocalPosition.x
       value: 2.144127
@@ -29817,6 +30063,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: RockGetStone 2 (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 5467978820789255797, guid: eaed3c4471157f842ad5e3d732b1e4b8, type: 3}
+      propertyPath: itemToGive
+      value: 
+      objectReference: {fileID: 11400000, guid: 880c1597ce2416e44814d759bab829b6, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -29879,6 +30129,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: RockGetStone 0 (6)
       objectReference: {fileID: 0}
+    - target: {fileID: 5467978820789255797, guid: 6ad208584d97c7b4284a71f4e7071b11, type: 3}
+      propertyPath: itemToGive
+      value: 
+      objectReference: {fileID: 11400000, guid: 880c1597ce2416e44814d759bab829b6, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -29941,6 +30195,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: RockGetStone 1 (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 5467978820789255797, guid: 18b83b84dab7d8b458256cd9ad41fffc, type: 3}
+      propertyPath: itemToGive
+      value: 
+      objectReference: {fileID: 11400000, guid: 880c1597ce2416e44814d759bab829b6, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -29954,6 +30212,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 671462990}
     m_Modifications:
+    - target: {fileID: 3009874456710488933, guid: fa13bd5a519b6b146af34459e9f352fa, type: 3}
+      propertyPath: itemToGive
+      value: 
+      objectReference: {fileID: 11400000, guid: 40d7c742152d9a34e83ac75be3a88226, type: 2}
     - target: {fileID: 4641201997778117340, guid: fa13bd5a519b6b146af34459e9f352fa, type: 3}
       propertyPath: m_LocalPosition.x
       value: 13.140475
@@ -30150,6 +30412,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 671462990}
     m_Modifications:
+    - target: {fileID: 3009874456710488933, guid: 57668c53d6e367c42b7ef9fa1d9caa51, type: 3}
+      propertyPath: itemToGive
+      value: 
+      objectReference: {fileID: 11400000, guid: 40d7c742152d9a34e83ac75be3a88226, type: 2}
     - target: {fileID: 4641201997778117340, guid: 57668c53d6e367c42b7ef9fa1d9caa51, type: 3}
       propertyPath: m_LocalPosition.x
       value: -43.925507
@@ -30287,6 +30553,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 671462990}
     m_Modifications:
+    - target: {fileID: 3009874456710488933, guid: 57668c53d6e367c42b7ef9fa1d9caa51, type: 3}
+      propertyPath: itemToGive
+      value: 
+      objectReference: {fileID: 11400000, guid: 40d7c742152d9a34e83ac75be3a88226, type: 2}
     - target: {fileID: 4641201997778117340, guid: 57668c53d6e367c42b7ef9fa1d9caa51, type: 3}
       propertyPath: m_LocalPosition.x
       value: 39.383823
@@ -30429,6 +30699,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 671462990}
     m_Modifications:
+    - target: {fileID: 3009874456710488933, guid: fa13bd5a519b6b146af34459e9f352fa, type: 3}
+      propertyPath: itemToGive
+      value: 
+      objectReference: {fileID: 11400000, guid: 40d7c742152d9a34e83ac75be3a88226, type: 2}
     - target: {fileID: 4641201997778117340, guid: fa13bd5a519b6b146af34459e9f352fa, type: 3}
       propertyPath: m_LocalPosition.x
       value: -57.24327
@@ -30486,6 +30760,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 671462990}
     m_Modifications:
+    - target: {fileID: 3009874456710488933, guid: a4a5f926fd3307f419615ecc9a853ea6, type: 3}
+      propertyPath: itemToGive
+      value: 
+      objectReference: {fileID: 11400000, guid: 40d7c742152d9a34e83ac75be3a88226, type: 2}
     - target: {fileID: 4641201997778117340, guid: a4a5f926fd3307f419615ecc9a853ea6, type: 3}
       propertyPath: m_LocalPosition.x
       value: -46.791546
@@ -30665,6 +30943,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 671462990}
     m_Modifications:
+    - target: {fileID: 3009874456710488933, guid: a4a5f926fd3307f419615ecc9a853ea6, type: 3}
+      propertyPath: itemToGive
+      value: 
+      objectReference: {fileID: 11400000, guid: 40d7c742152d9a34e83ac75be3a88226, type: 2}
     - target: {fileID: 4641201997778117340, guid: a4a5f926fd3307f419615ecc9a853ea6, type: 3}
       propertyPath: m_LocalPosition.x
       value: -41.477013
@@ -30722,6 +31004,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 671462990}
     m_Modifications:
+    - target: {fileID: 3009874456710488933, guid: fa13bd5a519b6b146af34459e9f352fa, type: 3}
+      propertyPath: itemToGive
+      value: 
+      objectReference: {fileID: 11400000, guid: 40d7c742152d9a34e83ac75be3a88226, type: 2}
     - target: {fileID: 4641201997778117340, guid: fa13bd5a519b6b146af34459e9f352fa, type: 3}
       propertyPath: m_LocalPosition.x
       value: -2.6537209
@@ -30823,6 +31109,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: RockGetStone 0 (10)
       objectReference: {fileID: 0}
+    - target: {fileID: 5467978820789255797, guid: 6ad208584d97c7b4284a71f4e7071b11, type: 3}
+      propertyPath: itemToGive
+      value: 
+      objectReference: {fileID: 11400000, guid: 880c1597ce2416e44814d759bab829b6, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -30836,6 +31126,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 671462990}
     m_Modifications:
+    - target: {fileID: 3009874456710488933, guid: a4a5f926fd3307f419615ecc9a853ea6, type: 3}
+      propertyPath: itemToGive
+      value: 
+      objectReference: {fileID: 11400000, guid: 40d7c742152d9a34e83ac75be3a88226, type: 2}
     - target: {fileID: 4641201997778117340, guid: a4a5f926fd3307f419615ecc9a853ea6, type: 3}
       propertyPath: m_LocalPosition.x
       value: -1.3450203
@@ -30885,44 +31179,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a4a5f926fd3307f419615ecc9a853ea6, type: 3}
---- !u!84 &991803966
-RenderTexture:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: 
-  m_ImageContentsHash:
-    serializedVersion: 2
-    Hash: 00000000000000000000000000000000
-  m_ForcedFallbackFormat: 4
-  m_DownscaleFallback: 0
-  m_IsAlphaChannelOptional: 0
-  serializedVersion: 5
-  m_Width: 128
-  m_Height: 128
-  m_AntiAliasing: 1
-  m_MipCount: -1
-  m_DepthStencilFormat: 94
-  m_ColorFormat: 48
-  m_MipMap: 1
-  m_GenerateMips: 1
-  m_SRGB: 0
-  m_UseDynamicScale: 0
-  m_BindMS: 0
-  m_EnableCompatibleFormat: 1
-  m_EnableRandomWrite: 0
-  m_TextureSettings:
-    serializedVersion: 2
-    m_FilterMode: 1
-    m_Aniso: 1
-    m_MipBias: 0
-    m_WrapU: 1
-    m_WrapV: 1
-    m_WrapW: 1
-  m_Dimension: 2
-  m_VolumeDepth: 1
-  m_ShadowSamplingMode: 2
 --- !u!1001 &994154743
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -30931,6 +31187,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 671462990}
     m_Modifications:
+    - target: {fileID: 3009874456710488933, guid: a4a5f926fd3307f419615ecc9a853ea6, type: 3}
+      propertyPath: itemToGive
+      value: 
+      objectReference: {fileID: 11400000, guid: 40d7c742152d9a34e83ac75be3a88226, type: 2}
     - target: {fileID: 4641201997778117340, guid: a4a5f926fd3307f419615ecc9a853ea6, type: 3}
       propertyPath: m_LocalPosition.x
       value: 26.773802
@@ -30998,6 +31258,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 671462990}
     m_Modifications:
+    - target: {fileID: 3009874456710488933, guid: 2e5bd131f0074a848a464e284de72353, type: 3}
+      propertyPath: itemToGive
+      value: 
+      objectReference: {fileID: 11400000, guid: 40d7c742152d9a34e83ac75be3a88226, type: 2}
     - target: {fileID: 4641201997778117340, guid: 2e5bd131f0074a848a464e284de72353, type: 3}
       propertyPath: m_LocalPosition.x
       value: 52.863697
@@ -31238,6 +31502,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 671462990}
     m_Modifications:
+    - target: {fileID: 3009874456710488933, guid: 4aad8f15bd331b04e859096e6c545de6, type: 3}
+      propertyPath: itemToGive
+      value: 
+      objectReference: {fileID: 11400000, guid: 40d7c742152d9a34e83ac75be3a88226, type: 2}
     - target: {fileID: 4641201997778117340, guid: 4aad8f15bd331b04e859096e6c545de6, type: 3}
       propertyPath: m_LocalPosition.x
       value: -6.567684
@@ -31344,6 +31612,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: RockGetStone 1 (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 5467978820789255797, guid: 18b83b84dab7d8b458256cd9ad41fffc, type: 3}
+      propertyPath: itemToGive
+      value: 
+      objectReference: {fileID: 11400000, guid: 880c1597ce2416e44814d759bab829b6, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -31647,6 +31919,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: RockGetStone 2 (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 5467978820789255797, guid: eaed3c4471157f842ad5e3d732b1e4b8, type: 3}
+      propertyPath: itemToGive
+      value: 
+      objectReference: {fileID: 11400000, guid: 880c1597ce2416e44814d759bab829b6, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -31704,6 +31980,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: RockGetStone 0 (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 5467978820789255797, guid: 6ad208584d97c7b4284a71f4e7071b11, type: 3}
+      propertyPath: itemToGive
+      value: 
+      objectReference: {fileID: 11400000, guid: 880c1597ce2416e44814d759bab829b6, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -31896,7 +32176,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cameraType: 0
-  renderTexDiff: {fileID: 991803966}
+  renderTexDiff: {fileID: 9458271}
 --- !u!20 &1155303589
 Camera:
   m_ObjectHideFlags: 0
@@ -31971,6 +32251,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 671462990}
     m_Modifications:
+    - target: {fileID: 3009874456710488933, guid: fa13bd5a519b6b146af34459e9f352fa, type: 3}
+      propertyPath: itemToGive
+      value: 
+      objectReference: {fileID: 11400000, guid: 40d7c742152d9a34e83ac75be3a88226, type: 2}
     - target: {fileID: 4641201997778117340, guid: fa13bd5a519b6b146af34459e9f352fa, type: 3}
       propertyPath: m_LocalPosition.x
       value: 7.389122
@@ -32218,6 +32502,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 671462990}
     m_Modifications:
+    - target: {fileID: 3009874456710488933, guid: f1d5b5ae208b9f847b4bc518407eede8, type: 3}
+      propertyPath: itemToGive
+      value: 
+      objectReference: {fileID: 11400000, guid: 40d7c742152d9a34e83ac75be3a88226, type: 2}
     - target: {fileID: 4641201997778117340, guid: f1d5b5ae208b9f847b4bc518407eede8, type: 3}
       propertyPath: m_LocalPosition.x
       value: 29.06248
@@ -32280,6 +32568,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 671462990}
     m_Modifications:
+    - target: {fileID: 3009874456710488933, guid: 09903a40d79539b4eb8a1dd6cd170941, type: 3}
+      propertyPath: itemToGive
+      value: 
+      objectReference: {fileID: 11400000, guid: 40d7c742152d9a34e83ac75be3a88226, type: 2}
     - target: {fileID: 4641201997778117340, guid: 09903a40d79539b4eb8a1dd6cd170941, type: 3}
       propertyPath: m_LocalPosition.x
       value: -21.46053
@@ -42457,6 +42749,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 671462990}
     m_Modifications:
+    - target: {fileID: 3009874456710488933, guid: 2e5bd131f0074a848a464e284de72353, type: 3}
+      propertyPath: itemToGive
+      value: 
+      objectReference: {fileID: 11400000, guid: 40d7c742152d9a34e83ac75be3a88226, type: 2}
     - target: {fileID: 4641201997778117340, guid: 2e5bd131f0074a848a464e284de72353, type: 3}
       propertyPath: m_LocalPosition.x
       value: 34.737686
@@ -42514,6 +42810,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 671462990}
     m_Modifications:
+    - target: {fileID: 3009874456710488933, guid: a4a5f926fd3307f419615ecc9a853ea6, type: 3}
+      propertyPath: itemToGive
+      value: 
+      objectReference: {fileID: 11400000, guid: 40d7c742152d9a34e83ac75be3a88226, type: 2}
     - target: {fileID: 4641201997778117340, guid: a4a5f926fd3307f419615ecc9a853ea6, type: 3}
       propertyPath: m_LocalPosition.x
       value: 21.580223
@@ -42792,6 +43092,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 671462990}
     m_Modifications:
+    - target: {fileID: 3009874456710488933, guid: 4aad8f15bd331b04e859096e6c545de6, type: 3}
+      propertyPath: itemToGive
+      value: 
+      objectReference: {fileID: 11400000, guid: 40d7c742152d9a34e83ac75be3a88226, type: 2}
     - target: {fileID: 4641201997778117340, guid: 4aad8f15bd331b04e859096e6c545de6, type: 3}
       propertyPath: m_LocalPosition.x
       value: -46.053185
@@ -42849,6 +43153,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 671462990}
     m_Modifications:
+    - target: {fileID: 3009874456710488933, guid: 4aad8f15bd331b04e859096e6c545de6, type: 3}
+      propertyPath: itemToGive
+      value: 
+      objectReference: {fileID: 11400000, guid: 40d7c742152d9a34e83ac75be3a88226, type: 2}
     - target: {fileID: 4641201997778117340, guid: 4aad8f15bd331b04e859096e6c545de6, type: 3}
       propertyPath: m_LocalPosition.x
       value: -45.65779
@@ -43002,6 +43310,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 671462990}
     m_Modifications:
+    - target: {fileID: 3009874456710488933, guid: 4aad8f15bd331b04e859096e6c545de6, type: 3}
+      propertyPath: itemToGive
+      value: 
+      objectReference: {fileID: 11400000, guid: 40d7c742152d9a34e83ac75be3a88226, type: 2}
     - target: {fileID: 4641201997778117340, guid: 4aad8f15bd331b04e859096e6c545de6, type: 3}
       propertyPath: m_LocalPosition.x
       value: 59.986046
@@ -43342,6 +43654,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: RockGetStone 1 (10)
       objectReference: {fileID: 0}
+    - target: {fileID: 5467978820789255797, guid: 18b83b84dab7d8b458256cd9ad41fffc, type: 3}
+      propertyPath: itemToGive
+      value: 
+      objectReference: {fileID: 11400000, guid: 880c1597ce2416e44814d759bab829b6, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -43355,6 +43671,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 671462990}
     m_Modifications:
+    - target: {fileID: 3009874456710488933, guid: 297c87c834466f245b0ed489e3bea76b, type: 3}
+      propertyPath: itemToGive
+      value: 
+      objectReference: {fileID: 11400000, guid: 40d7c742152d9a34e83ac75be3a88226, type: 2}
     - target: {fileID: 4641201997778117340, guid: 297c87c834466f245b0ed489e3bea76b, type: 3}
       propertyPath: m_LocalPosition.x
       value: 9.979184
@@ -43628,6 +43948,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 671462990}
     m_Modifications:
+    - target: {fileID: 3009874456710488933, guid: 57668c53d6e367c42b7ef9fa1d9caa51, type: 3}
+      propertyPath: itemToGive
+      value: 
+      objectReference: {fileID: 11400000, guid: 40d7c742152d9a34e83ac75be3a88226, type: 2}
     - target: {fileID: 4641201997778117340, guid: 57668c53d6e367c42b7ef9fa1d9caa51, type: 3}
       propertyPath: m_LocalPosition.x
       value: -57.024696
@@ -43685,6 +44009,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 671462990}
     m_Modifications:
+    - target: {fileID: 3009874456710488933, guid: 57668c53d6e367c42b7ef9fa1d9caa51, type: 3}
+      propertyPath: itemToGive
+      value: 
+      objectReference: {fileID: 11400000, guid: 40d7c742152d9a34e83ac75be3a88226, type: 2}
     - target: {fileID: 4641201997778117340, guid: 57668c53d6e367c42b7ef9fa1d9caa51, type: 3}
       propertyPath: m_LocalPosition.x
       value: -33.587234
@@ -43880,6 +44208,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: RockGetStone 0 (5)
       objectReference: {fileID: 0}
+    - target: {fileID: 5467978820789255797, guid: 6ad208584d97c7b4284a71f4e7071b11, type: 3}
+      propertyPath: itemToGive
+      value: 
+      objectReference: {fileID: 11400000, guid: 880c1597ce2416e44814d759bab829b6, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -43959,6 +44291,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 671462990}
     m_Modifications:
+    - target: {fileID: 3009874456710488933, guid: a4a5f926fd3307f419615ecc9a853ea6, type: 3}
+      propertyPath: itemToGive
+      value: 
+      objectReference: {fileID: 11400000, guid: 40d7c742152d9a34e83ac75be3a88226, type: 2}
     - target: {fileID: 4641201997778117340, guid: a4a5f926fd3307f419615ecc9a853ea6, type: 3}
       propertyPath: m_LocalPosition.x
       value: -34.879578
@@ -44016,6 +44352,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 671462990}
     m_Modifications:
+    - target: {fileID: 3009874456710488933, guid: a4a5f926fd3307f419615ecc9a853ea6, type: 3}
+      propertyPath: itemToGive
+      value: 
+      objectReference: {fileID: 11400000, guid: 40d7c742152d9a34e83ac75be3a88226, type: 2}
     - target: {fileID: 4641201997778117340, guid: a4a5f926fd3307f419615ecc9a853ea6, type: 3}
       propertyPath: m_LocalPosition.x
       value: -17.50914
@@ -50590,6 +50930,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 671462990}
     m_Modifications:
+    - target: {fileID: 3009874456710488933, guid: a4a5f926fd3307f419615ecc9a853ea6, type: 3}
+      propertyPath: itemToGive
+      value: 
+      objectReference: {fileID: 11400000, guid: 40d7c742152d9a34e83ac75be3a88226, type: 2}
     - target: {fileID: 4641201997778117340, guid: a4a5f926fd3307f419615ecc9a853ea6, type: 3}
       propertyPath: m_LocalPosition.x
       value: -24.4
@@ -50639,44 +50983,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a4a5f926fd3307f419615ecc9a853ea6, type: 3}
---- !u!84 &1467942894
-RenderTexture:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: 
-  m_ImageContentsHash:
-    serializedVersion: 2
-    Hash: 00000000000000000000000000000000
-  m_ForcedFallbackFormat: 4
-  m_DownscaleFallback: 0
-  m_IsAlphaChannelOptional: 0
-  serializedVersion: 5
-  m_Width: 128
-  m_Height: 128
-  m_AntiAliasing: 1
-  m_MipCount: -1
-  m_DepthStencilFormat: 94
-  m_ColorFormat: 48
-  m_MipMap: 1
-  m_GenerateMips: 1
-  m_SRGB: 0
-  m_UseDynamicScale: 0
-  m_BindMS: 0
-  m_EnableCompatibleFormat: 1
-  m_EnableRandomWrite: 0
-  m_TextureSettings:
-    serializedVersion: 2
-    m_FilterMode: 1
-    m_Aniso: 1
-    m_MipBias: 0
-    m_WrapU: 1
-    m_WrapV: 1
-    m_WrapW: 1
-  m_Dimension: 2
-  m_VolumeDepth: 1
-  m_ShadowSamplingMode: 2
 --- !u!1001 &1482599039
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -50685,6 +50991,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 671462990}
     m_Modifications:
+    - target: {fileID: 3009874456710488933, guid: f1d5b5ae208b9f847b4bc518407eede8, type: 3}
+      propertyPath: itemToGive
+      value: 
+      objectReference: {fileID: 11400000, guid: 40d7c742152d9a34e83ac75be3a88226, type: 2}
     - target: {fileID: 4641201997778117340, guid: f1d5b5ae208b9f847b4bc518407eede8, type: 3}
       propertyPath: m_LocalPosition.x
       value: 55.253414
@@ -50752,6 +51062,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 671462990}
     m_Modifications:
+    - target: {fileID: 3009874456710488933, guid: a4a5f926fd3307f419615ecc9a853ea6, type: 3}
+      propertyPath: itemToGive
+      value: 
+      objectReference: {fileID: 11400000, guid: 40d7c742152d9a34e83ac75be3a88226, type: 2}
     - target: {fileID: 4641201997778117340, guid: a4a5f926fd3307f419615ecc9a853ea6, type: 3}
       propertyPath: m_LocalPosition.x
       value: 20.730396
@@ -50891,6 +51205,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: RockGetStone 0 (9)
       objectReference: {fileID: 0}
+    - target: {fileID: 5467978820789255797, guid: 6ad208584d97c7b4284a71f4e7071b11, type: 3}
+      propertyPath: itemToGive
+      value: 
+      objectReference: {fileID: 11400000, guid: 880c1597ce2416e44814d759bab829b6, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -55782,6 +56100,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 671462990}
     m_Modifications:
+    - target: {fileID: 3009874456710488933, guid: fa13bd5a519b6b146af34459e9f352fa, type: 3}
+      propertyPath: itemToGive
+      value: 
+      objectReference: {fileID: 11400000, guid: 40d7c742152d9a34e83ac75be3a88226, type: 2}
     - target: {fileID: 4641201997778117340, guid: fa13bd5a519b6b146af34459e9f352fa, type: 3}
       propertyPath: m_LocalPosition.x
       value: 6.785325
@@ -55996,6 +56318,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 671462990}
     m_Modifications:
+    - target: {fileID: 3009874456710488933, guid: a4a5f926fd3307f419615ecc9a853ea6, type: 3}
+      propertyPath: itemToGive
+      value: 
+      objectReference: {fileID: 11400000, guid: 40d7c742152d9a34e83ac75be3a88226, type: 2}
     - target: {fileID: 4641201997778117340, guid: a4a5f926fd3307f419615ecc9a853ea6, type: 3}
       propertyPath: m_LocalPosition.x
       value: 52.425056
@@ -56058,6 +56384,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 671462990}
     m_Modifications:
+    - target: {fileID: 3009874456710488933, guid: a4a5f926fd3307f419615ecc9a853ea6, type: 3}
+      propertyPath: itemToGive
+      value: 
+      objectReference: {fileID: 11400000, guid: 40d7c742152d9a34e83ac75be3a88226, type: 2}
     - target: {fileID: 4641201997778117340, guid: a4a5f926fd3307f419615ecc9a853ea6, type: 3}
       propertyPath: m_LocalPosition.x
       value: -51.525993
@@ -56298,6 +56628,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: RockGetStone 0 (7)
       objectReference: {fileID: 0}
+    - target: {fileID: 5467978820789255797, guid: 6ad208584d97c7b4284a71f4e7071b11, type: 3}
+      propertyPath: itemToGive
+      value: 
+      objectReference: {fileID: 11400000, guid: 880c1597ce2416e44814d759bab829b6, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -56402,6 +56736,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 671462990}
     m_Modifications:
+    - target: {fileID: 3009874456710488933, guid: a4a5f926fd3307f419615ecc9a853ea6, type: 3}
+      propertyPath: itemToGive
+      value: 
+      objectReference: {fileID: 11400000, guid: 40d7c742152d9a34e83ac75be3a88226, type: 2}
     - target: {fileID: 4641201997778117340, guid: a4a5f926fd3307f419615ecc9a853ea6, type: 3}
       propertyPath: m_LocalPosition.x
       value: 51.917713
@@ -56474,6 +56812,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 671462990}
     m_Modifications:
+    - target: {fileID: 3009874456710488933, guid: f1d5b5ae208b9f847b4bc518407eede8, type: 3}
+      propertyPath: itemToGive
+      value: 
+      objectReference: {fileID: 11400000, guid: 40d7c742152d9a34e83ac75be3a88226, type: 2}
     - target: {fileID: 4641201997778117340, guid: f1d5b5ae208b9f847b4bc518407eede8, type: 3}
       propertyPath: m_LocalPosition.x
       value: -17.786177
@@ -66748,6 +67090,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 671462990}
     m_Modifications:
+    - target: {fileID: 3009874456710488933, guid: fa13bd5a519b6b146af34459e9f352fa, type: 3}
+      propertyPath: itemToGive
+      value: 
+      objectReference: {fileID: 11400000, guid: 40d7c742152d9a34e83ac75be3a88226, type: 2}
     - target: {fileID: 4641201997778117340, guid: fa13bd5a519b6b146af34459e9f352fa, type: 3}
       propertyPath: m_LocalPosition.x
       value: 6.1441593
@@ -76470,6 +76816,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: RockGetStone 2 (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 5467978820789255797, guid: eaed3c4471157f842ad5e3d732b1e4b8, type: 3}
+      propertyPath: itemToGive
+      value: 
+      objectReference: {fileID: 11400000, guid: 880c1597ce2416e44814d759bab829b6, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -81459,6 +81809,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 671462990}
     m_Modifications:
+    - target: {fileID: 3009874456710488933, guid: 2e5bd131f0074a848a464e284de72353, type: 3}
+      propertyPath: itemToGive
+      value: 
+      objectReference: {fileID: 11400000, guid: 40d7c742152d9a34e83ac75be3a88226, type: 2}
     - target: {fileID: 4641201997778117340, guid: 2e5bd131f0074a848a464e284de72353, type: 3}
       propertyPath: m_LocalPosition.x
       value: -23.738325
@@ -82447,6 +82801,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: RockGetStone 1 (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 5467978820789255797, guid: 18b83b84dab7d8b458256cd9ad41fffc, type: 3}
+      propertyPath: itemToGive
+      value: 
+      objectReference: {fileID: 11400000, guid: 880c1597ce2416e44814d759bab829b6, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -82460,6 +82818,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 671462990}
     m_Modifications:
+    - target: {fileID: 3009874456710488933, guid: a4a5f926fd3307f419615ecc9a853ea6, type: 3}
+      propertyPath: itemToGive
+      value: 
+      objectReference: {fileID: 11400000, guid: 40d7c742152d9a34e83ac75be3a88226, type: 2}
     - target: {fileID: 4641201997778117340, guid: a4a5f926fd3307f419615ecc9a853ea6, type: 3}
       propertyPath: m_LocalPosition.x
       value: 58.816
@@ -82522,6 +82884,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 671462990}
     m_Modifications:
+    - target: {fileID: 3009874456710488933, guid: a4a5f926fd3307f419615ecc9a853ea6, type: 3}
+      propertyPath: itemToGive
+      value: 
+      objectReference: {fileID: 11400000, guid: 40d7c742152d9a34e83ac75be3a88226, type: 2}
     - target: {fileID: 4641201997778117340, guid: a4a5f926fd3307f419615ecc9a853ea6, type: 3}
       propertyPath: m_LocalPosition.x
       value: 18.53125
@@ -82579,6 +82945,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 671462990}
     m_Modifications:
+    - target: {fileID: 3009874456710488933, guid: 2e5bd131f0074a848a464e284de72353, type: 3}
+      propertyPath: itemToGive
+      value: 
+      objectReference: {fileID: 11400000, guid: 40d7c742152d9a34e83ac75be3a88226, type: 2}
     - target: {fileID: 4641201997778117340, guid: 2e5bd131f0074a848a464e284de72353, type: 3}
       propertyPath: m_LocalPosition.x
       value: -49.392586
@@ -83028,6 +83398,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: RockGetStone 2 (5)
       objectReference: {fileID: 0}
+    - target: {fileID: 5467978820789255797, guid: eaed3c4471157f842ad5e3d732b1e4b8, type: 3}
+      propertyPath: itemToGive
+      value: 
+      objectReference: {fileID: 11400000, guid: 880c1597ce2416e44814d759bab829b6, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -83041,6 +83415,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 671462990}
     m_Modifications:
+    - target: {fileID: 3009874456710488933, guid: 57668c53d6e367c42b7ef9fa1d9caa51, type: 3}
+      propertyPath: itemToGive
+      value: 
+      objectReference: {fileID: 11400000, guid: 40d7c742152d9a34e83ac75be3a88226, type: 2}
     - target: {fileID: 4641201997778117340, guid: 57668c53d6e367c42b7ef9fa1d9caa51, type: 3}
       propertyPath: m_LocalPosition.x
       value: 61.19964
@@ -83543,6 +83921,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 671462990}
     m_Modifications:
+    - target: {fileID: 3009874456710488933, guid: 57668c53d6e367c42b7ef9fa1d9caa51, type: 3}
+      propertyPath: itemToGive
+      value: 
+      objectReference: {fileID: 11400000, guid: 40d7c742152d9a34e83ac75be3a88226, type: 2}
     - target: {fileID: 4641201997778117340, guid: 57668c53d6e367c42b7ef9fa1d9caa51, type: 3}
       propertyPath: m_LocalPosition.x
       value: -3.0720901
@@ -83616,6 +83998,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 671462990}
     m_Modifications:
+    - target: {fileID: 3009874456710488933, guid: f1d5b5ae208b9f847b4bc518407eede8, type: 3}
+      propertyPath: itemToGive
+      value: 
+      objectReference: {fileID: 11400000, guid: 40d7c742152d9a34e83ac75be3a88226, type: 2}
     - target: {fileID: 4641201997778117340, guid: f1d5b5ae208b9f847b4bc518407eede8, type: 3}
       propertyPath: m_LocalPosition.x
       value: -30.775892
@@ -83717,6 +84103,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: RockGetStone 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5467978820789255797, guid: 6ad208584d97c7b4284a71f4e7071b11, type: 3}
+      propertyPath: itemToGive
+      value: 
+      objectReference: {fileID: 11400000, guid: 880c1597ce2416e44814d759bab829b6, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -83730,6 +84120,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 671462990}
     m_Modifications:
+    - target: {fileID: 3009874456710488933, guid: fa13bd5a519b6b146af34459e9f352fa, type: 3}
+      propertyPath: itemToGive
+      value: 
+      objectReference: {fileID: 11400000, guid: 40d7c742152d9a34e83ac75be3a88226, type: 2}
     - target: {fileID: 4641201997778117340, guid: fa13bd5a519b6b146af34459e9f352fa, type: 3}
       propertyPath: m_LocalPosition.x
       value: -59.753967
@@ -84083,6 +84477,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: RockGetStone 1 (6)
       objectReference: {fileID: 0}
+    - target: {fileID: 5467978820789255797, guid: 18b83b84dab7d8b458256cd9ad41fffc, type: 3}
+      propertyPath: itemToGive
+      value: 
+      objectReference: {fileID: 11400000, guid: 880c1597ce2416e44814d759bab829b6, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -84132,6 +84530,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 671462990}
     m_Modifications:
+    - target: {fileID: 3009874456710488933, guid: a4a5f926fd3307f419615ecc9a853ea6, type: 3}
+      propertyPath: itemToGive
+      value: 
+      objectReference: {fileID: 11400000, guid: 40d7c742152d9a34e83ac75be3a88226, type: 2}
     - target: {fileID: 4641201997778117340, guid: a4a5f926fd3307f419615ecc9a853ea6, type: 3}
       propertyPath: m_LocalPosition.x
       value: -31.234299
@@ -84189,6 +84591,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 671462990}
     m_Modifications:
+    - target: {fileID: 3009874456710488933, guid: 2e5bd131f0074a848a464e284de72353, type: 3}
+      propertyPath: itemToGive
+      value: 
+      objectReference: {fileID: 11400000, guid: 40d7c742152d9a34e83ac75be3a88226, type: 2}
     - target: {fileID: 4641201997778117340, guid: 2e5bd131f0074a848a464e284de72353, type: 3}
       propertyPath: m_LocalPosition.x
       value: 61.739433
@@ -84246,6 +84652,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 671462990}
     m_Modifications:
+    - target: {fileID: 3009874456710488933, guid: 57668c53d6e367c42b7ef9fa1d9caa51, type: 3}
+      propertyPath: itemToGive
+      value: 
+      objectReference: {fileID: 11400000, guid: 40d7c742152d9a34e83ac75be3a88226, type: 2}
     - target: {fileID: 4641201997778117340, guid: 57668c53d6e367c42b7ef9fa1d9caa51, type: 3}
       propertyPath: m_LocalPosition.x
       value: -28.328545
@@ -84347,6 +84757,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: RockGetStone 2 (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 5467978820789255797, guid: eaed3c4471157f842ad5e3d732b1e4b8, type: 3}
+      propertyPath: itemToGive
+      value: 
+      objectReference: {fileID: 11400000, guid: 880c1597ce2416e44814d759bab829b6, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -84439,6 +84853,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 671462990}
     m_Modifications:
+    - target: {fileID: 3009874456710488933, guid: 2e5bd131f0074a848a464e284de72353, type: 3}
+      propertyPath: itemToGive
+      value: 
+      objectReference: {fileID: 11400000, guid: 40d7c742152d9a34e83ac75be3a88226, type: 2}
     - target: {fileID: 4641201997778117340, guid: 2e5bd131f0074a848a464e284de72353, type: 3}
       propertyPath: m_LocalPosition.x
       value: 20.027908
@@ -84630,6 +85048,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 671462990}
     m_Modifications:
+    - target: {fileID: 3009874456710488933, guid: 2e5bd131f0074a848a464e284de72353, type: 3}
+      propertyPath: itemToGive
+      value: 
+      objectReference: {fileID: 11400000, guid: 40d7c742152d9a34e83ac75be3a88226, type: 2}
     - target: {fileID: 4641201997778117340, guid: 2e5bd131f0074a848a464e284de72353, type: 3}
       propertyPath: m_LocalPosition.x
       value: 32.070827
@@ -84808,6 +85230,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 671462990}
     m_Modifications:
+    - target: {fileID: 3009874456710488933, guid: a4a5f926fd3307f419615ecc9a853ea6, type: 3}
+      propertyPath: itemToGive
+      value: 
+      objectReference: {fileID: 11400000, guid: 40d7c742152d9a34e83ac75be3a88226, type: 2}
     - target: {fileID: 4641201997778117340, guid: a4a5f926fd3307f419615ecc9a853ea6, type: 3}
       propertyPath: m_LocalPosition.x
       value: 6.48048
@@ -84865,6 +85291,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 671462990}
     m_Modifications:
+    - target: {fileID: 3009874456710488933, guid: f1d5b5ae208b9f847b4bc518407eede8, type: 3}
+      propertyPath: itemToGive
+      value: 
+      objectReference: {fileID: 11400000, guid: 40d7c742152d9a34e83ac75be3a88226, type: 2}
     - target: {fileID: 4641201997778117340, guid: f1d5b5ae208b9f847b4bc518407eede8, type: 3}
       propertyPath: m_LocalPosition.x
       value: -52.786427
@@ -84914,6 +85344,44 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f1d5b5ae208b9f847b4bc518407eede8, type: 3}
+--- !u!84 &2081127818
+RenderTexture:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  m_ImageContentsHash:
+    serializedVersion: 2
+    Hash: 00000000000000000000000000000000
+  m_ForcedFallbackFormat: 4
+  m_DownscaleFallback: 0
+  m_IsAlphaChannelOptional: 0
+  serializedVersion: 5
+  m_Width: 128
+  m_Height: 128
+  m_AntiAliasing: 1
+  m_MipCount: -1
+  m_DepthStencilFormat: 94
+  m_ColorFormat: 48
+  m_MipMap: 1
+  m_GenerateMips: 1
+  m_SRGB: 0
+  m_UseDynamicScale: 0
+  m_BindMS: 0
+  m_EnableCompatibleFormat: 1
+  m_EnableRandomWrite: 0
+  m_TextureSettings:
+    serializedVersion: 2
+    m_FilterMode: 1
+    m_Aniso: 1
+    m_MipBias: 0
+    m_WrapU: 1
+    m_WrapV: 1
+    m_WrapW: 1
+  m_Dimension: 2
+  m_VolumeDepth: 1
+  m_ShadowSamplingMode: 2
 --- !u!4 &2081539958 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4641201997778117340, guid: a4a5f926fd3307f419615ecc9a853ea6, type: 3}
@@ -84927,6 +85395,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 671462990}
     m_Modifications:
+    - target: {fileID: 3009874456710488933, guid: a4a5f926fd3307f419615ecc9a853ea6, type: 3}
+      propertyPath: itemToGive
+      value: 
+      objectReference: {fileID: 11400000, guid: 40d7c742152d9a34e83ac75be3a88226, type: 2}
     - target: {fileID: 4641201997778117340, guid: a4a5f926fd3307f419615ecc9a853ea6, type: 3}
       propertyPath: m_LocalPosition.x
       value: -19.708958
@@ -84984,6 +85456,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 671462990}
     m_Modifications:
+    - target: {fileID: 3009874456710488933, guid: 2e5bd131f0074a848a464e284de72353, type: 3}
+      propertyPath: itemToGive
+      value: 
+      objectReference: {fileID: 11400000, guid: 40d7c742152d9a34e83ac75be3a88226, type: 2}
     - target: {fileID: 4641201997778117340, guid: 2e5bd131f0074a848a464e284de72353, type: 3}
       propertyPath: m_LocalPosition.x
       value: -39.226395
@@ -85076,6 +85552,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 671462990}
     m_Modifications:
+    - target: {fileID: 3009874456710488933, guid: 2c1fb231d77c99e4aa2ffa05505b9873, type: 3}
+      propertyPath: itemToGive
+      value: 
+      objectReference: {fileID: 11400000, guid: 40d7c742152d9a34e83ac75be3a88226, type: 2}
     - target: {fileID: 4641201997778117340, guid: 2c1fb231d77c99e4aa2ffa05505b9873, type: 3}
       propertyPath: m_LocalPosition.x
       value: 21.86635
@@ -85133,6 +85613,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 671462990}
     m_Modifications:
+    - target: {fileID: 3009874456710488933, guid: a4a5f926fd3307f419615ecc9a853ea6, type: 3}
+      propertyPath: itemToGive
+      value: 
+      objectReference: {fileID: 11400000, guid: 40d7c742152d9a34e83ac75be3a88226, type: 2}
     - target: {fileID: 4641201997778117340, guid: a4a5f926fd3307f419615ecc9a853ea6, type: 3}
       propertyPath: m_LocalPosition.x
       value: -39.51876
@@ -85190,6 +85674,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 671462990}
     m_Modifications:
+    - target: {fileID: 3009874456710488933, guid: edbcd6b7eaa554f4f9101ecb27f7970c, type: 3}
+      propertyPath: itemToGive
+      value: 
+      objectReference: {fileID: 11400000, guid: 40d7c742152d9a34e83ac75be3a88226, type: 2}
     - target: {fileID: 4641201997778117340, guid: edbcd6b7eaa554f4f9101ecb27f7970c, type: 3}
       propertyPath: m_LocalPosition.x
       value: -32.61221

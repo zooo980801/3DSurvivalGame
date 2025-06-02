@@ -34,6 +34,10 @@ public class EquipTool : Equip
             {
                 CharacterManager.Instance.Player.animationHandler.Punch();
             }
+            else if (toolItemData.type == ITEMTYPE.BUILDING)
+            {
+                OnBuild();
+            }
             else
             {
                 animator.SetTrigger("Attack");
@@ -49,6 +53,26 @@ public class EquipTool : Equip
         attacking = false;
     }
 
+    public void OnBuild()
+    {
+        CharacterManager.Instance.Player.soundHandler.AttackGruntSound();
+
+        Transform cameraContainer = CharacterManager.Instance.Player.controller.CameraContainer;
+        Ray ray = new Ray(cameraContainer.position, cameraContainer.forward);
+        RaycastHit hit;
+        if (Physics.Raycast(ray, out hit, attackDistance))
+        {
+            //설치 불가능 일때 효과 넣기
+            return;
+        }
+        //설치
+        Vector3 placePos = cameraContainer.position + cameraContainer.forward * attackDistance;
+        Instantiate(toolItemData.dropPrefab, placePos, Quaternion.identity);
+        //핸드 비우기
+        playerAttack.UnEquip();
+        //장비 장착 창 비우기
+        InventoryManager.Instance.Inventory.InventoryUI.CraftingUnEquip();
+    }
     public void OnHit()
     {
         CharacterManager.Instance.Player.soundHandler.AttackGruntSound();
@@ -57,20 +81,7 @@ public class EquipTool : Equip
         Ray ray = new Ray(cameraContainer.position, cameraContainer.forward);
         RaycastHit hit;
 
-        if (toolItemData.type == ITEMTYPE.BUILDING) // 빌딩 타입이면
-        {
-            //설치 할 수 있는지 확인
-            if (Physics.Raycast(ray, attackDistance))
-            {
-                return;
-            }
-            //설치
-            Vector3 placePos = cameraContainer.position + cameraContainer.forward * attackDistance;
-            Instantiate(toolItemData.dropPrefab, placePos, Quaternion.identity);
-            //핸드 비우기
-            playerAttack.UnEquip();
-        }
-        else if (Physics.Raycast(ray, out hit, attackDistance))
+        if (Physics.Raycast(ray, out hit, attackDistance))
         {
             //자원 수집 처리
             if (doesGatherResources && hit.collider.TryGetComponent(out ResourceObj resource))

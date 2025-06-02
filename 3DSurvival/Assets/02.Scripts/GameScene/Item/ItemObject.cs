@@ -19,9 +19,16 @@ public class ItemObject : MonoBehaviour, IInteractable
 
     public void OnInteract()//아이템 상호작용 리턴값
     {
-        CharacterManager.Instance.Player.itemData = data;
-        CharacterManager.Instance.Player.addItem?.Invoke();
-        Destroy(gameObject);
+        if (data.id == "13")//제작대이면
+        {
+            InventoryManager.Instance.Inventory.InventoryUI.CreftingUI();
+        }
+        else
+        {
+            CharacterManager.Instance.Player.itemData = data;
+            CharacterManager.Instance.Player.addItem?.Invoke();
+            Destroy(gameObject);
+        }
     }
 
     public SavedDroppedItem WriteSave()

@@ -290,4 +290,26 @@ public class InventoryUI : MonoBehaviour
         playerStatusText.text = $"체력 : {_playerStatus.Health.CurValue:f0}/{_playerStatus.Health.MaxValue}\n체력재생 : {_playerStatus.Health.PassiveValue:f0}\n공격력 : {_playerStatus.AttackPower:f0}";
     }
 
+    public void CraftingUnEquip()
+    {
+        var equipSlot = _inventory.slotPanel.equipmentSlots[0];
+
+        equipSlot.item = null;
+        equipSlot.quantity = 0;
+        equipSlot.equipped = false;
+        equipSlot.Clear();
+
+        _inventory.selectedItem = null;
+        ClearSelectedItemWindow();
+        UIUpdate();
+    }
+    //제작 창 열기
+    public void CreftingUI()
+    {
+        InventoryManager.Instance.CraftingBG.SetActive(true);
+        InventoryManager.Instance.InventoryBG.SetActive(false);
+        InventoryManager.Instance.SeonbiBG.SetActive(false);
+        inventoryWindow.SetActive(true);
+        Cursor.lockState = CursorLockMode.None;
+    }
 }

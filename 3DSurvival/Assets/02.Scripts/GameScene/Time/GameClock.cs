@@ -111,5 +111,8 @@ public class GameClock : MonoBehaviour
         currentHour.Value = data.currentHour;
         currentMinute.Value = data.currentMinute;
         currentDay.Value = data.currentDay;
+
+        OnTimeChanged?.Invoke(currentHour, currentMinute);
+        OnDayChanged?.Invoke(currentDay);  // ← 여기 꼭 호출!
     }
 }

@@ -223,65 +223,32 @@ public class GameManager : MonoBehaviour
 
     public void ClearGame()
     {
-        StartCoroutine(ClearGameRoutine());
-    }
-
-    private IEnumerator ClearGameRoutine()
-    {
+        if (gameOverUI != null)
+            gameOverUI.SetActive(true);
         Debug.Log("유배 종료, 클리어!");
-
-        //UI 먼저 띄움
-        Fader.FadeIn();
-        if (clearUI != null)
-            clearUI.SetActive(true);
-
-        yield return null;
 
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
 
-        if (playerStatus != null)
-        {
-            var controller = playerStatus.GetComponent<PlayerController>();
-            if (controller != null) controller.enabled = false;
-
-            var input = playerStatus.GetComponent<PlayerInput>();
-            if (input != null) input.enabled = false;
-        }
+        Fader.FadeIn();
     }
 
 
     public void GameOver()
     {
-        StartCoroutine(GameOverRoutine());
-    }
 
-    private IEnumerator GameOverRoutine()
-    {
-        Debug.Log("게임오버");
-
-        // UI 먼저 띄우기
-        Fader.FadeIn();
         if (gameOverUI != null)
             gameOverUI.SetActive(true);
 
-        // 한 프레임 기다림 (UI가 확실히 뜨게)
-        yield return null;
+        Debug.Log("게임오버");
 
-        // 마우스 커서 및 시간 정지
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
 
-        // 플레이어 조작 중지
-        if (playerStatus != null)
-        {
-            var controller = playerStatus.GetComponent<PlayerController>();
-            if (controller != null) controller.enabled = false;
+        Fader.FadeIn();
 
-            var input = playerStatus.GetComponent<PlayerInput>();
-            if (input != null) input.enabled = false;
-        }
     }
+
 
     //테스트용 게임오버 버튼 (UI에서 연결)
     public void TestGameOver()
